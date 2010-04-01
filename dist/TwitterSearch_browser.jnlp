@@ -12,7 +12,7 @@
         <extension name="JavaFX Runtime" href="http://dl.javafx.com/1.2/javafx-rt.jnlp"/>
         <jar href="TwitterSearch.jar" main="true"/>
     </resources>
-    <applet-desc name="TwitterSearch" main-class="com.sun.javafx.runtime.adapter.Applet" width="200" height="200">
+    <applet-desc name="TwitterSearch" main-class="com.sun.javafx.runtime.adapter.Applet" width="600" height="400">
         <param name="MainJavaFXScript" value="tweetsearch.Main_run"/>
     </applet-desc>
     <update check="background"/>
