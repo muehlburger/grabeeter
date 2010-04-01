@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="file:/home/herbert/workspace/netbeans/TwitterSearch/dist/" href="TwitterSearch.jnlp">
+    <information>
+        <title>TwitterSearch</title>
+        <vendor>herbert</vendor>
+        <homepage href=""/>
+        <description>TwitterSearch</description>
+        <offline-allowed/>
+    </information>
+    <resources>
+        <j2se version="1.5+"/>
+        <extension name="JavaFX Runtime" href="http://dl.javafx.com/1.2/javafx-rt.jnlp"/>
+        <jar href="TwitterSearch.jar" main="true"/>
+    </resources>
+    <application-desc main-class="com.sun.javafx.runtime.main.Main">
+        <argument>MainJavaFXScript=tweetsearch.Main_run</argument>
+    </application-desc>
+    <update check="background"/>
+</jnlp>
