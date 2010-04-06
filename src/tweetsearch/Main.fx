@@ -110,7 +110,7 @@ public class Main {
             spacing: 6.0
         };
         logoImage = javafx.scene.image.Image {
-            url: "http://www.google.com/images/logo.gif"
+            url: "http://portal.tugraz.at/tu_graz/images/head/logo_head.gif"
         };
         logoImageView = javafx.scene.image.ImageView {
             image: logoImage

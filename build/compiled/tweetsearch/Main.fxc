@@ -65,7 +65,7 @@
         <Reference name="instanceName" value="str:logoImage"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
-        <Reference name="url" value="prop:48,anim:,,str:http://www.google.com/images/logo.gif,"/>
+        <Reference name="url" value="prop:68,anim:,,str:http://portal.tugraz.at/tu_graz/images/head/logo_head.gif,"/>
     </Instance>
     <Instance classID="LinearGradientModel" instanceID="LinearGradientModel1">
         <Reference name="instanceName" value="str:backgroundGradient"/>
@@ -150,7 +150,6 @@
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
         <Reference name="text" value="prop:18,anim:,,str:Search:,4,null,"/>
-        <Reference name="font" value="prop:default"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel1">
         <Reference name="instanceName" value="str:searchTextBox"/>
