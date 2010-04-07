@@ -2,7 +2,7 @@
 <jnlp spec="1.0+" codebase="file:/home/herbert/workspace/netbeans/TwitterSearch/dist/" href="TwitterSearch.jnlp">
     <information>
         <title>TwitterSearch</title>
-        <vendor>herbert</vendor>
+        <vendor>Graz University of Technology</vendor>
         <homepage href=""/>
         <description>TwitterSearch</description>
         <offline-allowed/>

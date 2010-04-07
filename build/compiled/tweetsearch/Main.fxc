@@ -65,7 +65,7 @@
         <Reference name="instanceName" value="str:logoImage"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
-        <Reference name="url" value="prop:68,anim:,,str:http://portal.tugraz.at/tu_graz/images/head/logo_head.gif,"/>
+        <Reference name="url" value="prop:47,anim:,,str:http://www.tweetex.dat/dist/logo.gif,"/>
     </Instance>
     <Instance classID="LinearGradientModel" instanceID="LinearGradientModel1">
         <Reference name="instanceName" value="str:backgroundGradient"/>

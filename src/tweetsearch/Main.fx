@@ -33,6 +33,7 @@ import javafx.io.http.URLConverter;
 
 public class Main {
 
+    public-read var tweetUtil = TweetUtil{ };
     public-read var logoImageView: javafx.scene.image.ImageView;//GEN-BEGIN:main
     public-read var label: javafx.scene.control.Label;
     public-read var searchTextBox: javafx.scene.control.TextBox;
@@ -110,7 +111,7 @@ public class Main {
             spacing: 6.0
         };
         logoImage = javafx.scene.image.Image {
-            url: "http://portal.tugraz.at/tu_graz/images/head/logo_head.gif"
+            url: "http://www.tweetex.dat/dist/logo.gif"
         };
         logoImageView = javafx.scene.image.ImageView {
             image: logoImage
@@ -264,6 +265,8 @@ public class Main {
         httpDataSource.url = "http://www.tweetex.dat/frontend_dev.php/api/{new URLConverter().encodeString(searchTextBox.text)}/search.json";
         searchState.actual = 1;
         listView.select(-1);
+        tweetUtil.save();
     }
+
 
 }
