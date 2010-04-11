@@ -140,7 +140,7 @@ public class Main {
                 width: bind listView.width
                 height: bind listView.height
             }
-            items: bind httpDataSource.getDataSource("responseData/results").getRecordSet().all()
+            items: bind listViewItems
         };
         titleLabel = javafx.scene.control.Label {
             textWrap: true
@@ -316,6 +316,8 @@ public class Main {
         scene
     }// </editor-fold>//GEN-END:main
 
+    var listViewItems: Object[] = bind tweetUtil.tweets;
+
     var tweetUtil = TweetUtil{
         location: bind "http://www.tweetex.dat/frontend_dev.php/api/tweets/{username}.xml"
     };
@@ -323,16 +325,12 @@ public class Main {
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
 
     function retrieveButtonAction(): Void {
-//        httpDataSource.url = "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{new URLConverter().encodeString(usernameTextBox.text)}.json";
-//        searchState.actual = 1;
-//        listView.select(-1);
         tweetUtil.retrieveData();
- 
     }
 
-    var selectedResult = bind listView.selectedItem as org.netbeans.javafx.datasrc.Record on replace {
-        titleLabel.text = "Tweet: {selectedResult.getString ("text")}";
-        urlLabel.text = "URL: {new URLConverter ().decodeString(selectedResult.getString ("url"))}";
+    var selectedResult = bind listView.selectedItem as String on replace {
+        titleLabel.text = "Tweet: {selectedResult}";
+        urlLabel.text = "URL: {if(selectedResult != null) then new URLConverter ().decodeString(selectedResult) else ""}";
         detailsState.actual = if (selectedResult != null) then 1 else 0;
     }
 
@@ -341,6 +339,7 @@ public class Main {
     }
 
     function searchButtonAction(): Void {
+        tweetUtil.load();
         searchState.actual = 1;
         listView.select(-1);
     }

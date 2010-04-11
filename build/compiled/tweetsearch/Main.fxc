@@ -244,7 +244,7 @@
         <Reference name="layoutInfoHeight" value="prop:16,anim:,,flt:250.0,24,inst:StateVariableModel2,16,inst:StateModel4,16,anim:,,flt:170.0,"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
-        <Reference name="items" value="prop:bind:bind httpDataSource.getDataSource(&quot;responseData/results&quot;).getRecordSet().all()"/>
+        <Reference name="items" value="prop:bind:bind listViewItems"/>
     </Instance>
     <Instance classID="VBoxModel" instanceID="VBoxModel2">
         <Reference name="instanceName" value="str:detailsBox"/>
