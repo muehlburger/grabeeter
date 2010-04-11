@@ -316,10 +316,14 @@ public class Main {
         scene
     }// </editor-fold>//GEN-END:main
 
-    var tweetUtil = TweetUtil{ location: bind "http://www.tweetex.dat/frontend_dev.php/api/tweets/{new URLConverter().encodeString(usernameTextBox.text)}.xml" };
+    var tweetUtil = TweetUtil{
+        location: bind "http://www.tweetex.dat/frontend_dev.php/api/tweets/{username}.xml"
+    };
+
+    var username = bind new URLConverter().encodeString(usernameTextBox.text);
 
     function retrieveButtonAction(): Void {
-        //httpDataSource.url = "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{new URLConverter().encodeString(usernameTextBox.text)}.json";
+//        httpDataSource.url = "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{new URLConverter().encodeString(usernameTextBox.text)}.json";
 //        searchState.actual = 1;
 //        listView.select(-1);
         tweetUtil.retrieveData();

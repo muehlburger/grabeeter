@@ -18,7 +18,7 @@ public class TweetUtil {
     public var location: String;
     
     var storage = Storage {
-        source: "local-tweets-";
+        source: "local-tweets";
     };
 
     init {
