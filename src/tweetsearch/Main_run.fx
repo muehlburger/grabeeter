@@ -32,6 +32,6 @@ package tweetsearch;
 var design = Main {}
 
 javafx.stage.Stage {
-    title: "Tweet Search"
+    title: "Twitter Searcher"
     scene: design.getDesignScene ()
 }

@@ -35,6 +35,7 @@ public class Main {
 
     public-read var tweetUtil = TweetUtil{ };
     public-read var logoImageView: javafx.scene.image.ImageView;//GEN-BEGIN:main
+    public-read var headline: javafx.scene.control.Label;
     public-read var label2: javafx.scene.control.Label;
     public-read var usernameTextBox: javafx.scene.control.TextBox;
     public-read var retrieveButton: javafx.scene.control.Button;
@@ -51,6 +52,7 @@ public class Main {
     public-read var scene: javafx.scene.Scene;
     public-read var logoImage: javafx.scene.image.Image;
     public-read var backgroundGradient: javafx.scene.paint.LinearGradient;
+    public-read var font: javafx.scene.text.Font;
     public-read var httpDataSource: org.netbeans.javafx.datasrc.HttpDataSource;
     
     public-read var searchState: org.netbeans.javafx.design.DesignState;
@@ -159,32 +161,50 @@ public class Main {
             spacing: 6.0
         };
         logoImage = javafx.scene.image.Image {
-            url: "http://www.tweetex.dat/dist/logo.gif"
+            url: "http://portal.tugraz.at/tu_graz/images/head/logo_head.gif"
+            backgroundLoading: false
+            smooth: false
+            width: 200.0
+            height: 77.0
+            placeholder: null
+            preserveRatio: true
         };
         logoImageView = javafx.scene.image.ImageView {
             image: logoImage
-        };
-        vbox = javafx.scene.layout.VBox {
-            layoutX: 0.0
-            layoutY: 0.0
-            width: 600.0
-            height: 479.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind vbox.width
-                height: bind vbox.height
-            }
-            content: [ logoImageView, hbox2, hbox, listView, detailsBox, ]
-            hpos: javafx.geometry.HPos.CENTER
-            nodeHPos: javafx.geometry.HPos.CENTER
-            spacing: 20.0
+            preserveRatio: true
         };
         backgroundGradient = javafx.scene.paint.LinearGradient {
             endX: 0.0
             stops: [ javafx.scene.paint.Stop { offset: 0.0, color: javafx.scene.paint.Color.web ("#FFFFFF") }, javafx.scene.paint.Stop { offset: 0.4, color: javafx.scene.paint.Color.web ("#FFFFFF") }, javafx.scene.paint.Stop { offset: 0.6, color: javafx.scene.paint.Color.web ("#CCCCCC") }, javafx.scene.paint.Stop { offset: 1.0, color: javafx.scene.paint.Color.web ("#FFFFFF") }, ]
         };
+        font = javafx.scene.text.Font {
+            size: 70.0
+        };
+        headline = javafx.scene.control.Label {
+            text: "Twitter Searcher"
+            font: font
+        };
+        vbox = javafx.scene.layout.VBox {
+            layoutX: 0.0
+            layoutY: 0.0
+            width: 600.0
+            height: 0.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind vbox.width
+                height: bind vbox.height
+                hpos: javafx.geometry.HPos.LEFT
+                vpos: javafx.geometry.VPos.TOP
+                managed: true
+            }
+            content: [ logoImageView, headline, hbox2, hbox, listView, detailsBox, ]
+            hpos: javafx.geometry.HPos.CENTER
+            vpos: javafx.geometry.VPos.TOP
+            nodeHPos: javafx.geometry.HPos.CENTER
+            spacing: 10.0
+        };
         scene = javafx.scene.Scene {
             width: 600.0
-            height: 478.0
+            height: 600.0
             content: javafx.scene.layout.Panel {
                 content: getDesignRootNodes ()
             }
@@ -207,7 +227,6 @@ public class Main {
                             javafx.animation.KeyFrame {
                                 time: 0.001ms
                                 action: function() {
-                                    logoImageView.opacity = 1.0;
                                     listView.visible = false;
                                     listView.opacity = 0.0;
                                     vbox.layoutX = 0.0;
@@ -230,7 +249,6 @@ public class Main {
                             javafx.animation.KeyFrame {
                                 time: 500ms
                                 values: [
-                                    logoImageView.opacity => 1.0 tween javafx.animation.Interpolator.EASEBOTH,
                                     listView.opacity => 1.0 tween javafx.animation.Interpolator.EASEBOTH,
                                     vbox.layoutX => 0.0 tween javafx.animation.Interpolator.EASEBOTH,
                                     vbox.layoutY => 0.0 tween javafx.animation.Interpolator.EASEBOTH,
