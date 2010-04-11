@@ -35,9 +35,13 @@ public class Main {
 
     public-read var tweetUtil = TweetUtil{ };
     public-read var logoImageView: javafx.scene.image.ImageView;//GEN-BEGIN:main
+    public-read var label2: javafx.scene.control.Label;
+    public-read var usernameTextBox: javafx.scene.control.TextBox;
+    public-read var retrieveButton: javafx.scene.control.Button;
+    public-read var hbox2: javafx.scene.layout.HBox;
     public-read var label: javafx.scene.control.Label;
     public-read var searchTextBox: javafx.scene.control.TextBox;
-    public-read var goButton: javafx.scene.control.Button;
+    public-read var searchButton: javafx.scene.control.Button;
     public-read var hbox: javafx.scene.layout.HBox;
     public-read var listView: javafx.scene.control.ListView;
     public-read var titleLabel: javafx.scene.control.Label;
@@ -54,8 +58,47 @@ public class Main {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Init Block">
     init {
+        label2 = javafx.scene.control.Label {
+            width: 123.0
+            height: 15.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind label2.width
+                height: bind label2.height
+            }
+            text: "Twitter Username:"
+        };
+        usernameTextBox = javafx.scene.control.TextBox {
+            width: 265.0
+            height: 23.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind usernameTextBox.width
+                height: bind usernameTextBox.height
+            }
+            action: retrieveButtonAction
+        };
+        retrieveButton = javafx.scene.control.Button {
+            width: 138.0
+            height: 23.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind retrieveButton.width
+                height: bind retrieveButton.height
+            }
+            text: "Retrieve Tweets"
+            action: retrieveButtonAction
+        };
+        hbox2 = javafx.scene.layout.HBox {
+            content: [ label2, usernameTextBox, retrieveButton, ]
+            spacing: 6.0
+        };
         label = javafx.scene.control.Label {
-            text: "Search:"
+            width: 123.0
+            height: 15.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind label.width
+                height: bind label.height
+                hpos: javafx.geometry.HPos.RIGHT
+            }
+            text: "Search Query:"
         };
         searchTextBox = javafx.scene.control.TextBox {
             width: 265.0
@@ -64,11 +107,16 @@ public class Main {
                 width: bind searchTextBox.width
                 height: bind searchTextBox.height
             }
-            action: goButtonAction
+            action: searchButtonAction
         };
-        goButton = javafx.scene.control.Button {
+        searchButton = javafx.scene.control.Button {
+            width: 138.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind searchButton.width
+                height: bind searchButton.height
+            }
             text: "Tweet-Search"
-            action: goButtonAction
+            action: searchButtonAction
         };
         hbox = javafx.scene.layout.HBox {
             layoutX: 65.0
@@ -78,14 +126,14 @@ public class Main {
                 height: bind hbox.height
                 vpos: javafx.geometry.VPos.BOTTOM
             }
-            content: [ label, searchTextBox, goButton, ]
+            content: [ label, searchTextBox, searchButton, ]
             nodeVPos: javafx.geometry.VPos.CENTER
             spacing: 6.0
         };
         listView = javafx.scene.control.ListView {
             visible: false
             opacity: 0.0
-            width: 460.0
+            width: 540.0
             height: 250.0
             layoutInfo: javafx.scene.layout.LayoutInfo {
                 width: bind listView.width
@@ -102,7 +150,7 @@ public class Main {
         detailsBox = javafx.scene.layout.VBox {
             visible: false
             opacity: 0.0
-            width: 460.0
+            width: 540.0
             layoutInfo: javafx.scene.layout.LayoutInfo {
                 width: bind detailsBox.width
                 height: bind detailsBox.height
@@ -125,7 +173,7 @@ public class Main {
                 width: bind vbox.width
                 height: bind vbox.height
             }
-            content: [ logoImageView, hbox, listView, detailsBox, ]
+            content: [ logoImageView, hbox2, hbox, listView, detailsBox, ]
             hpos: javafx.geometry.HPos.CENTER
             nodeHPos: javafx.geometry.HPos.CENTER
             spacing: 20.0
@@ -136,7 +184,7 @@ public class Main {
         };
         scene = javafx.scene.Scene {
             width: 600.0
-            height: 400.0
+            height: 478.0
             content: javafx.scene.layout.Panel {
                 content: getDesignRootNodes ()
             }
@@ -251,6 +299,13 @@ public class Main {
         scene
     }// </editor-fold>//GEN-END:main
 
+    function retrieveButtonAction(): Void {
+        httpDataSource.url = "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{new URLConverter().encodeString(usernameTextBox.text)}.json";
+        searchState.actual = 1;
+        listView.select(-1);
+        tweetUtil.save();
+    }
+
     var selectedResult = bind listView.selectedItem as org.netbeans.javafx.datasrc.Record on replace {
         titleLabel.text = "Tweet: {selectedResult.getString ("text")}";
         urlLabel.text = "URL: {new URLConverter ().decodeString(selectedResult.getString ("url"))}";
@@ -261,11 +316,9 @@ public class Main {
         record.getString("text")
     }
 
-    function goButtonAction(): Void {
-        httpDataSource.url = "http://www.tweetex.dat/frontend_dev.php/api/{new URLConverter().encodeString(searchTextBox.text)}/search.json";
+    function searchButtonAction(): Void {
         searchState.actual = 1;
         listView.select(-1);
-        tweetUtil.save();
     }
 
 

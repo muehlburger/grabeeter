@@ -15,16 +15,10 @@ public class TweetUtil {
         source: "local-tweets"
     }
 
-//    init {
-//        storage.resource.maxLength = -1;
-//    }
-
-
     public function save(): Void {
         var ressource = storage.resource;
         var os = ressource.openOutputStream(true);
         var out = new java.io.PrintStream(os);
-
 
         out.println("username");
         out.println("text");
