@@ -15,9 +15,10 @@ import java.io.InputStreamReader;
  */
 public class TweetUtil {
 
-    var location = "http://www.tweetex.dat/frontend_dev.php/api/tweets/hmuehlburger.json";
+    public var location: String;
+    
     var storage = Storage {
-        source: "local-tweets";
+        source: "local-tweets-";
     };
 
     init {
@@ -25,20 +26,18 @@ public class TweetUtil {
     }
 
     public function save(in: java.io.InputStream): Void {
+
         var ressource = storage.resource;
 
         var os = ressource.openOutputStream(true);
         var out = new java.io.PrintWriter(os);
         var reader: BufferedReader;
 
-        println("retrieving tweets");
-
         try {
             reader = new BufferedReader(new InputStreamReader(in));
             var line = reader.readLine();
             while(line != null) {
                 out.println(line);
-                println(line);
                 line = reader.readLine();
             } 
 
@@ -46,14 +45,13 @@ public class TweetUtil {
           e.printStackTrace();
         }
         finally {
-            println("saving tweets");
             if(reader != null) {
                 reader.close();
             } else {
                 in.close();
             }
         }
-        println("{ressource.length} Bytes of tweets saved");
+        println("{ressource.length} Bytes saved from {location}");
         out.close();
     }
 

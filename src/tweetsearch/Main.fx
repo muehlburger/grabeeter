@@ -316,8 +316,8 @@ public class Main {
         scene
     }// </editor-fold>//GEN-END:main
 
-    var tweetUtil = TweetUtil{};
-    
+    var tweetUtil = TweetUtil{ location: bind "http://www.tweetex.dat/frontend_dev.php/api/tweets/{new URLConverter().encodeString(usernameTextBox.text)}.xml" };
+
     function retrieveButtonAction(): Void {
         //httpDataSource.url = "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{new URLConverter().encodeString(usernameTextBox.text)}.json";
 //        searchState.actual = 1;
