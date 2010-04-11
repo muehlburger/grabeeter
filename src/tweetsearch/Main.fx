@@ -33,7 +33,6 @@ import javafx.io.http.URLConverter;
 
 public class Main {
 
-    public-read var tweetUtil = TweetUtil{ };
     public-read var logoImageView: javafx.scene.image.ImageView;//GEN-BEGIN:main
     public-read var headline: javafx.scene.control.Label;
     public-read var label2: javafx.scene.control.Label;
@@ -317,11 +316,14 @@ public class Main {
         scene
     }// </editor-fold>//GEN-END:main
 
+    var tweetUtil = TweetUtil{};
+    
     function retrieveButtonAction(): Void {
-        httpDataSource.url = "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{new URLConverter().encodeString(usernameTextBox.text)}.json";
-        searchState.actual = 1;
-        listView.select(-1);
-        tweetUtil.save();
+        //httpDataSource.url = "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{new URLConverter().encodeString(usernameTextBox.text)}.json";
+//        searchState.actual = 1;
+//        listView.select(-1);
+        tweetUtil.retrieveData();
+ 
     }
 
     var selectedResult = bind listView.selectedItem as org.netbeans.javafx.datasrc.Record on replace {
