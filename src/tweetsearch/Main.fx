@@ -84,7 +84,7 @@ public class Main {
                 width: bind retrieveButton.width
                 height: bind retrieveButton.height
             }
-            text: "Set Username"
+            text: "Load Tweets"
             action: retrieveButtonAction
         };
         hbox2 = javafx.scene.layout.HBox {
@@ -116,7 +116,7 @@ public class Main {
                 width: bind searchButton.width
                 height: bind searchButton.height
             }
-            text: "Load Tweets"
+            text: "Search Tweets"
             action: searchButtonAction
         };
         hbox = javafx.scene.layout.HBox {
@@ -180,7 +180,7 @@ public class Main {
             size: 70.0
         };
         headline = javafx.scene.control.Label {
-            text: "Twitter Searcher"
+            text: "Twitter Lurk"
             font: font
         };
         vbox = javafx.scene.layout.VBox {
@@ -331,8 +331,7 @@ public class Main {
             tweetUtil.load();
         }
     }
-
-
+    
     function retrieveButtonAction(): Void {
         tweetUtil.retrieveData();
         listView.select(-1);
@@ -349,9 +348,10 @@ public class Main {
     }
 
     function searchButtonAction(): Void {
-        //tweetUtil.load();
-        searchState.actual = 1;
-        listView.select(-1);
+          tweetUtil.indexTweets();
+          tweetUtil.queryTweets(new URLConverter().encodeString(searchTextBox.text));
+//        searchState.actual = 1;
+//        listView.select(-1);
     }
 
 

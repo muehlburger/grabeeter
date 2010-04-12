@@ -153,7 +153,7 @@
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:27,anim:,,str:Twitter Searcher,4,null,"/>
+        <Reference name="text" value="prop:23,anim:,,str:Twitter Lurk,4,null,"/>
         <Reference name="font" value="prop:22,anim:,,inst:FontModel1,4,null,"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel1">
@@ -191,7 +191,7 @@
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:23,anim:,,str:Set Username,4,null,"/>
+        <Reference name="text" value="prop:22,anim:,,str:Load Tweets,4,null,"/>
         <Reference name="action" value="prop:31,anim:,,str:retrieveButtonAction,4,null,"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel2">
@@ -233,7 +233,7 @@
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:22,anim:,,str:Load Tweets,4,null,"/>
+        <Reference name="text" value="prop:24,anim:,,str:Search Tweets,4,null,"/>
         <Reference name="action" value="prop:29,anim:,,str:searchButtonAction,4,null,"/>
     </Instance>
     <Instance classID="ListViewModel" instanceID="ListViewModel1">

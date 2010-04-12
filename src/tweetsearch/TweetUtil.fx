@@ -10,6 +10,20 @@ import javafx.io.http.HttpRequest;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import javafx.data.pull.*;
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.util.Version;
+import java.io.IOException;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.TopScoreDocCollector;
+import org.apache.lucene.search.ScoreDoc;
 
 /**
  * @author Herbert Muehlburger
@@ -23,6 +37,9 @@ public class TweetUtil {
     var storage = Storage {
         source: "twitter-search";
     };
+
+    var analyser: Analyzer;
+    var index : Directory;
 
     init {
         storage.resource.maxLength = 1048576; // 1MB
@@ -115,5 +132,56 @@ public class TweetUtil {
         println("{ressource.length} Bytes saved from {location}");
         out.close();
     }
+
+    public function indexTweets() {
+        println("starting to index tweets ...");
+
+        // 0. Specify the analyzer for tokenizing text.
+        //    The same analyzer should be used for indexing and searching
+        analyser = new StandardAnalyzer(Version.LUCENE_30);
+
+        // 1. Create the index
+        index = new RAMDirectory();
+
+        // the boolean arg in the IndexWriter ctor means to
+        // create a new index, overwriting any existing index
+        var w : IndexWriter = new IndexWriter(index, analyser, true, IndexWriter.MaxFieldLength.UNLIMITED);
+        
+        for(tweet in tweets) {
+            println("indexing: {tweet}");
+            this.addDoc(w, tweet);
+        }
+
+        w.close();
+        println("finished to index tweets ...");
+    }
+
+    function addDoc(w: IndexWriter, value: String): Void {
+        try {
+            var doc: Document = new Document();
+            doc.add(new Field("tweet-text", value, Field.Store.YES, Field.Index.ANALYZED));
+            w.addDocument(doc);
+        } catch(e: IOException) {
+            e.printStackTrace();
+        }
+    }
+
+    public function queryTweets(queryString: String): Void {
+        println("queryString: {queryString}");
+        var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
+        var q: Query = parser.parse(queryString);
+
+        // 3. Search
+        var hitsPerPage: Integer = 10;
+        var searcher: IndexSearcher = new IndexSearcher(index, true);
+        var collector: TopScoreDocCollector = TopScoreDocCollector.create(hitsPerPage, true);
+        searcher.search(q, collector);
+
+        var hits: ScoreDoc[] = collector.topDocs().scoreDocs;
+        println("hits: {hits}");
+    }
+
+
+
 
 }
