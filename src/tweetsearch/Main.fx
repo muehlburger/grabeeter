@@ -316,7 +316,7 @@ public class Main {
         scene
     }// </editor-fold>//GEN-END:main
 
-    var listViewItems: Object[] = bind tweetUtil.tweets;
+    var listViewItems: Object[] = bind tweetUtil.searchResults;
 
     var tweetUtil = TweetUtil{
         location: bind "http://www.tweetex.dat/frontend_dev.php/api/tweets/{username}.xml"
@@ -329,10 +329,13 @@ public class Main {
             searchState.actual = 1;
             println("saving finished now loading ...");
             tweetUtil.load();
+            tweetUtil.indexTweets();
         }
     }
     
     function retrieveButtonAction(): Void {
+        delete tweetUtil.tweets;
+        delete tweetUtil.searchResults;
         tweetUtil.retrieveData();
         listView.select(-1);
     }
@@ -348,10 +351,9 @@ public class Main {
     }
 
     function searchButtonAction(): Void {
-          tweetUtil.indexTweets();
-          tweetUtil.queryTweets(new URLConverter().encodeString(searchTextBox.text));
-//        searchState.actual = 1;
-//        listView.select(-1);
+        tweetUtil.queryTweets(new URLConverter().encodeString(searchTextBox.text));
+        searchState.actual = 1;
+        listView.select(-1);
     }
 
 

@@ -32,6 +32,7 @@ public class TweetUtil {
 
     public var location: String;
     public var tweets: String[];
+    public var searchResults: String[];
     public var finished: Boolean;
     
     var storage = Storage {
@@ -94,7 +95,6 @@ public class TweetUtil {
                         }
                     }
                     onDone: function(): Void {
-                        println("done reading tweets");
                         finished = true;
                     }
 
@@ -134,8 +134,6 @@ public class TweetUtil {
     }
 
     public function indexTweets() {
-        println("starting to index tweets ...");
-
         // 0. Specify the analyzer for tokenizing text.
         //    The same analyzer should be used for indexing and searching
         analyser = new StandardAnalyzer(Version.LUCENE_30);
@@ -148,7 +146,6 @@ public class TweetUtil {
         var w : IndexWriter = new IndexWriter(index, analyser, true, IndexWriter.MaxFieldLength.UNLIMITED);
         
         for(tweet in tweets) {
-            println("indexing: {tweet}");
             this.addDoc(w, tweet);
         }
 
@@ -168,17 +165,26 @@ public class TweetUtil {
 
     public function queryTweets(queryString: String): Void {
         println("queryString: {queryString}");
+        delete searchResults;
         var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
         var q: Query = parser.parse(queryString);
 
         // 3. Search
-        var hitsPerPage: Integer = 10;
+        var hitsPerPage: Integer = 3200;
         var searcher: IndexSearcher = new IndexSearcher(index, true);
         var collector: TopScoreDocCollector = TopScoreDocCollector.create(hitsPerPage, true);
         searcher.search(q, collector);
 
         var hits: ScoreDoc[] = collector.topDocs().scoreDocs;
-        println("hits: {hits}");
+        for(hit in hits) {
+            var docId: Integer = hit.doc;
+            var d: Document = searcher.doc(docId);
+            var tweet: String = d.get("tweet-text");
+            insert tweet into searchResults;
+        }
+        println("Tweets: {searchResults}");
+
+        //println("hits: {hits}");
     }
 
 
