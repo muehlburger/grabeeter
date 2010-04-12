@@ -153,7 +153,7 @@
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:23,anim:,,str:Twitter Lurk,4,null,"/>
+        <Reference name="text" value="prop:18,anim:,,str:Grapeet,4,null,"/>
         <Reference name="font" value="prop:22,anim:,,inst:FontModel1,4,null,"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel1">
@@ -240,8 +240,8 @@
         <Reference name="instanceName" value="str:listView"/>
         <Reference name="visible" value="prop:17,anim:,,bool:false,24,inst:StateVariableModel1,16,inst:StateModel2,17,anim:0,,bool:true,"/>
         <Reference name="opacity" value="prop:14,anim:,,flt:0.0,24,inst:StateVariableModel1,16,inst:StateModel2,14,anim:,,flt:1.0,"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:540.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:16,anim:,,flt:250.0,24,inst:StateVariableModel2,16,inst:StateModel4,16,anim:,,flt:170.0,"/>
+        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:540.0,24,inst:StateVariableModel2,16,inst:StateModel4,16,anim:,,flt:540.0,"/>
+        <Reference name="layoutInfoHeight" value="prop:16,anim:,,flt:250.0,24,inst:StateVariableModel2,16,inst:StateModel4,16,anim:,,flt:283.0,"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="items" value="prop:bind:bind listViewItems"/>

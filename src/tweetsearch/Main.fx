@@ -180,7 +180,7 @@ public class Main {
             size: 70.0
         };
         headline = javafx.scene.control.Label {
-            text: "Twitter Lurk"
+            text: "Grapeet"
             font: font
         };
         vbox = javafx.scene.layout.VBox {
@@ -273,6 +273,7 @@ public class Main {
                             javafx.animation.KeyFrame {
                                 time: 500ms
                                 values: [
+                                    listView.width => 540.0 tween javafx.animation.Interpolator.EASEBOTH,
                                     listView.height => 250.0 tween javafx.animation.Interpolator.EASEBOTH,
                                     detailsBox.opacity => 0.0 tween javafx.animation.Interpolator.EASEBOTH,
                                 ]
@@ -294,7 +295,8 @@ public class Main {
                             javafx.animation.KeyFrame {
                                 time: 500ms
                                 values: [
-                                    listView.height => 170.0 tween javafx.animation.Interpolator.EASEBOTH,
+                                    listView.width => 540.0 tween javafx.animation.Interpolator.EASEBOTH,
+                                    listView.height => 283.0 tween javafx.animation.Interpolator.EASEBOTH,
                                     detailsBox.opacity => 1.0 tween javafx.animation.Interpolator.EASEBOTH,
                                 ]
                             }
@@ -351,7 +353,7 @@ public class Main {
     }
 
     function searchButtonAction(): Void {
-        tweetUtil.queryTweets(new URLConverter().encodeString(searchTextBox.text));
+        tweetUtil.queryTweets(searchTextBox.text.trim());
         searchState.actual = 1;
         listView.select(-1);
     }

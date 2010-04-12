@@ -14,7 +14,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.de.GermanAnalyzer;
 import org.apache.lucene.util.Version;
 import java.io.IOException;
 import org.apache.lucene.document.Document;
@@ -136,7 +136,7 @@ public class TweetUtil {
     public function indexTweets() {
         // 0. Specify the analyzer for tokenizing text.
         //    The same analyzer should be used for indexing and searching
-        analyser = new StandardAnalyzer(Version.LUCENE_30);
+        analyser = new GermanAnalyzer(Version.LUCENE_30);
 
         // 1. Create the index
         index = new RAMDirectory();
@@ -167,6 +167,7 @@ public class TweetUtil {
         println("queryString: {queryString}");
         delete searchResults;
         var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
+        
         var q: Query = parser.parse(queryString);
 
         // 3. Search
