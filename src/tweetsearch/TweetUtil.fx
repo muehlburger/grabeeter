@@ -18,44 +18,15 @@ public class TweetUtil {
 
     public var location: String;
     public var tweets: String[];
+    public var finished: Boolean;
     
     var storage = Storage {
-        source: "local-tweets";
+        source: "twitter-search";
     };
 
     init {
         storage.resource.maxLength = 1048576; // 1MB
-    }
-
-
-    public function save(in: java.io.InputStream): Void {
-
-        var ressource = storage.resource;
-
-        var os = ressource.openOutputStream(true);
-        var out = new java.io.PrintWriter(os);
-        var reader: BufferedReader;
-
-        try {
-            reader = new BufferedReader(new InputStreamReader(in));
-            var line = reader.readLine();
-            while(line != null) {
-                out.println(line);
-                line = reader.readLine();
-            } 
-
-        } catch(e: java.lang.Exception) {
-          e.printStackTrace();
-        }
-        finally {
-            if(reader != null) {
-                reader.close();
-            } else {
-                in.close();
-            }
-        }
-        println("{ressource.length} Bytes saved from {location}");
-        out.close();
+        finished = false;
     }
 
     public function load(): Void {
@@ -92,6 +63,7 @@ public class TweetUtil {
     }
 
     public function retrieveData(): Void {
+        finished = false;
         def httpRequest = HttpRequest {
                     location: bind location
                     method: HttpRequest.GET
@@ -99,14 +71,49 @@ public class TweetUtil {
                         try {
                             // Read the content from this InputStream
                             // Pass the InputStream to parserd
-                            storage.clearAll();
                             save(in);
                         } finally {
                             in.close();
                         }
                     }
+                    onDone: function(): Void {
+                        println("done reading tweets");
+                        finished = true;
+                    }
+
                 }
         httpRequest.start();
+    }
+
+    public function save(in: java.io.InputStream): Void {
+
+        delete tweets;
+        var ressource = storage.resource;
+
+        var os = ressource.openOutputStream(true);
+        var out = new java.io.PrintWriter(os);
+        var reader: BufferedReader;
+
+        try {
+            reader = new BufferedReader(new InputStreamReader(in));
+            var line = reader.readLine();
+            while(line != null) {
+                out.println(line);
+                line = reader.readLine();
+            }
+
+        } catch(e: java.lang.Exception) {
+          e.printStackTrace();
+        }
+        finally {
+            if(reader != null) {
+                reader.close();
+            } else {
+                in.close();
+            }
+        }
+        println("{ressource.length} Bytes saved from {location}");
+        out.close();
     }
 
 }

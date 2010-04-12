@@ -84,7 +84,7 @@ public class Main {
                 width: bind retrieveButton.width
                 height: bind retrieveButton.height
             }
-            text: "Retrieve Tweets"
+            text: "Set Username"
             action: retrieveButtonAction
         };
         hbox2 = javafx.scene.layout.HBox {
@@ -116,7 +116,7 @@ public class Main {
                 width: bind searchButton.width
                 height: bind searchButton.height
             }
-            text: "Tweet-Search"
+            text: "Load Tweets"
             action: searchButtonAction
         };
         hbox = javafx.scene.layout.HBox {
@@ -324,8 +324,18 @@ public class Main {
 
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
 
+    var loadingFinished = bind tweetUtil.finished on replace {
+        if(loadingFinished == true) {
+            searchState.actual = 1;
+            println("saving finished now loading ...");
+            tweetUtil.load();
+        }
+    }
+
+
     function retrieveButtonAction(): Void {
         tweetUtil.retrieveData();
+        listView.select(-1);
     }
 
     var selectedResult = bind listView.selectedItem as String on replace {
@@ -339,7 +349,7 @@ public class Main {
     }
 
     function searchButtonAction(): Void {
-        tweetUtil.load();
+        //tweetUtil.load();
         searchState.actual = 1;
         listView.select(-1);
     }
