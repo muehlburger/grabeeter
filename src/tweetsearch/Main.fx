@@ -35,10 +35,21 @@ public class Main {
 
     public-read var logoImageView: javafx.scene.image.ImageView;//GEN-BEGIN:main
     public-read var headline: javafx.scene.control.Label;
+    public-read var onlineCheckbox: javafx.scene.control.CheckBox;
+    public-read var hbox3: javafx.scene.layout.HBox;
     public-read var label2: javafx.scene.control.Label;
     public-read var usernameTextBox: javafx.scene.control.TextBox;
     public-read var retrieveButton: javafx.scene.control.Button;
     public-read var hbox2: javafx.scene.layout.HBox;
+    public-read var label3: javafx.scene.control.Label;
+    public-read var sliderStart: javafx.scene.control.Slider;
+    public-read var textbox: javafx.scene.control.TextBox;
+    public-read var vbox2: javafx.scene.layout.VBox;
+    public-read var label4: javafx.scene.control.Label;
+    public-read var sliderEnd: javafx.scene.control.Slider;
+    public-read var textbox2: javafx.scene.control.TextBox;
+    public-read var vbox3: javafx.scene.layout.VBox;
+    public-read var hbox4: javafx.scene.layout.HBox;
     public-read var label: javafx.scene.control.Label;
     public-read var searchTextBox: javafx.scene.control.TextBox;
     public-read var searchButton: javafx.scene.control.Button;
@@ -59,6 +70,24 @@ public class Main {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Init Block">
     init {
+        onlineCheckbox = javafx.scene.control.CheckBox {
+            visible: true
+            disable: false
+            layoutY: 0.0
+            text: "online"
+            selected: false
+        };
+        hbox3 = javafx.scene.layout.HBox {
+            width: 278.0
+            height: 17.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind hbox3.width
+                height: bind hbox3.height
+            }
+            content: [ onlineCheckbox, ]
+            hpos: javafx.geometry.HPos.LEFT
+            spacing: 6.0
+        };
         label2 = javafx.scene.control.Label {
             width: 123.0
             height: 15.0
@@ -84,11 +113,60 @@ public class Main {
                 width: bind retrieveButton.width
                 height: bind retrieveButton.height
             }
-            text: "Load Tweets"
+            text: "Update Tweets"
             action: retrieveButtonAction
         };
         hbox2 = javafx.scene.layout.HBox {
+            visible: bind onlineCheckbox.selected
             content: [ label2, usernameTextBox, retrieveButton, ]
+            vpos: javafx.geometry.VPos.CENTER
+            spacing: 6.0
+        };
+        label3 = javafx.scene.control.Label {
+            text: "Date Range Start"
+        };
+        sliderStart = javafx.scene.control.Slider {
+            max: 1.27097267E9
+            vertical: false
+        };
+        textbox = javafx.scene.control.TextBox {
+            disable: true
+            width: 140.0
+            height: 23.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind textbox.width
+                height: bind textbox.height
+            }
+            text: bind "{sliderStart.value}"
+        };
+        vbox2 = javafx.scene.layout.VBox {
+            content: [ label3, sliderStart, textbox, ]
+            spacing: 6.0
+        };
+        label4 = javafx.scene.control.Label {
+            text: "Date Range End"
+        };
+        sliderEnd = javafx.scene.control.Slider {
+            value: 100.0
+        };
+        textbox2 = javafx.scene.control.TextBox {
+            disable: true
+            width: 140.0
+            height: 23.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind textbox2.width
+                height: bind textbox2.height
+            }
+            text: bind "{sliderEnd.value}"
+        };
+        vbox3 = javafx.scene.layout.VBox {
+            content: [ label4, sliderEnd, textbox2, ]
+            spacing: 6.0
+        };
+        hbox4 = javafx.scene.layout.HBox {
+            visible: true
+            disable: false
+            content: [ vbox2, vbox3, ]
             spacing: 6.0
         };
         label = javafx.scene.control.Label {
@@ -180,10 +258,11 @@ public class Main {
             size: 70.0
         };
         headline = javafx.scene.control.Label {
-            text: "Grapeet"
+            text: "Grapeeter"
             font: font
         };
         vbox = javafx.scene.layout.VBox {
+            disable: false
             layoutX: 0.0
             layoutY: 0.0
             width: 600.0
@@ -195,7 +274,7 @@ public class Main {
                 vpos: javafx.geometry.VPos.TOP
                 managed: true
             }
-            content: [ logoImageView, headline, hbox2, hbox, listView, detailsBox, ]
+            content: [ logoImageView, headline, hbox3, hbox2, hbox4, hbox, listView, detailsBox, ]
             hpos: javafx.geometry.HPos.CENTER
             vpos: javafx.geometry.VPos.TOP
             nodeHPos: javafx.geometry.HPos.CENTER
@@ -318,6 +397,8 @@ public class Main {
         scene
     }// </editor-fold>//GEN-END:main
 
+    var onlineCheckboxText: String = bind {if (onlineCheckbox.selected) then "online" else "offline"};
+
     var listViewItems: Object[] = bind tweetUtil.searchResults;
 
     var tweetUtil = TweetUtil{
@@ -338,7 +419,7 @@ public class Main {
     function retrieveButtonAction(): Void {
         delete tweetUtil.tweets;
         delete tweetUtil.searchResults;
-        tweetUtil.retrieveData();
+        tweetUtil.retrieveData(onlineCheckbox.selected);
         listView.select(-1);
     }
 

@@ -24,14 +24,14 @@ import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.search.ScoreDoc;
-
+import tweetsearch.model.Tweet;
 /**
  * @author Herbert Muehlburger
  */
 public class TweetUtil {
 
     public var location: String;
-    public var tweets: String[];
+    public var tweets: Tweet[];
     public var searchResults: String[];
     public var finished: Boolean;
     
@@ -45,6 +45,8 @@ public class TweetUtil {
     init {
         storage.resource.maxLength = 1048576; // 1MB
         finished = false;
+        this.load();
+        this.indexTweets();
     }
 
     public function load(): Void {
@@ -56,15 +58,22 @@ public class TweetUtil {
             documentType: PullParser.XML
             onEvent: function(e) {
                 if(e.type == PullParser.START_ELEMENT) {
-                    
+                    var tweet : Tweet = new Tweet();
                     if(e.qname.name == "tweet") {
                         //println( "{%-20s e.typeName} {%-20s e.qname.name} {%-20s e.text}");
                         for(qname in e.getAttributeNames()) {
                             var value = e.getAttributeValue(qname);
-                            if(qname.name == "text")
-                                insert value into tweets;
+                            if(qname.name == "text") {
+                                tweet.text = value;
+                            } else if(qname.name == "created") {
+                                tweet.created = value;
+                            } else if(qname.name == "screen_name") {
+                                tweet.screenName = value;
+                            }
+
                             //println( "{%-20s "   url"} {%-20s qname.name} {%-20s value}");
                         }
+                    insert tweet into tweets;
                     }
                 }
             }
@@ -75,31 +84,33 @@ public class TweetUtil {
         } catch(e: java.lang.Exception) {
             e.printStackTrace();
         }
-
-
-
     }
 
-    public function retrieveData(): Void {
-        finished = false;
-        def httpRequest = HttpRequest {
-                    location: bind location
-                    method: HttpRequest.GET
-                    onInput: function (in: java.io.InputStream) {
-                        try {
-                            // Read the content from this InputStream
-                            // Pass the InputStream to parserd
-                            save(in);
-                        } finally {
-                            in.close();
+    public function retrieveData(online: Boolean): Void {
+        if(online) {
+            finished = false;
+            def httpRequest = HttpRequest {
+                        location: bind location
+                        method: HttpRequest.GET
+                        onInput: function (in: java.io.InputStream) {
+                            try {
+                                // Read the content from this InputStream
+                                // Pass the InputStream to parserd
+                                save(in);
+                            } finally {
+                                in.close();
+                            }
                         }
-                    }
-                    onDone: function(): Void {
-                        finished = true;
-                    }
+                        onDone: function(): Void {
+                            finished = true;
+                        }
 
-                }
-        httpRequest.start();
+                    }
+            httpRequest.start();
+        } else {
+            finished = true;
+        }
+
     }
 
     public function save(in: java.io.InputStream): Void {
@@ -146,7 +157,7 @@ public class TweetUtil {
         var w : IndexWriter = new IndexWriter(index, analyser, true, IndexWriter.MaxFieldLength.UNLIMITED);
         
         for(tweet in tweets) {
-            this.addDoc(w, tweet);
+            this.addDoc(w, tweet.text);
         }
 
         w.close();
