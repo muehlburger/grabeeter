@@ -33,10 +33,12 @@ import javafx.io.http.URLConverter;
 
 public class Main {
 
-    public-read var logoImageView: javafx.scene.image.ImageView;//GEN-BEGIN:main
+    public-read var statusMessageLabel: javafx.scene.control.Label;//GEN-BEGIN:main
+    public-read var progressBar: javafx.scene.control.ProgressBar;
+    public-read var vbox2: javafx.scene.layout.VBox;
+    public-read var hboxStatusMessage: javafx.scene.layout.HBox;
+    public-read var logoImageView: javafx.scene.image.ImageView;
     public-read var headline: javafx.scene.control.Label;
-    public-read var onlineCheckbox: javafx.scene.control.CheckBox;
-    public-read var hbox3: javafx.scene.layout.HBox;
     public-read var label2: javafx.scene.control.Label;
     public-read var usernameTextBox: javafx.scene.control.TextBox;
     public-read var retrieveButton: javafx.scene.control.Button;
@@ -45,6 +47,8 @@ public class Main {
     public-read var searchTextBox: javafx.scene.control.TextBox;
     public-read var searchButton: javafx.scene.control.Button;
     public-read var hbox: javafx.scene.layout.HBox;
+    public-read var onlineCheckbox: javafx.scene.control.CheckBox;
+    public-read var hbox3: javafx.scene.layout.HBox;
     public-read var listView: javafx.scene.control.ListView;
     public-read var titleLabel: javafx.scene.control.Label;
     public-read var urlLabel: javafx.scene.control.Label;
@@ -61,22 +65,39 @@ public class Main {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Init Block">
     init {
-        onlineCheckbox = javafx.scene.control.CheckBox {
-            visible: true
-            disable: false
-            layoutY: 0.0
-            text: "online"
-            selected: true
-        };
-        hbox3 = javafx.scene.layout.HBox {
-            width: 278.0
-            height: 17.0
+        statusMessageLabel = javafx.scene.control.Label {
+            width: 500.0
+            height: 15.0
             layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind hbox3.width
-                height: bind hbox3.height
+                width: bind statusMessageLabel.width
+                height: bind statusMessageLabel.height
             }
-            content: [ onlineCheckbox, ]
-            hpos: javafx.geometry.HPos.LEFT
+            text: ""
+        };
+        progressBar = javafx.scene.control.ProgressBar {
+            width: 500.0
+            height: 13.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind progressBar.width
+                height: bind progressBar.height
+            }
+            progress: -1.0
+        };
+        vbox2 = javafx.scene.layout.VBox {
+            content: [ statusMessageLabel, progressBar, ]
+            spacing: 6.0
+        };
+        hboxStatusMessage = javafx.scene.layout.HBox {
+            layoutX: 50.0
+            layoutY: 550.0
+            width: 0.0
+            height: 50.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind hboxStatusMessage.width
+                height: bind hboxStatusMessage.height
+            }
+            content: [ vbox2, ]
+            nodeVPos: javafx.geometry.VPos.TOP
             spacing: 6.0
         };
         label2 = javafx.scene.control.Label {
@@ -104,7 +125,7 @@ public class Main {
                 width: bind retrieveButton.width
                 height: bind retrieveButton.height
             }
-            text: "Update Tweets"
+            text: "Retrieve Tweets"
             action: retrieveButtonAction
         };
         hbox2 = javafx.scene.layout.HBox {
@@ -121,7 +142,7 @@ public class Main {
                 height: bind label.height
                 hpos: javafx.geometry.HPos.RIGHT
             }
-            text: "Search Query:"
+            text: "Tweets containing:"
         };
         searchTextBox = javafx.scene.control.TextBox {
             width: 265.0
@@ -138,7 +159,7 @@ public class Main {
                 width: bind searchButton.width
                 height: bind searchButton.height
             }
-            text: "Search Tweets"
+            text: "Search"
             action: searchButtonAction
         };
         hbox = javafx.scene.layout.HBox {
@@ -151,6 +172,24 @@ public class Main {
             }
             content: [ label, searchTextBox, searchButton, ]
             nodeVPos: javafx.geometry.VPos.CENTER
+            spacing: 6.0
+        };
+        onlineCheckbox = javafx.scene.control.CheckBox {
+            visible: true
+            disable: false
+            layoutY: 0.0
+            text: "online"
+            selected: true
+        };
+        hbox3 = javafx.scene.layout.HBox {
+            width: 278.0
+            height: 17.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind hbox3.width
+                height: bind hbox3.height
+            }
+            content: [ onlineCheckbox, ]
+            hpos: javafx.geometry.HPos.LEFT
             spacing: 6.0
         };
         listView = javafx.scene.control.ListView {
@@ -218,7 +257,7 @@ public class Main {
                 vpos: javafx.geometry.VPos.TOP
                 managed: true
             }
-            content: [ logoImageView, headline, hbox3, hbox2, hbox, listView, detailsBox, ]
+            content: [ logoImageView, headline, hbox2, hbox, hbox3, listView, detailsBox, ]
             hpos: javafx.geometry.HPos.CENTER
             vpos: javafx.geometry.VPos.TOP
             nodeHPos: javafx.geometry.HPos.CENTER
@@ -334,33 +373,35 @@ public class Main {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Design Functions">
     public function getDesignRootNodes () : javafx.scene.Node[] {
-        [ vbox, ]
+        [ hboxStatusMessage, vbox, ]
     }
     
     public function getDesignScene (): javafx.scene.Scene {
         scene
     }// </editor-fold>//GEN-END:main
 
-    var onlineCheckboxText: String = bind {if (onlineCheckbox.selected) then "online" else "offline"};
-
     var listViewItems: Object[] = bind tweetUtil.searchResults;
 
     var tweetUtil = TweetUtil{
         location: bind "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{username}.xml"
+        statusMessage: bind statusMessageLabel with inverse
     };
+
+
 
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
 
     var loadingFinished = bind tweetUtil.finished on replace {
         if(loadingFinished == true) {
             searchState.actual = 1;
-            println("saving finished now loading ...");
+            statusMessageLabel.text = "Tweets saved now loading ...";
             tweetUtil.load();
             tweetUtil.indexTweets();
         }
     }
     
     function retrieveButtonAction(): Void {
+        statusMessageLabel.text = "Retrieving tweets ...";
         delete tweetUtil.tweets;
         delete tweetUtil.searchResults;
         tweetUtil.retrieveData(onlineCheckbox.selected);
@@ -378,6 +419,7 @@ public class Main {
     }
 
     function searchButtonAction(): Void {
+        statusMessageLabel.text = "Searching tweets containing \"{searchTextBox.text.trim()}\" ...";
         tweetUtil.queryTweets(searchTextBox.text.trim());
         searchState.actual = 1;
         listView.select(-1);

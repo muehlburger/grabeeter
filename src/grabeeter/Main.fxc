@@ -105,7 +105,8 @@
     <Instance classID="SceneModel" instanceID="SceneModel1">
         <Reference name="instanceName" value="str:scene"/>
         <List name="nodes">
-            <Item value="inst:VBoxModel1"/>
+            <Item value="inst:HBoxModel1"/>
+            <Item value="inst:VBoxModel2"/>
         </List>
         <Reference name="width" value="prop:16,anim:,,flt:600.0,"/>
         <Reference name="height" value="prop:16,anim:,,flt:600.0,"/>
@@ -117,7 +118,48 @@
         <Reference name="preInitCode" value="null"/>
         <Reference name="postInitCode" value="null"/>
     </Instance>
+    <Instance classID="HBoxModel" instanceID="HBoxModel1">
+        <Reference name="instanceName" value="str:hboxStatusMessage"/>
+        <Reference name="layoutX" value="prop:15,anim:,,flt:50.0,4,null,"/>
+        <Reference name="layoutY" value="prop:16,anim:,,flt:550.0,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop:14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:50.0,4,null,"/>
+        <Reference name="preCreationCode" value="null"/>
+        <Reference name="postCreationCode" value="null"/>
+        <List name="content">
+            <Item value="inst:VBoxModel1"/>
+        </List>
+        <Reference name="nodeVPos" value="prop:15,anim:,,vpos:TOP,4,null,"/>
+        <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
+    </Instance>
     <Instance classID="VBoxModel" instanceID="VBoxModel1">
+        <Reference name="instanceName" value="str:vbox2"/>
+        <Reference name="preCreationCode" value="null"/>
+        <Reference name="postCreationCode" value="null"/>
+        <List name="content">
+            <Item value="inst:LabelModel1"/>
+            <Item value="inst:ProgressBarModel1"/>
+        </List>
+        <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
+    </Instance>
+    <Instance classID="LabelModel" instanceID="LabelModel1">
+        <Reference name="instanceName" value="str:statusMessageLabel"/>
+        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:500.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:15.0,4,null,"/>
+        <Reference name="preCreationCode" value="null"/>
+        <Reference name="postCreationCode" value="null"/>
+        <Reference name="graphicNode" value="null"/>
+        <Reference name="text" value="prop:11,anim:,,str:,4,null,"/>
+    </Instance>
+    <Instance classID="ProgressBarModel" instanceID="ProgressBarModel1">
+        <Reference name="instanceName" value="str:progressBar"/>
+        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:500.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:13.0,4,null,"/>
+        <Reference name="preCreationCode" value="null"/>
+        <Reference name="postCreationCode" value="null"/>
+        <Reference name="progress" value="prop:15,anim:,,flt:-1.0,4,null,"/>
+    </Instance>
+    <Instance classID="VBoxModel" instanceID="VBoxModel2">
         <Reference name="instanceName" value="str:vbox"/>
         <Reference name="disable" value="prop:17,anim:,,bool:false,4,null,"/>
         <Reference name="layoutX" value="prop:14,anim:,,flt:0.0,24,inst:StateVariableModel1,16,inst:StateModel1,14,anim:,,flt:0.0,16,inst:StateModel2,14,anim:,,flt:0.0,"/>
@@ -131,12 +173,12 @@
         <Reference name="postCreationCode" value="null"/>
         <List name="content">
             <Item value="inst:ImageViewModel1"/>
-            <Item value="inst:LabelModel1"/>
-            <Item value="inst:HBoxModel1"/>
+            <Item value="inst:LabelModel2"/>
             <Item value="inst:HBoxModel2"/>
             <Item value="inst:HBoxModel3"/>
+            <Item value="inst:HBoxModel4"/>
             <Item value="inst:ListViewModel1"/>
-            <Item value="inst:VBoxModel2"/>
+            <Item value="inst:VBoxModel3"/>
         </List>
         <Reference name="hpos" value="prop:18,anim:,,hpos:CENTER,4,null,"/>
         <Reference name="vpos" value="prop:15,anim:,,vpos:TOP,4,null,"/>
@@ -150,7 +192,7 @@
         <Reference name="image" value="prop:23,anim:,,inst:ImageModel1,4,null,"/>
         <Reference name="preserveRatio" value="prop:16,anim:,,bool:true,4,null,"/>
     </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel1">
+    <Instance classID="LabelModel" instanceID="LabelModel2">
         <Reference name="instanceName" value="str:headline"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
@@ -158,43 +200,20 @@
         <Reference name="text" value="prop:20,anim:,,str:Grabeeter,4,null,"/>
         <Reference name="font" value="prop:22,anim:,,inst:FontModel1,4,null,"/>
     </Instance>
-    <Instance classID="HBoxModel" instanceID="HBoxModel1">
-        <Reference name="instanceName" value="str:hbox3"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:278.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:17.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <List name="content">
-            <Item value="inst:CheckBoxModel1"/>
-        </List>
-        <Reference name="hpos" value="prop:16,anim:,,hpos:LEFT,4,null,"/>
-        <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
-    </Instance>
-    <Instance classID="CheckBoxModel" instanceID="CheckBoxModel1">
-        <Reference name="instanceName" value="str:onlineCheckbox"/>
-        <Reference name="visible" value="prop:16,anim:,,bool:true,4,null,"/>
-        <Reference name="disable" value="prop:17,anim:,,bool:false,4,null,"/>
-        <Reference name="layoutY" value="prop:14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:17,anim:,,str:online,4,null,"/>
-        <Reference name="selected" value="prop:16,anim:,,bool:true,4,null,"/>
-    </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel2">
         <Reference name="instanceName" value="str:hbox2"/>
         <Reference name="visible" value="prop:bind:bind onlineCheckbox.selected"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <List name="content">
-            <Item value="inst:LabelModel2"/>
+            <Item value="inst:LabelModel3"/>
             <Item value="inst:TextBoxModel1"/>
             <Item value="inst:ButtonModel1"/>
         </List>
         <Reference name="vpos" value="prop:18,anim:,,vpos:CENTER,4,null,"/>
         <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
     </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel2">
+    <Instance classID="LabelModel" instanceID="LabelModel3">
         <Reference name="instanceName" value="str:label2"/>
         <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:123.0,4,null,"/>
         <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:15.0,4,null,"/>
@@ -218,7 +237,7 @@
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:24,anim:,,str:Update Tweets,4,null,"/>
+        <Reference name="text" value="prop:26,anim:,,str:Retrieve Tweets,4,null,"/>
         <Reference name="action" value="prop:31,anim:,,str:retrieveButtonAction,4,null,"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel3">
@@ -229,14 +248,14 @@
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <List name="content">
-            <Item value="inst:LabelModel3"/>
+            <Item value="inst:LabelModel4"/>
             <Item value="inst:TextBoxModel2"/>
             <Item value="inst:ButtonModel2"/>
         </List>
         <Reference name="nodeVPos" value="prop:18,anim:,,vpos:CENTER,4,null,"/>
         <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
     </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel3">
+    <Instance classID="LabelModel" instanceID="LabelModel4">
         <Reference name="instanceName" value="str:label"/>
         <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:123.0,4,null,"/>
         <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:15.0,4,null,"/>
@@ -244,7 +263,7 @@
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:24,anim:,,str:Search Query:,4,null,"/>
+        <Reference name="text" value="prop:29,anim:,,str:Tweets containing:,4,null,"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel2">
         <Reference name="instanceName" value="str:searchTextBox"/>
@@ -260,8 +279,31 @@
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:24,anim:,,str:Search Tweets,4,null,"/>
+        <Reference name="text" value="prop:17,anim:,,str:Search,4,null,"/>
         <Reference name="action" value="prop:29,anim:,,str:searchButtonAction,4,null,"/>
+    </Instance>
+    <Instance classID="HBoxModel" instanceID="HBoxModel4">
+        <Reference name="instanceName" value="str:hbox3"/>
+        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:278.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:17.0,4,null,"/>
+        <Reference name="preCreationCode" value="null"/>
+        <Reference name="postCreationCode" value="null"/>
+        <List name="content">
+            <Item value="inst:CheckBoxModel1"/>
+        </List>
+        <Reference name="hpos" value="prop:16,anim:,,hpos:LEFT,4,null,"/>
+        <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
+    </Instance>
+    <Instance classID="CheckBoxModel" instanceID="CheckBoxModel1">
+        <Reference name="instanceName" value="str:onlineCheckbox"/>
+        <Reference name="visible" value="prop:16,anim:,,bool:true,4,null,"/>
+        <Reference name="disable" value="prop:17,anim:,,bool:false,4,null,"/>
+        <Reference name="layoutY" value="prop:14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="preCreationCode" value="null"/>
+        <Reference name="postCreationCode" value="null"/>
+        <Reference name="graphicNode" value="null"/>
+        <Reference name="text" value="prop:17,anim:,,str:online,4,null,"/>
+        <Reference name="selected" value="prop:16,anim:,,bool:true,4,null,"/>
     </Instance>
     <Instance classID="ListViewModel" instanceID="ListViewModel1">
         <Reference name="instanceName" value="str:listView"/>
@@ -273,7 +315,7 @@
         <Reference name="postCreationCode" value="null"/>
         <Reference name="items" value="prop:bind:bind listViewItems"/>
     </Instance>
-    <Instance classID="VBoxModel" instanceID="VBoxModel2">
+    <Instance classID="VBoxModel" instanceID="VBoxModel3">
         <Reference name="instanceName" value="str:detailsBox"/>
         <Reference name="visible" value="prop:17,anim:,,bool:false,24,inst:StateVariableModel2,16,inst:StateModel4,17,anim:0,,bool:true,"/>
         <Reference name="opacity" value="prop:14,anim:,,flt:0.0,24,inst:StateVariableModel2,16,inst:StateModel4,14,anim:,,flt:1.0,"/>
@@ -281,19 +323,19 @@
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <List name="content">
-            <Item value="inst:LabelModel4"/>
             <Item value="inst:LabelModel5"/>
+            <Item value="inst:LabelModel6"/>
         </List>
         <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
     </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel4">
+    <Instance classID="LabelModel" instanceID="LabelModel5">
         <Reference name="instanceName" value="str:titleLabel"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
         <Reference name="textWrap" value="prop:16,anim:,,bool:true,4,null,"/>
     </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel5">
+    <Instance classID="LabelModel" instanceID="LabelModel6">
         <Reference name="instanceName" value="str:urlLabel"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>

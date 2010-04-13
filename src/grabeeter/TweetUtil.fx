@@ -34,9 +34,10 @@ public class TweetUtil {
     public var tweets: Tweet[];
     public var searchResults: String[];
     public var finished: Boolean;
+    public var statusMessage: javafx.scene.control.Label;
     
     var storage = Storage {
-        source: "twitter-search";
+        source: "grabeeter";
     };
 
     var analyser: Analyzer;
@@ -80,7 +81,10 @@ public class TweetUtil {
         };
 
         try {
+            statusMessage.text = "Loading saved tweets ...";
             pullParser.parse();
+        } catch(e: java.lang.NullPointerException) {
+            statusMessage.text = "Please retrieve your tweets first ...";
         } catch(e: java.lang.Exception) {
             e.printStackTrace();
         }
@@ -140,20 +144,14 @@ public class TweetUtil {
                 in.close();
             }
         }
-        println("{ressource.length} Bytes saved from {location}");
+        statusMessage.text = "Tweets saved ...";
         out.close();
     }
 
     public function indexTweets() {
-        // 0. Specify the analyzer for tokenizing text.
-        //    The same analyzer should be used for indexing and searching
+        statusMessage.text = "Indexing tweets ...";
         analyser = new GermanAnalyzer(Version.LUCENE_30);
-
-        // 1. Create the index
         index = new RAMDirectory();
-
-        // the boolean arg in the IndexWriter ctor means to
-        // create a new index, overwriting any existing index
         var w : IndexWriter = new IndexWriter(index, analyser, true, IndexWriter.MaxFieldLength.UNLIMITED);
         
         for(tweet in tweets) {
@@ -161,7 +159,7 @@ public class TweetUtil {
         }
 
         w.close();
-        println("finished to index tweets ...");
+        statusMessage.text = "Finished to index tweets. You can search now! ;-)";
     }
 
     function addDoc(w: IndexWriter, value: String): Void {
@@ -175,7 +173,6 @@ public class TweetUtil {
     }
 
     public function queryTweets(queryString: String): Void {
-        println("queryString: {queryString}");
         delete searchResults;
         var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
         
@@ -195,8 +192,6 @@ public class TweetUtil {
             insert tweet into searchResults;
         }
         println("Tweets: {searchResults}");
-
-        //println("hits: {hits}");
     }
 
 
