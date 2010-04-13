@@ -3,7 +3,7 @@
  *
  * Created on 07.04.2010, 11:59:40
  */
-package tweetsearch;
+package grabeeter;
 
 import javafx.io.Storage;
 import javafx.io.http.HttpRequest;
@@ -24,7 +24,7 @@ import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.search.ScoreDoc;
-import tweetsearch.model.Tweet;
+import grabeeter.model.Tweet;
 /**
  * @author Herbert Muehlburger
  */

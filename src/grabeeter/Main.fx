@@ -27,7 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-package tweetsearch;
+package grabeeter;
 
 import javafx.io.http.URLConverter;
 
@@ -41,15 +41,6 @@ public class Main {
     public-read var usernameTextBox: javafx.scene.control.TextBox;
     public-read var retrieveButton: javafx.scene.control.Button;
     public-read var hbox2: javafx.scene.layout.HBox;
-    public-read var label3: javafx.scene.control.Label;
-    public-read var sliderStart: javafx.scene.control.Slider;
-    public-read var textbox: javafx.scene.control.TextBox;
-    public-read var vbox2: javafx.scene.layout.VBox;
-    public-read var label4: javafx.scene.control.Label;
-    public-read var sliderEnd: javafx.scene.control.Slider;
-    public-read var textbox2: javafx.scene.control.TextBox;
-    public-read var vbox3: javafx.scene.layout.VBox;
-    public-read var hbox4: javafx.scene.layout.HBox;
     public-read var label: javafx.scene.control.Label;
     public-read var searchTextBox: javafx.scene.control.TextBox;
     public-read var searchButton: javafx.scene.control.Button;
@@ -75,7 +66,7 @@ public class Main {
             disable: false
             layoutY: 0.0
             text: "online"
-            selected: false
+            selected: true
         };
         hbox3 = javafx.scene.layout.HBox {
             width: 278.0
@@ -120,53 +111,6 @@ public class Main {
             visible: bind onlineCheckbox.selected
             content: [ label2, usernameTextBox, retrieveButton, ]
             vpos: javafx.geometry.VPos.CENTER
-            spacing: 6.0
-        };
-        label3 = javafx.scene.control.Label {
-            text: "Date Range Start"
-        };
-        sliderStart = javafx.scene.control.Slider {
-            max: 1.27097267E9
-            vertical: false
-        };
-        textbox = javafx.scene.control.TextBox {
-            disable: true
-            width: 140.0
-            height: 23.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind textbox.width
-                height: bind textbox.height
-            }
-            text: bind "{sliderStart.value}"
-        };
-        vbox2 = javafx.scene.layout.VBox {
-            content: [ label3, sliderStart, textbox, ]
-            spacing: 6.0
-        };
-        label4 = javafx.scene.control.Label {
-            text: "Date Range End"
-        };
-        sliderEnd = javafx.scene.control.Slider {
-            value: 100.0
-        };
-        textbox2 = javafx.scene.control.TextBox {
-            disable: true
-            width: 140.0
-            height: 23.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind textbox2.width
-                height: bind textbox2.height
-            }
-            text: bind "{sliderEnd.value}"
-        };
-        vbox3 = javafx.scene.layout.VBox {
-            content: [ label4, sliderEnd, textbox2, ]
-            spacing: 6.0
-        };
-        hbox4 = javafx.scene.layout.HBox {
-            visible: true
-            disable: false
-            content: [ vbox2, vbox3, ]
             spacing: 6.0
         };
         label = javafx.scene.control.Label {
@@ -258,7 +202,7 @@ public class Main {
             size: 70.0
         };
         headline = javafx.scene.control.Label {
-            text: "Grapeeter"
+            text: "Grabeeter"
             font: font
         };
         vbox = javafx.scene.layout.VBox {
@@ -274,7 +218,7 @@ public class Main {
                 vpos: javafx.geometry.VPos.TOP
                 managed: true
             }
-            content: [ logoImageView, headline, hbox3, hbox2, hbox4, hbox, listView, detailsBox, ]
+            content: [ logoImageView, headline, hbox3, hbox2, hbox, listView, detailsBox, ]
             hpos: javafx.geometry.HPos.CENTER
             vpos: javafx.geometry.VPos.TOP
             nodeHPos: javafx.geometry.HPos.CENTER
@@ -402,7 +346,7 @@ public class Main {
     var listViewItems: Object[] = bind tweetUtil.searchResults;
 
     var tweetUtil = TweetUtil{
-        location: bind "http://www.tweetex.dat/frontend_dev.php/api/tweets/{username}.xml"
+        location: bind "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{username}.xml"
     };
 
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
