@@ -89,7 +89,7 @@ public class Main {
         };
         hboxStatusMessage = javafx.scene.layout.HBox {
             layoutX: 50.0
-            layoutY: 550.0
+            layoutY: 650.0
             width: 0.0
             height: 50.0
             layoutInfo: javafx.scene.layout.LayoutInfo {
@@ -265,7 +265,7 @@ public class Main {
         };
         scene = javafx.scene.Scene {
             width: 600.0
-            height: 600.0
+            height: 700.0
             content: javafx.scene.layout.Panel {
                 content: getDesignRootNodes ()
             }

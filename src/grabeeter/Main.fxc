@@ -109,7 +109,7 @@
             <Item value="inst:VBoxModel2"/>
         </List>
         <Reference name="width" value="prop:16,anim:,,flt:600.0,"/>
-        <Reference name="height" value="prop:16,anim:,,flt:600.0,"/>
+        <Reference name="height" value="prop:16,anim:,,flt:700.0,"/>
         <Reference name="fill" value="prop:32,anim:,,inst:LinearGradientModel1,4,null,"/>
         <Reference name="generateSceneInstance" value="bool:true"/>
         <Reference name="generateScenePanel" value="bool:true"/>
@@ -121,7 +121,7 @@
     <Instance classID="HBoxModel" instanceID="HBoxModel1">
         <Reference name="instanceName" value="str:hboxStatusMessage"/>
         <Reference name="layoutX" value="prop:15,anim:,,flt:50.0,4,null,"/>
-        <Reference name="layoutY" value="prop:16,anim:,,flt:550.0,4,null,"/>
+        <Reference name="layoutY" value="prop:16,anim:,,flt:650.0,4,null,"/>
         <Reference name="layoutInfoWidth" value="prop:14,anim:,,flt:0.0,4,null,"/>
         <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:50.0,4,null,"/>
         <Reference name="preCreationCode" value="null"/>
