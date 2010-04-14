@@ -16,8 +16,8 @@
         <List name="dataSources"/>
         <List name="effects"/>
         <Reference name="scene" value="inst:SceneModel1"/>
-        <Reference name="designWidth" value="flt:600.0"/>
-        <Reference name="designHeight" value="flt:400.0"/>
+        <Reference name="designWidth" value="flt:800.0"/>
+        <Reference name="designHeight" value="flt:600.0"/>
         <Reference name="designProfile" value="profile:DESKTOP"/>
         <Reference name="synchronizeDeviceAndSceneSizes" value="bool:true"/>
     </Instance>
@@ -92,7 +92,7 @@
         <Reference name="instanceName" value="str:font2"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
-        <Reference name="size" value="prop:15,anim:,,flt:14.0,"/>
+        <Reference name="size" value="prop:15,anim:,,flt:11.0,"/>
     </Instance>
     <Instance classID="ImageModel" instanceID="ImageModel2">
         <Reference name="instanceName" value="str:closeImage"/>
@@ -152,7 +152,6 @@
         <Reference name="opacity" value="prop:15,anim:,,flt:0.61,4,null,"/>
         <Reference name="cursor" value="prop:18,anim:,,cursor:HAND,4,null,"/>
         <Reference name="layoutY" value="prop:14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="onMousePressed" value="prop:default"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="radius" value="prop:14,anim:,,flt:8.0,4,null,"/>
@@ -165,7 +164,6 @@
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
         <Reference name="text" value="prop:12,anim:,,str:x,4,null,"/>
-        <Reference name="font" value="prop:default"/>
         <Reference name="textAlignment" value="prop:23,anim:,,textalign:CENTER,4,null,"/>
         <Reference name="textOverrun" value="prop:30,anim:,,overrun:CENTER_ELLIPSES,4,null,"/>
         <Reference name="hpos" value="prop:18,anim:,,hpos:CENTER,4,null,"/>
@@ -186,7 +184,7 @@
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="width" value="prop:16,anim:,,flt:600.0,4,null,"/>
-        <Reference name="height" value="prop:15,anim:,,flt:20.0,4,null,"/>
+        <Reference name="height" value="prop:15,anim:,,flt:15.0,4,null,"/>
         <Reference name="arcWidth" value="prop:15,anim:,,flt:10.0,4,null,"/>
         <Reference name="arcHeight" value="prop:15,anim:,,flt:10.0,4,null,"/>
     </Instance>
@@ -403,7 +401,7 @@
         <Reference name="visible" value="prop:17,anim:,,bool:false,24,inst:StateVariableModel1,16,inst:StateModel2,17,anim:0,,bool:true,"/>
         <Reference name="opacity" value="prop:14,anim:,,flt:0.0,24,inst:StateVariableModel1,16,inst:StateModel2,14,anim:,,flt:1.0,"/>
         <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:540.0,24,inst:StateVariableModel2,16,inst:StateModel4,16,anim:,,flt:540.0,"/>
-        <Reference name="layoutInfoHeight" value="prop:16,anim:,,flt:250.0,24,inst:StateVariableModel2,16,inst:StateModel4,16,anim:,,flt:283.0,"/>
+        <Reference name="layoutInfoHeight" value="prop:16,anim:,,flt:302.0,24,inst:StateVariableModel2,16,inst:StateModel4,16,anim:,,flt:283.0,"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="items" value="prop:bind:bind listViewItems"/>
@@ -422,17 +420,23 @@
         <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel7">
-        <Reference name="instanceName" value="str:titleLabel"/>
+        <Reference name="instanceName" value="str:textLabel"/>
+        <Reference name="cursor" value="prop:4,null,24,inst:StateVariableModel1,16,inst:StateModel2,18,anim:,,cursor:TEXT,"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
-        <Reference name="textWrap" value="prop:16,anim:,,bool:true,4,null,"/>
+        <Reference name="textOverrun" value="prop:4,null,24,inst:StateVariableModel1,16,inst:StateModel2,28,anim:,,overrun:WORD_ELLIPSES,"/>
+        <Reference name="textWrap" value="prop:16,anim:,,bool:true,24,inst:StateVariableModel1,16,inst:StateModel2,16,anim:,,bool:true,"/>
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel8">
-        <Reference name="instanceName" value="str:urlLabel"/>
+        <Reference name="instanceName" value="str:authorLabel"/>
+        <Reference name="visible" value="prop:17,anim:,,bool:false,24,inst:StateVariableModel1,16,inst:StateModel2,16,anim:,,bool:true,"/>
+        <Reference name="cursor" value="prop:4,null,24,inst:StateVariableModel1,16,inst:StateModel2,18,anim:,,cursor:TEXT,"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
-        <Reference name="textWrap" value="prop:16,anim:,,bool:true,4,null,"/>
+        <Reference name="text" value="prop:16,anim:,,str:Label,24,inst:StateVariableModel1,16,inst:StateModel2,11,anim:,,str:,"/>
+        <Reference name="textOverrun" value="prop:4,null,24,inst:StateVariableModel1,16,inst:StateModel2,28,anim:,,overrun:WORD_ELLIPSES,"/>
+        <Reference name="textWrap" value="prop:4,null,24,inst:StateVariableModel1,16,inst:StateModel2,16,anim:,,bool:true,"/>
     </Instance>
 </Model>

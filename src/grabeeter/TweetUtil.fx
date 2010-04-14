@@ -32,7 +32,7 @@ public class TweetUtil {
 
     public var location: String;
     public var tweets: Tweet[];
-    public var searchResults: String[];
+    public var searchResults: Tweet[];
     public var finished: Boolean;
     public var statusMessage: javafx.scene.control.Label;
     
@@ -154,17 +154,19 @@ public class TweetUtil {
         var w : IndexWriter = new IndexWriter(index, analyser, true, IndexWriter.MaxFieldLength.UNLIMITED);
         
         for(tweet in tweets) {
-            this.addDoc(w, tweet.text);
+            this.addDoc(w, tweet);
         }
 
         w.close();
         statusMessage.text = "Finished to index tweets. You can search now! ;-)";
     }
 
-    function addDoc(w: IndexWriter, value: String): Void {
+    function addDoc(w: IndexWriter, tweet: Tweet): Void {
         try {
             var doc: Document = new Document();
-            doc.add(new Field("tweet-text", value, Field.Store.YES, Field.Index.ANALYZED));
+            doc.add(new Field("tweet-text", tweet.text, Field.Store.YES, Field.Index.ANALYZED));
+            doc.add(new Field("screenName", tweet.screenName, Field.Store.YES, Field.Index.ANALYZED));
+            doc.add(new Field("created", tweet.created, Field.Store.YES, Field.Index.ANALYZED));
             w.addDocument(doc);
         } catch(e: IOException) {
             e.printStackTrace();
@@ -172,6 +174,7 @@ public class TweetUtil {
     }
 
     public function queryTweets(queryString: String): Void {
+        finished = false;
         delete searchResults;
         var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
         
@@ -187,10 +190,13 @@ public class TweetUtil {
         for(hit in hits) {
             var docId: Integer = hit.doc;
             var d: Document = searcher.doc(docId);
-            var tweet: String = d.get("tweet-text");
-            insert tweet into searchResults;
+            var t: Tweet = new Tweet();
+            t.text = d.get("tweet-text");
+            t.screenName = d.get("screenName");
+            t.created = d.get("created");
+            insert t into searchResults;
         }
-        println("Tweets: {searchResults}");
+        finished = true;
     }
 
 

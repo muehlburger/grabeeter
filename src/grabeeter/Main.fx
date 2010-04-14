@@ -35,6 +35,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Stack;
 import javafx.stage.AppletStageExtension;
 import javafx.animation.Timeline;
+import grabeeter.model.Tweet;
 
 public class Main {
 
@@ -60,8 +61,8 @@ public class Main {
     public-read var onlineCheckbox: javafx.scene.control.CheckBox;
     public-read var hbox3: javafx.scene.layout.HBox;
     public-read var listView: javafx.scene.control.ListView;
-    public-read var titleLabel: javafx.scene.control.Label;
-    public-read var urlLabel: javafx.scene.control.Label;
+    public-read var textLabel: javafx.scene.control.Label;
+    public-read var authorLabel: javafx.scene.control.Label;
     public-read var detailsBox: javafx.scene.layout.VBox;
     public-read var vbox: javafx.scene.layout.VBox;
     public-read var scene: javafx.scene.Scene;
@@ -114,7 +115,7 @@ public class Main {
             onMouseEntered: dragAreaOnMouseEntered
             onMouseExited: dragAreaOnMouseExited
             width: 600.0
-            height: 20.0
+            height: 15.0
             arcWidth: 10.0
             arcHeight: 10.0
         };
@@ -250,18 +251,19 @@ public class Main {
             visible: false
             opacity: 0.0
             width: 540.0
-            height: 250.0
+            height: 302.0
             layoutInfo: javafx.scene.layout.LayoutInfo {
                 width: bind listView.width
                 height: bind listView.height
             }
             items: bind listViewItems
         };
-        titleLabel = javafx.scene.control.Label {
+        textLabel = javafx.scene.control.Label {
             textWrap: true
         };
-        urlLabel = javafx.scene.control.Label {
-            textWrap: true
+        authorLabel = javafx.scene.control.Label {
+            visible: false
+            text: "Label"
         };
         detailsBox = javafx.scene.layout.VBox {
             visible: false
@@ -271,7 +273,7 @@ public class Main {
                 width: bind detailsBox.width
                 height: bind detailsBox.height
             }
-            content: [ titleLabel, urlLabel, ]
+            content: [ textLabel, authorLabel, ]
             spacing: 6.0
         };
         logoImage = javafx.scene.image.Image {
@@ -322,7 +324,7 @@ public class Main {
             spacing: 10.0
         };
         font2 = javafx.scene.text.Font {
-            size: 14.0
+            size: 11.0
         };
         dragText = javafx.scene.control.Label {
             visible: bind dragArea.hover and not closeIcons.visible
@@ -374,6 +376,14 @@ public class Main {
                                 action: function() {
                                     listView.visible = false;
                                     listView.opacity = 0.0;
+                                    textLabel.cursor = null;
+                                    textLabel.textOverrun = javafx.scene.control.OverrunStyle.ELLIPSES;
+                                    textLabel.textWrap = true;
+                                    authorLabel.visible = false;
+                                    authorLabel.cursor = null;
+                                    authorLabel.text = "Label";
+                                    authorLabel.textOverrun = javafx.scene.control.OverrunStyle.ELLIPSES;
+                                    authorLabel.textWrap = false;
                                     vbox.layoutX = 0.0;
                                     vbox.layoutY = 0.0;
                                     vbox.width = 600.0;
@@ -400,6 +410,16 @@ public class Main {
                                     vbox.width => 600.0 tween javafx.animation.Interpolator.EASEBOTH,
                                     vbox.height => 479.0 tween javafx.animation.Interpolator.EASEBOTH,
                                 ]
+                                action: function() {
+                                    textLabel.cursor = javafx.scene.Cursor.TEXT;
+                                    textLabel.textOverrun = javafx.scene.control.OverrunStyle.WORD_ELLIPSES;
+                                    textLabel.textWrap = true;
+                                    authorLabel.visible = true;
+                                    authorLabel.cursor = javafx.scene.Cursor.TEXT;
+                                    authorLabel.text = "";
+                                    authorLabel.textOverrun = javafx.scene.control.OverrunStyle.WORD_ELLIPSES;
+                                    authorLabel.textWrap = true;
+                                }
                             }
                         ]
                     }
@@ -420,7 +440,7 @@ public class Main {
                                 time: 500ms
                                 values: [
                                     listView.width => 540.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                    listView.height => 250.0 tween javafx.animation.Interpolator.EASEBOTH,
+                                    listView.height => 302.0 tween javafx.animation.Interpolator.EASEBOTH,
                                     detailsBox.opacity => 0.0 tween javafx.animation.Interpolator.EASEBOTH,
                                 ]
                                 action: function() {
@@ -464,7 +484,13 @@ public class Main {
         scene
     }// </editor-fold>//GEN-END:main
 
-    var listViewItems: Object[] = bind tweetUtil.tweets;
+    var listViewItems: Object[] = bind tweetUtil.searchResults;
+    
+    var tweetUtil = TweetUtil{
+        location: bind "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{username}.xml"
+        statusMessage: bind statusMessageLabel with inverse
+    };
+
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
    
     var loadingFinished = bind tweetUtil.finished on replace {
@@ -473,15 +499,13 @@ public class Main {
             statusMessageLabel.text = "Tweets saved now loading ...";
             tweetUtil.load();
             tweetUtil.indexTweets();
-        } else {
             progressBar.visible = false;
         }
-
     }
 
-    var selectedResult = bind listView.selectedItem as String on replace {
-        titleLabel.text = "Tweet: {selectedResult}";
-        urlLabel.text = "URL: {if(selectedResult != null) then new URLConverter ().decodeString(selectedResult) else ""}";
+    var selectedResult = bind listView.selectedItem as Tweet on replace {
+        authorLabel.text = "Author: {selectedResult.screenName}";
+        textLabel.text = "{selectedResult.screenName}: {selectedResult.text}";
         detailsState.actual = if (selectedResult != null) then 1 else 0;
     }
 
@@ -536,11 +560,6 @@ public class Main {
     public function getCloseIcons(): Stack {
         return this.closeIcons;
     }
-
-    var tweetUtil = TweetUtil{
-        location: bind "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{username}.xml"
-        statusMessage: bind statusMessageLabel with inverse
-    };
     
     function retrieveButtonAction(): Void {
         progressBar.visible = true;
@@ -548,18 +567,14 @@ public class Main {
         delete tweetUtil.tweets;
         delete tweetUtil.searchResults;
         tweetUtil.retrieveData(onlineCheckbox.selected);
-        listView.select(-1);
-        progressBar.visible = false;
     }
 
     function searchButtonAction(): Void {
         progressBar.visible = true;
         statusMessageLabel.text = "Searching tweets containing \"{searchTextBox.text.trim()}\" ...";
+        delete tweetUtil.searchResults;
         tweetUtil.queryTweets(searchTextBox.text.trim());
         searchState.actual = 1;
         listView.select(-1);
-        progressBar.visible = false;
     }
-
-
 }
