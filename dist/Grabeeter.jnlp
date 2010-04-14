@@ -7,6 +7,9 @@
         <description>Grabeeter</description>
         <offline-allowed/>
     </information>
+    <security>
+        <all-permissions/>
+    </security>
     <resources>
         <j2se version="1.5+"/>
         <extension name="JavaFX Runtime" href="http://dl.javafx.com/1.2/javafx-rt.jnlp"/>

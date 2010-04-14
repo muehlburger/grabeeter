@@ -30,10 +30,18 @@
 package grabeeter;
 
 import javafx.io.http.URLConverter;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Stack;
 
 public class Main {
 
-    public-read var statusMessageLabel: javafx.scene.control.Label;//GEN-BEGIN:main
+    public-read var circle: javafx.scene.shape.Circle;//GEN-BEGIN:main
+    public-read var closeText: javafx.scene.control.Label;
+    public-read var closeIcons: javafx.scene.layout.Stack;
+    public-read var dragArea: javafx.scene.shape.Rectangle;
+    public-read var dragText: javafx.scene.control.Label;
+    public-read var statusMessageLabel: javafx.scene.control.Label;
     public-read var progressBar: javafx.scene.control.ProgressBar;
     public-read var vbox2: javafx.scene.layout.VBox;
     public-read var hboxStatusMessage: javafx.scene.layout.HBox;
@@ -58,13 +66,30 @@ public class Main {
     public-read var logoImage: javafx.scene.image.Image;
     public-read var backgroundGradient: javafx.scene.paint.LinearGradient;
     public-read var font: javafx.scene.text.Font;
-    public-read var httpDataSource: org.netbeans.javafx.datasrc.HttpDataSource;
+    public-read var font2: javafx.scene.text.Font;
+    public-read var closeImage: javafx.scene.image.Image;
+    public-read var closeText2: javafx.scene.text.Font;
+    public-read var color: javafx.scene.paint.Color;
     
     public-read var searchState: org.netbeans.javafx.design.DesignState;
     public-read var detailsState: org.netbeans.javafx.design.DesignState;
     
     // <editor-fold defaultstate="collapsed" desc="Generated Init Block">
     init {
+        circle = javafx.scene.shape.Circle {
+            cursor: javafx.scene.Cursor.HAND
+            layoutY: 0.0
+            onMousePressed: circleOnMousePressed
+            radius: 8.0
+        };
+        dragArea = javafx.scene.shape.Rectangle {
+            visible: true
+            opacity: 0.29
+            width: 600.0
+            height: 20.0
+            arcWidth: 10.0
+            arcHeight: 10.0
+        };
         statusMessageLabel = javafx.scene.control.Label {
             width: 500.0
             height: 15.0
@@ -221,7 +246,7 @@ public class Main {
             spacing: 6.0
         };
         logoImage = javafx.scene.image.Image {
-            url: "http://portal.tugraz.at/tu_graz/images/head/logo_head.gif"
+            url: "{__DIR__}images/logo_tugraz.gif"
             backgroundLoading: false
             smooth: false
             width: 200.0
@@ -230,6 +255,7 @@ public class Main {
             preserveRatio: true
         };
         logoImageView = javafx.scene.image.ImageView {
+            layoutX: 0.0
             image: logoImage
             preserveRatio: true
         };
@@ -247,7 +273,7 @@ public class Main {
         vbox = javafx.scene.layout.VBox {
             disable: false
             layoutX: 0.0
-            layoutY: 0.0
+            layoutY: 20.0
             width: 600.0
             height: 0.0
             layoutInfo: javafx.scene.layout.LayoutInfo {
@@ -263,6 +289,63 @@ public class Main {
             nodeHPos: javafx.geometry.HPos.CENTER
             spacing: 10.0
         };
+        font2 = javafx.scene.text.Font {
+            size: 14.0
+        };
+        dragText = javafx.scene.control.Label {
+            visible: bind dragArea.hover
+            disable: false
+            layoutX: 10.0
+            layoutY: 3.0
+            width: 200.0
+            layoutInfo: javafx.scene.layout.LayoutInfo {
+                width: bind dragText.width
+                height: bind dragText.height
+                hpos: javafx.geometry.HPos.CENTER
+                vpos: javafx.geometry.VPos.CENTER
+                managed: true
+            }
+            text: "Drag me out of the Browser"
+            font: font2
+        };
+        closeImage = javafx.scene.image.Image {
+            url: "{__DIR__}images/close_94.png"
+            width: 11.0
+            height: 11.0
+            preserveRatio: true
+        };
+        closeText2 = javafx.scene.text.Font {
+            size: 17.0
+            oblique: false
+            embolden: true
+            autoKern: true
+            letterSpacing: 0.0
+            ligatures: true
+            position: javafx.scene.text.FontPosition.REGULAR
+        };
+        closeText = javafx.scene.control.Label {
+            layoutX: 0.0
+            layoutY: 0.0
+            text: "x"
+            font: closeText2
+            textAlignment: javafx.scene.text.TextAlignment.CENTER
+            textOverrun: javafx.scene.control.OverrunStyle.CENTER_ELLIPSES
+            hpos: javafx.geometry.HPos.CENTER
+            vpos: javafx.geometry.VPos.CENTER
+            graphicHPos: javafx.geometry.HPos.CENTER
+            graphicVPos: javafx.geometry.VPos.CENTER
+            graphicTextGap: 5.0
+            textFill: backgroundGradient
+        };
+        closeIcons = javafx.scene.layout.Stack {
+            visible: true
+            opacity: 1.0
+            layoutX: 575.0
+            layoutY: 0.0
+            content: [ circle, closeText, ]
+            nodeHPos: javafx.geometry.HPos.CENTER
+            nodeVPos: javafx.geometry.VPos.CENTER
+        };
         scene = javafx.scene.Scene {
             width: 600.0
             height: 700.0
@@ -271,10 +354,11 @@ public class Main {
             }
             fill: backgroundGradient
         };
-        httpDataSource = org.netbeans.javafx.datasrc.HttpDataSource {
-            recordDisplayName: httpDataSourceRecordDisplayName
-            url: ""
-            parser: org.netbeans.javafx.datasrc.Parsers.JSON_PARSER
+        color = javafx.scene.paint.Color {
+            red: 1.0
+            green: 1.0
+            blue: 1.0
+            opacity: 1.0
         };
         
         searchState = org.netbeans.javafx.design.DesignState {
@@ -373,12 +457,28 @@ public class Main {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Design Functions">
     public function getDesignRootNodes () : javafx.scene.Node[] {
-        [ hboxStatusMessage, vbox, ]
+        [ closeIcons, dragArea, dragText, hboxStatusMessage, vbox, ]
     }
     
     public function getDesignScene (): javafx.scene.Scene {
         scene
     }// </editor-fold>//GEN-END:main
+
+    function circleOnMousePressed(event: javafx.scene.input.MouseEvent): Void {
+        scene.stage.close();
+    }
+
+    // drag and close controls
+    var isApplet = (FX.getArgument("isApplet") != null);
+
+    public function getDragArea(): Rectangle {
+        return this.dragArea;
+    }
+
+    public function getCloseIcons(): Stack {
+        return this.closeIcons;
+    }
+
 
     var listViewItems: Object[] = bind tweetUtil.searchResults;
 
@@ -412,10 +512,6 @@ public class Main {
         titleLabel.text = "Tweet: {selectedResult}";
         urlLabel.text = "URL: {if(selectedResult != null) then new URLConverter ().decodeString(selectedResult) else ""}";
         detailsState.actual = if (selectedResult != null) then 1 else 0;
-    }
-
-    function httpDataSourceRecordDisplayName(record: org.netbeans.javafx.datasrc.Record): String {
-        record.getString("text")
     }
 
     function searchButtonAction(): Void {
