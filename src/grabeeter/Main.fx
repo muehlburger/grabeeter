@@ -33,6 +33,8 @@ import javafx.io.http.URLConverter;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Stack;
+import javafx.stage.AppletStageExtension;
+import javafx.animation.Timeline;
 
 public class Main {
 
@@ -68,7 +70,6 @@ public class Main {
     public-read var font: javafx.scene.text.Font;
     public-read var font2: javafx.scene.text.Font;
     public-read var closeImage: javafx.scene.image.Image;
-    public-read var closeText2: javafx.scene.text.Font;
     public-read var color: javafx.scene.paint.Color;
     
     public-read var searchState: org.netbeans.javafx.design.DesignState;
@@ -77,14 +78,41 @@ public class Main {
     // <editor-fold defaultstate="collapsed" desc="Generated Init Block">
     init {
         circle = javafx.scene.shape.Circle {
+            opacity: 0.61
             cursor: javafx.scene.Cursor.HAND
             layoutY: 0.0
-            onMousePressed: circleOnMousePressed
             radius: 8.0
+        };
+        closeText = javafx.scene.control.Label {
+            layoutX: 0.0
+            layoutY: 0.0
+            text: "x"
+            textAlignment: javafx.scene.text.TextAlignment.CENTER
+            textOverrun: javafx.scene.control.OverrunStyle.CENTER_ELLIPSES
+            hpos: javafx.geometry.HPos.CENTER
+            vpos: javafx.geometry.VPos.CENTER
+            graphicHPos: javafx.geometry.HPos.CENTER
+            graphicVPos: javafx.geometry.VPos.CENTER
+            graphicTextGap: 5.0
+            textFill: backgroundGradient
+        };
+        closeIcons = javafx.scene.layout.Stack {
+            visible: false
+            opacity: 1.0
+            layoutX: 600.0
+            layoutY: -20.0
+            onMouseClicked: closeIconsOnMouseClicked
+            content: [ circle, closeText, ]
+            nodeHPos: javafx.geometry.HPos.CENTER
+            nodeVPos: javafx.geometry.VPos.CENTER
         };
         dragArea = javafx.scene.shape.Rectangle {
             visible: true
-            opacity: 0.29
+            opacity: 0.0
+            cursor: javafx.scene.Cursor.HAND
+            onMouseDragged: dragAreaOnMouseDragged
+            onMouseEntered: dragAreaOnMouseEntered
+            onMouseExited: dragAreaOnMouseExited
             width: 600.0
             height: 20.0
             arcWidth: 10.0
@@ -100,6 +128,7 @@ public class Main {
             text: ""
         };
         progressBar = javafx.scene.control.ProgressBar {
+            visible: false
             width: 500.0
             height: 13.0
             layoutInfo: javafx.scene.layout.LayoutInfo {
@@ -256,7 +285,10 @@ public class Main {
         };
         logoImageView = javafx.scene.image.ImageView {
             layoutX: 0.0
+            layoutY: 10.0
             image: logoImage
+            fitWidth: 200.0
+            fitHeight: 77.0
             preserveRatio: true
         };
         backgroundGradient = javafx.scene.paint.LinearGradient {
@@ -273,7 +305,7 @@ public class Main {
         vbox = javafx.scene.layout.VBox {
             disable: false
             layoutX: 0.0
-            layoutY: 20.0
+            layoutY: 25.0
             width: 600.0
             height: 0.0
             layoutInfo: javafx.scene.layout.LayoutInfo {
@@ -293,7 +325,7 @@ public class Main {
             size: 14.0
         };
         dragText = javafx.scene.control.Label {
-            visible: bind dragArea.hover
+            visible: bind dragArea.hover and not closeIcons.visible
             disable: false
             layoutX: 10.0
             layoutY: 3.0
@@ -308,44 +340,6 @@ public class Main {
             text: "Drag me out of the Browser"
             font: font2
         };
-        closeImage = javafx.scene.image.Image {
-            url: "{__DIR__}images/close_94.png"
-            width: 11.0
-            height: 11.0
-            preserveRatio: true
-        };
-        closeText2 = javafx.scene.text.Font {
-            size: 17.0
-            oblique: false
-            embolden: true
-            autoKern: true
-            letterSpacing: 0.0
-            ligatures: true
-            position: javafx.scene.text.FontPosition.REGULAR
-        };
-        closeText = javafx.scene.control.Label {
-            layoutX: 0.0
-            layoutY: 0.0
-            text: "x"
-            font: closeText2
-            textAlignment: javafx.scene.text.TextAlignment.CENTER
-            textOverrun: javafx.scene.control.OverrunStyle.CENTER_ELLIPSES
-            hpos: javafx.geometry.HPos.CENTER
-            vpos: javafx.geometry.VPos.CENTER
-            graphicHPos: javafx.geometry.HPos.CENTER
-            graphicVPos: javafx.geometry.VPos.CENTER
-            graphicTextGap: 5.0
-            textFill: backgroundGradient
-        };
-        closeIcons = javafx.scene.layout.Stack {
-            visible: true
-            opacity: 1.0
-            layoutX: 575.0
-            layoutY: 0.0
-            content: [ circle, closeText, ]
-            nodeHPos: javafx.geometry.HPos.CENTER
-            nodeVPos: javafx.geometry.VPos.CENTER
-        };
         scene = javafx.scene.Scene {
             width: 600.0
             height: 700.0
@@ -353,6 +347,12 @@ public class Main {
                 content: getDesignRootNodes ()
             }
             fill: backgroundGradient
+        };
+        closeImage = javafx.scene.image.Image {
+            url: "{__DIR__}images/close_94.png"
+            width: 11.0
+            height: 11.0
+            preserveRatio: true
         };
         color = javafx.scene.paint.Color {
             red: 1.0
@@ -464,12 +464,70 @@ public class Main {
         scene
     }// </editor-fold>//GEN-END:main
 
-    function circleOnMousePressed(event: javafx.scene.input.MouseEvent): Void {
+    var listViewItems: Object[] = bind tweetUtil.tweets;
+    var username = bind new URLConverter().encodeString(usernameTextBox.text);
+   
+    var loadingFinished = bind tweetUtil.finished on replace {
+        if(loadingFinished == true) {
+            searchState.actual = 1;
+            statusMessageLabel.text = "Tweets saved now loading ...";
+            tweetUtil.load();
+            tweetUtil.indexTweets();
+        } else {
+            progressBar.visible = false;
+        }
+
+    }
+
+    var selectedResult = bind listView.selectedItem as String on replace {
+        titleLabel.text = "Tweet: {selectedResult}";
+        urlLabel.text = "URL: {if(selectedResult != null) then new URLConverter ().decodeString(selectedResult) else ""}";
+        detailsState.actual = if (selectedResult != null) then 1 else 0;
+    }
+
+    var isApplet = "true".equals(FX.getArgument("isApplet") as String);
+    var inBrowser = isApplet;
+    var draggable = AppletStageExtension.appletDragSupported;
+
+    function dragAreaOnMouseExited(event: javafx.scene.input.MouseEvent): Void {
+        def fader = Timeline {
+        keyFrames: [
+            at (0s) {
+                dragArea.opacity => 0.3
+            },
+            at (0.2s) {
+                dragArea.opacity => 0.0
+            }
+        ]
+        };
+        fader.rate = 1.0;
+        fader.play();
+    }
+
+    function dragAreaOnMouseEntered(event: javafx.scene.input.MouseEvent): Void {    
+
+        def fader = Timeline {
+        keyFrames: [
+            at (0s) {
+                dragArea.opacity => 0.0
+            },
+            at (0.2s) {
+                dragArea.opacity => 0.3
+            }
+        ]
+        };
+        fader.rate = 1.0;
+        fader.play();
+    }
+
+    function closeIconsOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
         scene.stage.close();
     }
 
-    // drag and close controls
-    var isApplet = (FX.getArgument("isApplet") != null);
+    function dragAreaOnMouseDragged(e: javafx.scene.input.MouseEvent): Void {
+        scene.stage.x += e.dragX;
+        scene.stage.y += e.dragY;
+    }
 
     public function getDragArea(): Rectangle {
         return this.dragArea;
@@ -479,46 +537,28 @@ public class Main {
         return this.closeIcons;
     }
 
-
-    var listViewItems: Object[] = bind tweetUtil.searchResults;
-
     var tweetUtil = TweetUtil{
         location: bind "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{username}.xml"
         statusMessage: bind statusMessageLabel with inverse
     };
-
-
-
-    var username = bind new URLConverter().encodeString(usernameTextBox.text);
-
-    var loadingFinished = bind tweetUtil.finished on replace {
-        if(loadingFinished == true) {
-            searchState.actual = 1;
-            statusMessageLabel.text = "Tweets saved now loading ...";
-            tweetUtil.load();
-            tweetUtil.indexTweets();
-        }
-    }
     
     function retrieveButtonAction(): Void {
+        progressBar.visible = true;
         statusMessageLabel.text = "Retrieving tweets ...";
         delete tweetUtil.tweets;
         delete tweetUtil.searchResults;
         tweetUtil.retrieveData(onlineCheckbox.selected);
         listView.select(-1);
-    }
-
-    var selectedResult = bind listView.selectedItem as String on replace {
-        titleLabel.text = "Tweet: {selectedResult}";
-        urlLabel.text = "URL: {if(selectedResult != null) then new URLConverter ().decodeString(selectedResult) else ""}";
-        detailsState.actual = if (selectedResult != null) then 1 else 0;
+        progressBar.visible = false;
     }
 
     function searchButtonAction(): Void {
+        progressBar.visible = true;
         statusMessageLabel.text = "Searching tweets containing \"{searchTextBox.text.trim()}\" ...";
         tweetUtil.queryTweets(searchTextBox.text.trim());
         searchState.actual = 1;
         listView.select(-1);
+        progressBar.visible = false;
     }
 
 

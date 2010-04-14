@@ -45,7 +45,6 @@ public class TweetUtil {
 
     init {
         storage.resource.maxLength = 1048576; // 1MB
-        finished = false;
         this.load();
         this.indexTweets();
     }

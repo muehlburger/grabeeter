@@ -47,7 +47,6 @@ public var stage = javafx.stage.Stage {
             }
             onDragStarted: function(): Void {
                 println("AppDeployDemo.onDragStart");
-                dragArea.visible = false;
             }
             onDragFinished: function(): Void {
                 println("AppDeployDemo.onDragFinished");
@@ -58,7 +57,7 @@ public var stage = javafx.stage.Stage {
                 dragArea.visible = true;
                 closeIcons.visible = false;
             }
-            useDefaultClose: false
+            useDefaultClose: false;
         }
     ]
 }

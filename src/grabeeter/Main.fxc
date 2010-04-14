@@ -11,7 +11,6 @@
             <Item value="inst:FontModel1"/>
             <Item value="inst:FontModel2"/>
             <Item value="inst:ImageModel2"/>
-            <Item value="inst:FontModel3"/>
             <Item value="inst:ColorModel1"/>
         </List>
         <List name="dataSources"/>
@@ -104,18 +103,6 @@
         <Reference name="preserveRatio" value="prop:16,anim:,,bool:true,"/>
         <Reference name="url" value="prop:39,anim:,,str:{__DIR__}images/close_94.png,"/>
     </Instance>
-    <Instance classID="FontModel" instanceID="FontModel3">
-        <Reference name="instanceName" value="str:closeText2"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="autoKern" value="prop:16,anim:,,bool:true,"/>
-        <Reference name="embolden" value="prop:16,anim:,,bool:true,"/>
-        <Reference name="letterSpacing" value="prop:14,anim:,,flt:0.0,"/>
-        <Reference name="ligatures" value="prop:16,anim:,,bool:true,"/>
-        <Reference name="oblique" value="prop:17,anim:,,bool:false,"/>
-        <Reference name="position" value="prop:22,anim:,,fontpos:REGULAR,"/>
-        <Reference name="size" value="prop:15,anim:,,flt:17.0,"/>
-    </Instance>
     <Instance classID="ColorModel" instanceID="ColorModel1">
         <Reference name="instanceName" value="str:color"/>
         <Reference name="preCreationCode" value="null"/>
@@ -146,10 +133,11 @@
     </Instance>
     <Instance classID="StackModel" instanceID="StackModel1">
         <Reference name="instanceName" value="str:closeIcons"/>
-        <Reference name="visible" value="prop:16,anim:,,bool:true,4,null,"/>
+        <Reference name="visible" value="prop:17,anim:,,bool:false,4,null,"/>
         <Reference name="opacity" value="prop:14,anim:,,flt:1.0,4,null,"/>
-        <Reference name="layoutX" value="prop:16,anim:,,flt:575.0,4,null,"/>
-        <Reference name="layoutY" value="prop:14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="layoutX" value="prop:16,anim:,,flt:600.0,4,null,"/>
+        <Reference name="layoutY" value="prop:16,anim:,,flt:-20.0,4,null,"/>
+        <Reference name="onMouseClicked" value="prop:35,anim:,,str:closeIconsOnMouseClicked,4,null,"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <List name="content">
@@ -161,9 +149,10 @@
     </Instance>
     <Instance classID="CircleShapeModel" instanceID="CircleShapeModel1">
         <Reference name="instanceName" value="str:circle"/>
+        <Reference name="opacity" value="prop:15,anim:,,flt:0.61,4,null,"/>
         <Reference name="cursor" value="prop:18,anim:,,cursor:HAND,4,null,"/>
         <Reference name="layoutY" value="prop:14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="onMousePressed" value="prop:31,anim:,,str:circleOnMousePressed,4,null,"/>
+        <Reference name="onMousePressed" value="prop:default"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="radius" value="prop:14,anim:,,flt:8.0,4,null,"/>
@@ -176,7 +165,7 @@
         <Reference name="postCreationCode" value="null"/>
         <Reference name="graphicNode" value="null"/>
         <Reference name="text" value="prop:12,anim:,,str:x,4,null,"/>
-        <Reference name="font" value="prop:22,anim:,,inst:FontModel3,4,null,"/>
+        <Reference name="font" value="prop:default"/>
         <Reference name="textAlignment" value="prop:23,anim:,,textalign:CENTER,4,null,"/>
         <Reference name="textOverrun" value="prop:30,anim:,,overrun:CENTER_ELLIPSES,4,null,"/>
         <Reference name="hpos" value="prop:18,anim:,,hpos:CENTER,4,null,"/>
@@ -189,7 +178,11 @@
     <Instance classID="RectangleShapeModel" instanceID="RectangleShapeModel1">
         <Reference name="instanceName" value="str:dragArea"/>
         <Reference name="visible" value="prop:16,anim:,,bool:true,4,null,"/>
-        <Reference name="opacity" value="prop:15,anim:,,flt:0.29,4,null,"/>
+        <Reference name="opacity" value="prop:14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="cursor" value="prop:18,anim:,,cursor:HAND,4,null,"/>
+        <Reference name="onMouseDragged" value="prop:33,anim:,,str:dragAreaOnMouseDragged,4,null,"/>
+        <Reference name="onMouseEntered" value="prop:33,anim:,,str:dragAreaOnMouseEntered,4,null,"/>
+        <Reference name="onMouseExited" value="prop:32,anim:,,str:dragAreaOnMouseExited,4,null,"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
         <Reference name="width" value="prop:16,anim:,,flt:600.0,4,null,"/>
@@ -199,7 +192,7 @@
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel2">
         <Reference name="instanceName" value="str:dragText"/>
-        <Reference name="visible" value="prop:bind:bind dragArea.hover"/>
+        <Reference name="visible" value="prop:bind:bind dragArea.hover and not closeIcons.visible"/>
         <Reference name="disable" value="prop:17,anim:,,bool:false,4,null,"/>
         <Reference name="layoutX" value="prop:15,anim:,,flt:10.0,4,null,"/>
         <Reference name="layoutY" value="prop:14,anim:,,flt:3.0,4,null,"/>
@@ -248,6 +241,7 @@
     </Instance>
     <Instance classID="ProgressBarModel" instanceID="ProgressBarModel1">
         <Reference name="instanceName" value="str:progressBar"/>
+        <Reference name="visible" value="prop:17,anim:,,bool:false,4,null,"/>
         <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:500.0,4,null,"/>
         <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:13.0,4,null,"/>
         <Reference name="preCreationCode" value="null"/>
@@ -258,7 +252,7 @@
         <Reference name="instanceName" value="str:vbox"/>
         <Reference name="disable" value="prop:17,anim:,,bool:false,4,null,"/>
         <Reference name="layoutX" value="prop:14,anim:,,flt:0.0,24,inst:StateVariableModel1,16,inst:StateModel1,14,anim:,,flt:0.0,16,inst:StateModel2,14,anim:,,flt:0.0,"/>
-        <Reference name="layoutY" value="prop:15,anim:,,flt:20.0,24,inst:StateVariableModel1,16,inst:StateModel1,14,anim:,,flt:0.0,16,inst:StateModel2,14,anim:,,flt:0.0,"/>
+        <Reference name="layoutY" value="prop:15,anim:,,flt:25.0,24,inst:StateVariableModel1,16,inst:StateModel1,14,anim:,,flt:0.0,16,inst:StateModel2,14,anim:,,flt:0.0,"/>
         <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:600.0,24,inst:StateVariableModel1,16,inst:StateModel1,16,anim:,,flt:600.0,16,inst:StateModel2,16,anim:,,flt:600.0,"/>
         <Reference name="layoutInfoHeight" value="prop:14,anim:,,flt:0.0,24,inst:StateVariableModel1,16,inst:StateModel1,16,anim:,,flt:479.0,16,inst:StateModel2,16,anim:,,flt:479.0,"/>
         <Reference name="layoutInfoHPos" value="prop:16,anim:,,hpos:LEFT,4,null,"/>
@@ -283,8 +277,11 @@
     <Instance classID="ImageViewModel" instanceID="ImageViewModel1">
         <Reference name="instanceName" value="str:logoImageView"/>
         <Reference name="layoutX" value="prop:14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="layoutY" value="prop:15,anim:,,flt:10.0,4,null,"/>
         <Reference name="preCreationCode" value="null"/>
         <Reference name="postCreationCode" value="null"/>
+        <Reference name="fitWidth" value="prop:16,anim:,,flt:200.0,4,null,"/>
+        <Reference name="fitHeight" value="prop:15,anim:,,flt:77.0,4,null,"/>
         <Reference name="image" value="prop:23,anim:,,inst:ImageModel1,4,null,"/>
         <Reference name="preserveRatio" value="prop:16,anim:,,bool:true,4,null,"/>
     </Instance>

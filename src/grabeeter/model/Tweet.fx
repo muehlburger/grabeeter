@@ -14,4 +14,9 @@ public class Tweet {
     public var text: String;
     public var screenName: String;
     public var created: String;
+
+    public override function toString(): String {
+        {text}
+    }
+
 }
