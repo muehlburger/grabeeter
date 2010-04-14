@@ -564,15 +564,12 @@ public class Main {
     function retrieveButtonAction(): Void {
         progressBar.visible = true;
         statusMessageLabel.text = "Retrieving tweets ...";
-        delete tweetUtil.tweets;
-        delete tweetUtil.searchResults;
         tweetUtil.retrieveData(onlineCheckbox.selected);
     }
 
     function searchButtonAction(): Void {
         progressBar.visible = true;
         statusMessageLabel.text = "Searching tweets containing \"{searchTextBox.text.trim()}\" ...";
-        delete tweetUtil.searchResults;
         tweetUtil.queryTweets(searchTextBox.text.trim());
         searchState.actual = 1;
         listView.select(-1);

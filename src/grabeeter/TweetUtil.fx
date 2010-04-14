@@ -90,6 +90,8 @@ public class TweetUtil {
     }
 
     public function retrieveData(online: Boolean): Void {
+        delete this.tweets;
+        delete this.searchResults;
         if(online) {
             finished = false;
             def httpRequest = HttpRequest {
@@ -175,12 +177,11 @@ public class TweetUtil {
 
     public function queryTweets(queryString: String): Void {
         finished = false;
-        delete searchResults;
+        delete this.searchResults;
         var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
         
         var q: Query = parser.parse(queryString);
 
-        // 3. Search
         var hitsPerPage: Integer = 3200;
         var searcher: IndexSearcher = new IndexSearcher(index, true);
         var collector: TopScoreDocCollector = TopScoreDocCollector.create(hitsPerPage, true);
