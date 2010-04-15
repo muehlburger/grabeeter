@@ -36,7 +36,7 @@ var design = Main {}
 var dragArea = bind design.getDragArea();
 var closeIcons = bind design.getCloseIcons();
 
-public var stage = javafx.stage.Stage {
+javafx.stage.Stage {
     title: "Grabeeter - Grab your Tweets"
     scene: design.getDesignScene()
     extensions: [
