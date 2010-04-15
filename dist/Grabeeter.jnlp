@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="file:/home/herbert/workspace/netbeans/Grabeeter/dist/" href="Grabeeter.jnlp">
+<jnlp spec="1.0+" codebase="http://vlpc01.tugraz.at/projekte/herbert/t/dist/" href="Grabeeter.jnlp">
     <information>
         <title>Grabeeter</title>
         <vendor>Graz University of Technology</vendor>
-        <homepage href=""/>
+        <homepage href="http://vlpc01.tugraz.at/projekte/herbert/t/dist/"/>
         <description>Grabeeter</description>
         <offline-allowed/>
+        <icon href="web/images/grabeeter-icon-64.jpg"/>
+        <icon kind="splash" href="web/images/grabeeter-icon-64.jpg"/>
+        <shortcut online="false">
+            <desktop/>
+            <menu submenu="Grabeeter"/>
+        </shortcut>
     </information>
     <security>
         <all-permissions/>

@@ -487,7 +487,7 @@ public class Main {
     var listViewItems: Object[] = bind tweetUtil.searchResults;
     
     var tweetUtil = TweetUtil{
-        location: bind "http://vlpc01.tugraz.at/projekte/herbert/tweetex/web/api/tweets/{username}.xml"
+        location: bind "http://vlpc01.tugraz.at/projekte/herbert/t/web/api/tweets/{username}.xml"
         statusMessage: bind statusMessageLabel with inverse
     };
 

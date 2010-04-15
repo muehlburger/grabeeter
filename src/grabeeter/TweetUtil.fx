@@ -122,7 +122,9 @@ public class TweetUtil {
 
         delete tweets;
         var ressource = storage.resource;
-
+        println("ressource-writable: {ressource.writable}");
+        println("ressource-length: {ressource.length}");
+        println("ressource-name: {ressource.name}");
         var os = ressource.openOutputStream(true);
         var out = new java.io.PrintWriter(os);
         var reader: BufferedReader;
@@ -178,6 +180,7 @@ public class TweetUtil {
     public function queryTweets(queryString: String): Void {
         finished = false;
         delete this.searchResults;
+        println("searching tweets containing {queryString}");
         var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
         
         var q: Query = parser.parse(queryString);
