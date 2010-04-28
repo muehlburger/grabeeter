@@ -366,8 +366,6 @@ public class Main {
         if(loadingFinished == true) {
             searchState.actual = 1;
             statusMessageLabel.text = "Tweets saved now loading ...";
-            tweetUtil.load();
-            tweetUtil.indexTweets();
             progressIndicator.visible = false;
         }
     }
@@ -383,7 +381,7 @@ public class Main {
     var inBrowser = isApplet;
     var draggable = AppletStageExtension.appletDragSupported;
 
-    function dragAreaOnMouseExited(event: javafx.scene.input.MouseEvent): Void {
+    function dragAreaOnMouseExited(e: javafx.scene.input.MouseEvent): Void {
         def fader = Timeline {
         keyFrames: [
             at (0s) {
@@ -398,7 +396,7 @@ public class Main {
         fader.play();
     }
 
-    function dragAreaOnMouseEntered(event: javafx.scene.input.MouseEvent): Void {    
+    function dragAreaOnMouseEntered(e: javafx.scene.input.MouseEvent): Void {    
 
         def fader = Timeline {
         keyFrames: [

@@ -70,13 +70,11 @@ public class TweetUtil {
                             } else if(qname.name == "screen_name") {
                                 tweet.screenName = value;
                             } else if(qname.name == "url") {
-                                println("loading url: {value}");
                                 tweet.url = value;
                             }
-
-
                             //println( "{%-20s "   url"} {%-20s qname.name} {%-20s value}");
                         }
+                    println("inserting tweet: {tweet.created} {tweet.url}");
                     insert tweet into tweets;
                     }
                 }
@@ -112,6 +110,8 @@ public class TweetUtil {
                         }
                         onDone: function(): Void {
                             finished = true;
+                            this.load();
+                            this.indexTweets();
                         }
 
                     }
