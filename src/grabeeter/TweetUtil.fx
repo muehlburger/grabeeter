@@ -182,7 +182,6 @@ public class TweetUtil {
     }
 
     public function queryTweets(queryString: String): Void {
-//        finished = false;
         delete this.searchResults;
         println("searching tweets containing {queryString}");
         var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
@@ -204,7 +203,6 @@ public class TweetUtil {
             t.created = d.get("created");
             insert t into searchResults;
         }
-//        finished = true;
     }
 
 
