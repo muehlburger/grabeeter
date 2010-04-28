@@ -98,10 +98,12 @@ public class DesignState {
         if (stateChangeType == DesignStateChangeType.PAUSE_AND_PLAY_FROM_START) {
             actualTimeline.stop ();
             actualTimeline = createTimeline (actual);
+            actualTimeline.evaluateKeyValues ();
             actualTimeline.playFromStart ();
         } else if (stateChangeType == DesignStateChangeType.FINISH_AND_PLAY_FROM_START) {
             actualTimeline.time = actualTimeline.totalDuration;
             actualTimeline = createTimeline (actual);
+            actualTimeline.evaluateKeyValues ();
             actualTimeline.playFromStart ();
         } else if (stateChangeType == DesignStateChangeType.CONTINUE_AND_PLAY) {
             actualTimeline.play ();
@@ -121,13 +123,29 @@ public class DesignState {
     }
 
     /**
+     * Returns whether the actual state index is 0 or less.
+     * @return true, if actual state index <= 0
+     */
+    public bound function isFirst (): Boolean {
+        actual <= 0
+    }
+
+    /**
+     * Returns whether the actual state index is equal or greater than the last defined index.
+     * @return true, if actual state index >= sizeof names - 1
+     */
+    public bound function isLast (): Boolean {
+        actual >= sizeof names - 1
+    }
+
+    /**
      * If possible, sets the actual state index to previous state index
      * i.e. decrements the actual state index by 1.
      * The function cares about the lower limit and disables decrement
      * when the new actual state index would be undefined index.
      */
     public function previous () {
-        if (actual > 0) {
+        if (not isFirst ()) {
             actual = actual - 1;
         }
     }
@@ -139,7 +157,7 @@ public class DesignState {
      * when the new actual state index would be undefined index.
      */
     public function next () {
-        if (actual < sizeof names - 1) {
+        if (not isLast ()) {
             actual = actual + 1;
         }
     }
@@ -150,7 +168,7 @@ public class DesignState {
      * If the new actual state index would be undefined index, the last defined index is set instead.
      */
     public function previousWrapped () {
-        actual = if (actual > 0) then actual - 1 else sizeof names - 1
+        actual = if (isFirst ()) then sizeof names - 1 else actual - 1
     }
 
     /**
@@ -159,7 +177,7 @@ public class DesignState {
      * If the new actual state index would be undefined index, the first defined index is set instead.
      */
     public function nextWrapped () {
-        actual = if (actual < sizeof names - 1) then actual + 1 else 0
+        actual = if (isLast ()) then 0 else actual + 1
     }
 
 }

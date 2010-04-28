@@ -39,456 +39,325 @@ import grabeeter.model.Tweet;
 
 public class Main {
 
-    public-read var circle: javafx.scene.shape.Circle;//GEN-BEGIN:main
-    public-read var closeText: javafx.scene.control.Label;
-    public-read var closeIcons: javafx.scene.layout.Stack;
-    public-read var dragArea: javafx.scene.shape.Rectangle;
-    public-read var dragText: javafx.scene.control.Label;
-    public-read var statusMessageLabel: javafx.scene.control.Label;
-    public-read var progressBar: javafx.scene.control.ProgressBar;
-    public-read var vbox2: javafx.scene.layout.VBox;
-    public-read var hboxStatusMessage: javafx.scene.layout.HBox;
-    public-read var logoImageView: javafx.scene.image.ImageView;
-    public-read var headline: javafx.scene.control.Label;
-    public-read var label2: javafx.scene.control.Label;
-    public-read var usernameTextBox: javafx.scene.control.TextBox;
-    public-read var retrieveButton: javafx.scene.control.Button;
-    public-read var hbox2: javafx.scene.layout.HBox;
-    public-read var label: javafx.scene.control.Label;
-    public-read var searchTextBox: javafx.scene.control.TextBox;
-    public-read var searchButton: javafx.scene.control.Button;
-    public-read var hbox: javafx.scene.layout.HBox;
-    public-read var onlineCheckbox: javafx.scene.control.CheckBox;
-    public-read var hbox3: javafx.scene.layout.HBox;
-    public-read var listView: javafx.scene.control.ListView;
-    public-read var textLabel: javafx.scene.control.Label;
-    public-read var authorLabel: javafx.scene.control.Label;
-    public-read var detailsBox: javafx.scene.layout.VBox;
-    public-read var vbox: javafx.scene.layout.VBox;
-    public-read var scene: javafx.scene.Scene;
-    public-read var logoImage: javafx.scene.image.Image;
-    public-read var backgroundGradient: javafx.scene.paint.LinearGradient;
-    public-read var font: javafx.scene.text.Font;
-    public-read var font2: javafx.scene.text.Font;
-    public-read var closeImage: javafx.scene.image.Image;
-    public-read var color: javafx.scene.paint.Color;
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:main
+    public-read def dragArea: javafx.scene.shape.Rectangle = javafx.scene.shape.Rectangle {
+        visible: true
+        opacity: 0.0
+        cursor: javafx.scene.Cursor.HAND
+        onMouseDragged: dragAreaOnMouseDragged
+        onMouseEntered: dragAreaOnMouseEntered
+        onMouseExited: dragAreaOnMouseExited
+        width: 600.0
+        height: 15.0
+        arcWidth: 10.0
+        arcHeight: 10.0
+    }
     
-    public-read var searchState: org.netbeans.javafx.design.DesignState;
-    public-read var detailsState: org.netbeans.javafx.design.DesignState;
+    def __layoutInfo_dragText: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 200.0
+        hpos: javafx.geometry.HPos.CENTER
+        vpos: javafx.geometry.VPos.CENTER
+    }
+    public-read def dragText: javafx.scene.control.Label = javafx.scene.control.Label {
+        visible: bind dragArea.hover and not closeIcons.visible
+        disable: false
+        managed: true
+        layoutX: 10.0
+        layoutY: 3.0
+        layoutInfo: __layoutInfo_dragText
+        text: "Drag me out of the Browser"
+    }
     
-    // <editor-fold defaultstate="collapsed" desc="Generated Init Block">
+    public-read def circle: javafx.scene.shape.Circle = javafx.scene.shape.Circle {
+        opacity: 0.61
+        cursor: javafx.scene.Cursor.HAND
+        layoutY: 0.0
+        radius: 8.0
+    }
+    
+    public-read def progressIndicator: javafx.scene.control.ProgressIndicator = javafx.scene.control.ProgressIndicator {
+        visible: false
+    }
+    
+    def __layoutInfo_statusMessageLabel: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 500.0
+        height: 15.0
+    }
+    public-read def statusMessageLabel: javafx.scene.control.Label = javafx.scene.control.Label {
+        layoutInfo: __layoutInfo_statusMessageLabel
+        text: ""
+    }
+    
+    public-read def headline: javafx.scene.control.Label = javafx.scene.control.Label {
+        text: "Grabeeter"
+        font: javafx.scene.text.Font.DEFAULT
+        textFill: null
+    }
+    
+    def __layoutInfo_label2: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 123.0
+        height: 15.0
+    }
+    public-read def label2: javafx.scene.control.Label = javafx.scene.control.Label {
+        layoutInfo: __layoutInfo_label2
+        text: "Twitter Username:"
+    }
+    
+    def __layoutInfo_usernameTextBox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 265.0
+        height: 23.0
+    }
+    public-read def usernameTextBox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        managed: true
+        layoutInfo: __layoutInfo_usernameTextBox
+        action: retrieveButtonAction
+    }
+    
+    def __layoutInfo_retrieveButton: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 138.0
+        height: 23.0
+    }
+    public-read def retrieveButton: javafx.scene.control.Button = javafx.scene.control.Button {
+        managed: true
+        layoutInfo: __layoutInfo_retrieveButton
+        text: "Retrieve Tweets"
+        action: retrieveButtonAction
+    }
+    
+    public-read def hbox2: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        visible: bind onlineCheckbox.selected
+        content: [ label2, usernameTextBox, retrieveButton, ]
+        spacing: 6.0
+        vpos: javafx.geometry.VPos.CENTER
+    }
+    
+    def __layoutInfo_label: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 123.0
+        height: 15.0
+        hpos: javafx.geometry.HPos.RIGHT
+    }
+    public-read def label: javafx.scene.control.Label = javafx.scene.control.Label {
+        layoutInfo: __layoutInfo_label
+        text: "Tweets containing:"
+    }
+    
+    def __layoutInfo_searchTextBox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 265.0
+        height: 23.0
+    }
+    public-read def searchTextBox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        layoutInfo: __layoutInfo_searchTextBox
+        action: searchButtonAction
+    }
+    
+    def __layoutInfo_searchButton: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 138.0
+    }
+    public-read def searchButton: javafx.scene.control.Button = javafx.scene.control.Button {
+        managed: true
+        layoutInfo: __layoutInfo_searchButton
+        text: "Search"
+        action: searchButtonAction
+    }
+    
+    def __layoutInfo_hbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        vpos: javafx.geometry.VPos.BOTTOM
+    }
+    public-read def hbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        layoutX: 65.0
+        layoutY: 20.0
+        layoutInfo: __layoutInfo_hbox
+        content: [ label, searchTextBox, searchButton, ]
+        spacing: 6.0
+        nodeVPos: javafx.geometry.VPos.CENTER
+    }
+    
+    public-read def onlineCheckbox: javafx.scene.control.CheckBox = javafx.scene.control.CheckBox {
+        visible: true
+        disable: false
+        layoutY: 0.0
+        text: "online"
+        selected: true
+    }
+    
+    public-read def listView: javafx.scene.control.ListView = javafx.scene.control.ListView {
+        items: bind listViewItems
+    }
+    
+    public-read def textLabel: javafx.scene.control.Label = javafx.scene.control.Label {
+        text: "Text:"
+    }
+    
+    public-read def tweetLink: javafx.scene.control.Hyperlink = javafx.scene.control.Hyperlink {
+        text: "http://www.javafx.com"
+    }
+    
+    public-read def authorLabel: javafx.scene.control.Label = javafx.scene.control.Label {
+        text: "Author"
+    }
+    
+    public-read def logoImage: javafx.scene.image.Image = javafx.scene.image.Image {
+        url: "{__DIR__}images/logo_tugraz.gif"
+        backgroundLoading: false
+        smooth: false
+        width: 200.0
+        height: 77.0
+        placeholder: null
+        preserveRatio: true
+    }
+    
+    def __layoutInfo_logoImageView: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        minWidth: 0.0
+    }
+    public-read def logoImageView: javafx.scene.image.ImageView = javafx.scene.image.ImageView {
+        managed: true
+        layoutX: 0.0
+        layoutY: 0.0
+        layoutInfo: __layoutInfo_logoImageView
+        image: logoImage
+        fitWidth: 0.0
+        fitHeight: 0.0
+        preserveRatio: true
+    }
+    
+    def __layoutInfo_vbox2: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        hfill: true
+        vfill: true
+    }
+    public-read def vbox2: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
+        layoutInfo: __layoutInfo_vbox2
+        content: [ progressIndicator, statusMessageLabel, logoImageView, headline, hbox2, hbox, onlineCheckbox, listView, textLabel, tweetLink, authorLabel, ]
+        spacing: 6.0
+    }
+    
+    public-read def backgroundGradient: javafx.scene.paint.LinearGradient = javafx.scene.paint.LinearGradient {
+        endX: 0.0
+        stops: [ javafx.scene.paint.Stop { offset: 0.0, color: javafx.scene.paint.Color.web ("#FFFFFF") }, javafx.scene.paint.Stop { offset: 0.4, color: javafx.scene.paint.Color.web ("#FFFFFF") }, javafx.scene.paint.Stop { offset: 0.6, color: javafx.scene.paint.Color.web ("#CCCCCC") }, javafx.scene.paint.Stop { offset: 1.0, color: javafx.scene.paint.Color.web ("#FFFFFF") }, ]
+    }
+    
+    public-read def closeText: javafx.scene.control.Label = javafx.scene.control.Label {
+        layoutX: 0.0
+        layoutY: 0.0
+        text: "x"
+        textAlignment: javafx.scene.text.TextAlignment.CENTER
+        textOverrun: javafx.scene.control.OverrunStyle.CENTER_ELLIPSES
+        hpos: javafx.geometry.HPos.CENTER
+        vpos: javafx.geometry.VPos.CENTER
+        graphicHPos: javafx.geometry.HPos.CENTER
+        graphicVPos: javafx.geometry.VPos.CENTER
+        graphicTextGap: 5.0
+        textFill: backgroundGradient
+    }
+    
+    public-read def closeIcons: javafx.scene.layout.Stack = javafx.scene.layout.Stack {
+        visible: false
+        opacity: 1.0
+        layoutX: 600.0
+        layoutY: -20.0
+        onMouseClicked: closeIconsOnMouseClicked
+        content: [ circle, closeText, ]
+        nodeHPos: javafx.geometry.HPos.CENTER
+        nodeVPos: javafx.geometry.VPos.CENTER
+    }
+    
+    public-read def scene: javafx.scene.Scene = javafx.scene.Scene {
+        width: 800.0
+        height: 600.0
+        content: getDesignRootNodes ()
+        camera: null
+        cursor: javafx.scene.Cursor.DEFAULT
+        fill: backgroundGradient
+    }
+    
+    public-read def closeImage: javafx.scene.image.Image = javafx.scene.image.Image {
+        url: "{__DIR__}images/close_94.png"
+        width: 11.0
+        height: 11.0
+        preserveRatio: true
+    }
+    
+    public-read def color: javafx.scene.paint.Color = javafx.scene.paint.Color {
+        red: 1.0
+        green: 1.0
+        blue: 1.0
+        opacity: 1.0
+    }
+    
     init {
-        circle = javafx.scene.shape.Circle {
-            opacity: 0.61
-            cursor: javafx.scene.Cursor.HAND
-            layoutY: 0.0
-            radius: 8.0
-        };
-        closeText = javafx.scene.control.Label {
-            layoutX: 0.0
-            layoutY: 0.0
-            text: "x"
-            textAlignment: javafx.scene.text.TextAlignment.CENTER
-            textOverrun: javafx.scene.control.OverrunStyle.CENTER_ELLIPSES
-            hpos: javafx.geometry.HPos.CENTER
-            vpos: javafx.geometry.VPos.CENTER
-            graphicHPos: javafx.geometry.HPos.CENTER
-            graphicVPos: javafx.geometry.VPos.CENTER
-            graphicTextGap: 5.0
-            textFill: backgroundGradient
-        };
-        closeIcons = javafx.scene.layout.Stack {
-            visible: false
-            opacity: 1.0
-            layoutX: 600.0
-            layoutY: -20.0
-            onMouseClicked: closeIconsOnMouseClicked
-            content: [ circle, closeText, ]
-            nodeHPos: javafx.geometry.HPos.CENTER
-            nodeVPos: javafx.geometry.VPos.CENTER
-        };
-        dragArea = javafx.scene.shape.Rectangle {
-            visible: true
-            opacity: 0.0
-            cursor: javafx.scene.Cursor.HAND
-            onMouseDragged: dragAreaOnMouseDragged
-            onMouseEntered: dragAreaOnMouseEntered
-            onMouseExited: dragAreaOnMouseExited
-            width: 600.0
-            height: 15.0
-            arcWidth: 10.0
-            arcHeight: 10.0
-        };
-        statusMessageLabel = javafx.scene.control.Label {
-            width: 500.0
-            height: 15.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind statusMessageLabel.width
-                height: bind statusMessageLabel.height
-            }
-            text: ""
-        };
-        progressBar = javafx.scene.control.ProgressBar {
-            visible: false
-            width: 500.0
-            height: 13.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind progressBar.width
-                height: bind progressBar.height
-            }
-            progress: -1.0
-        };
-        vbox2 = javafx.scene.layout.VBox {
-            content: [ statusMessageLabel, progressBar, ]
-            spacing: 6.0
-        };
-        hboxStatusMessage = javafx.scene.layout.HBox {
-            layoutX: 50.0
-            layoutY: 650.0
-            width: 0.0
-            height: 50.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind hboxStatusMessage.width
-                height: bind hboxStatusMessage.height
-            }
-            content: [ vbox2, ]
-            nodeVPos: javafx.geometry.VPos.TOP
-            spacing: 6.0
-        };
-        label2 = javafx.scene.control.Label {
-            width: 123.0
-            height: 15.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind label2.width
-                height: bind label2.height
-            }
-            text: "Twitter Username:"
-        };
-        usernameTextBox = javafx.scene.control.TextBox {
-            width: 265.0
-            height: 23.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind usernameTextBox.width
-                height: bind usernameTextBox.height
-            }
-            action: retrieveButtonAction
-        };
-        retrieveButton = javafx.scene.control.Button {
-            width: 138.0
-            height: 23.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind retrieveButton.width
-                height: bind retrieveButton.height
-            }
-            text: "Retrieve Tweets"
-            action: retrieveButtonAction
-        };
-        hbox2 = javafx.scene.layout.HBox {
-            visible: bind onlineCheckbox.selected
-            content: [ label2, usernameTextBox, retrieveButton, ]
-            vpos: javafx.geometry.VPos.CENTER
-            spacing: 6.0
-        };
-        label = javafx.scene.control.Label {
-            width: 123.0
-            height: 15.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind label.width
-                height: bind label.height
-                hpos: javafx.geometry.HPos.RIGHT
-            }
-            text: "Tweets containing:"
-        };
-        searchTextBox = javafx.scene.control.TextBox {
-            width: 265.0
-            height: 23.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind searchTextBox.width
-                height: bind searchTextBox.height
-            }
-            action: searchButtonAction
-        };
-        searchButton = javafx.scene.control.Button {
-            width: 138.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind searchButton.width
-                height: bind searchButton.height
-            }
-            text: "Search"
-            action: searchButtonAction
-        };
-        hbox = javafx.scene.layout.HBox {
-            layoutX: 65.0
-            layoutY: 20.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind hbox.width
-                height: bind hbox.height
-                vpos: javafx.geometry.VPos.BOTTOM
-            }
-            content: [ label, searchTextBox, searchButton, ]
-            nodeVPos: javafx.geometry.VPos.CENTER
-            spacing: 6.0
-        };
-        onlineCheckbox = javafx.scene.control.CheckBox {
-            visible: true
-            disable: false
-            layoutY: 0.0
-            text: "online"
-            selected: true
-        };
-        hbox3 = javafx.scene.layout.HBox {
-            width: 278.0
-            height: 17.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind hbox3.width
-                height: bind hbox3.height
-            }
-            content: [ onlineCheckbox, ]
-            hpos: javafx.geometry.HPos.LEFT
-            spacing: 6.0
-        };
-        listView = javafx.scene.control.ListView {
-            visible: false
-            opacity: 0.0
-            width: 540.0
-            height: 302.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind listView.width
-                height: bind listView.height
-            }
-            items: bind listViewItems
-        };
-        textLabel = javafx.scene.control.Label {
-            textWrap: true
-        };
-        authorLabel = javafx.scene.control.Label {
-            visible: false
-            text: "Label"
-        };
-        detailsBox = javafx.scene.layout.VBox {
-            visible: false
-            opacity: 0.0
-            width: 540.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind detailsBox.width
-                height: bind detailsBox.height
-            }
-            content: [ textLabel, authorLabel, ]
-            spacing: 6.0
-        };
-        logoImage = javafx.scene.image.Image {
-            url: "{__DIR__}images/logo_tugraz.gif"
-            backgroundLoading: false
-            smooth: false
-            width: 200.0
-            height: 77.0
-            placeholder: null
-            preserveRatio: true
-        };
-        logoImageView = javafx.scene.image.ImageView {
-            layoutX: 0.0
-            layoutY: 10.0
-            image: logoImage
-            fitWidth: 200.0
-            fitHeight: 77.0
-            preserveRatio: true
-        };
-        backgroundGradient = javafx.scene.paint.LinearGradient {
-            endX: 0.0
-            stops: [ javafx.scene.paint.Stop { offset: 0.0, color: javafx.scene.paint.Color.web ("#FFFFFF") }, javafx.scene.paint.Stop { offset: 0.4, color: javafx.scene.paint.Color.web ("#FFFFFF") }, javafx.scene.paint.Stop { offset: 0.6, color: javafx.scene.paint.Color.web ("#CCCCCC") }, javafx.scene.paint.Stop { offset: 1.0, color: javafx.scene.paint.Color.web ("#FFFFFF") }, ]
-        };
-        font = javafx.scene.text.Font {
-            size: 70.0
-        };
-        headline = javafx.scene.control.Label {
-            text: "Grabeeter"
-            font: font
-        };
-        vbox = javafx.scene.layout.VBox {
-            disable: false
-            layoutX: 0.0
-            layoutY: 25.0
-            width: 600.0
-            height: 0.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind vbox.width
-                height: bind vbox.height
-                hpos: javafx.geometry.HPos.LEFT
-                vpos: javafx.geometry.VPos.TOP
-                managed: true
-            }
-            content: [ logoImageView, headline, hbox2, hbox, hbox3, listView, detailsBox, ]
-            hpos: javafx.geometry.HPos.CENTER
-            vpos: javafx.geometry.VPos.TOP
-            nodeHPos: javafx.geometry.HPos.CENTER
-            spacing: 10.0
-        };
-        font2 = javafx.scene.text.Font {
-            size: 11.0
-        };
-        dragText = javafx.scene.control.Label {
-            visible: bind dragArea.hover and not closeIcons.visible
-            disable: false
-            layoutX: 10.0
-            layoutY: 3.0
-            width: 200.0
-            layoutInfo: javafx.scene.layout.LayoutInfo {
-                width: bind dragText.width
-                height: bind dragText.height
-                hpos: javafx.geometry.HPos.CENTER
-                vpos: javafx.geometry.VPos.CENTER
-                managed: true
-            }
-            text: "Drag me out of the Browser"
-            font: font2
-        };
-        scene = javafx.scene.Scene {
-            width: 600.0
-            height: 700.0
-            content: javafx.scene.layout.Panel {
-                content: getDesignRootNodes ()
-            }
-            fill: backgroundGradient
-        };
-        closeImage = javafx.scene.image.Image {
-            url: "{__DIR__}images/close_94.png"
-            width: 11.0
-            height: 11.0
-            preserveRatio: true
-        };
-        color = javafx.scene.paint.Color {
-            red: 1.0
-            green: 1.0
-            blue: 1.0
-            opacity: 1.0
-        };
-        
-        searchState = org.netbeans.javafx.design.DesignState {
-            names: [ "HomePage", "Results", ]
-            stateChangeType: org.netbeans.javafx.design.DesignStateChangeType.PAUSE_AND_PLAY_FROM_START
-            actual: 0
-            createTimeline: function (actual) {
-                if (actual == 0) {
-                    javafx.animation.Timeline {
-                        keyFrames: [
-                            javafx.animation.KeyFrame {
-                                time: 0.001ms
-                                action: function() {
-                                    listView.visible = false;
-                                    listView.opacity = 0.0;
-                                    textLabel.cursor = null;
-                                    textLabel.textOverrun = javafx.scene.control.OverrunStyle.ELLIPSES;
-                                    textLabel.textWrap = true;
-                                    authorLabel.visible = false;
-                                    authorLabel.cursor = null;
-                                    authorLabel.text = "Label";
-                                    authorLabel.textOverrun = javafx.scene.control.OverrunStyle.ELLIPSES;
-                                    authorLabel.textWrap = false;
-                                    vbox.layoutX = 0.0;
-                                    vbox.layoutY = 0.0;
-                                    vbox.width = 600.0;
-                                    vbox.height = 479.0;
-                                }
-                            }
-                        ]
-                    }
-                } else if (actual == 1) {
-                    javafx.animation.Timeline {
-                        keyFrames: [
-                            javafx.animation.KeyFrame {
-                                time: 0.001ms
-                                action: function() {
-                                    listView.visible = true;
-                                }
-                            }
-                            javafx.animation.KeyFrame {
-                                time: 500ms
-                                values: [
-                                    listView.opacity => 1.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                    vbox.layoutX => 0.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                    vbox.layoutY => 0.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                    vbox.width => 600.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                    vbox.height => 479.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                ]
-                                action: function() {
-                                    textLabel.cursor = javafx.scene.Cursor.TEXT;
-                                    textLabel.textOverrun = javafx.scene.control.OverrunStyle.WORD_ELLIPSES;
-                                    textLabel.textWrap = true;
-                                    authorLabel.visible = true;
-                                    authorLabel.cursor = javafx.scene.Cursor.TEXT;
-                                    authorLabel.text = "";
-                                    authorLabel.textOverrun = javafx.scene.control.OverrunStyle.WORD_ELLIPSES;
-                                    authorLabel.textWrap = true;
-                                }
-                            }
-                        ]
-                    }
-                } else {
-                    null
-                }
-            }
-        }
-        detailsState = org.netbeans.javafx.design.DesignState {
-            names: [ "No Details", "Details", ]
-            stateChangeType: org.netbeans.javafx.design.DesignStateChangeType.PAUSE_AND_PLAY_FROM_START
-            actual: 0
-            createTimeline: function (actual) {
-                if (actual == 0) {
-                    javafx.animation.Timeline {
-                        keyFrames: [
-                            javafx.animation.KeyFrame {
-                                time: 500ms
-                                values: [
-                                    listView.width => 540.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                    listView.height => 302.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                    detailsBox.opacity => 0.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                ]
-                                action: function() {
-                                    detailsBox.visible = false;
-                                }
-                            }
-                        ]
-                    }
-                } else if (actual == 1) {
-                    javafx.animation.Timeline {
-                        keyFrames: [
-                            javafx.animation.KeyFrame {
-                                time: 0.001ms
-                                action: function() {
-                                    detailsBox.visible = true;
-                                }
-                            }
-                            javafx.animation.KeyFrame {
-                                time: 500ms
-                                values: [
-                                    listView.width => 540.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                    listView.height => 283.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                    detailsBox.opacity => 1.0 tween javafx.animation.Interpolator.EASEBOTH,
-                                ]
-                            }
-                        ]
-                    }
-                } else {
-                    null
-                }
-            }
-        }
-    }// </editor-fold>
+    }
     
-    // <editor-fold defaultstate="collapsed" desc="Generated Design Functions">
-    public function getDesignRootNodes () : javafx.scene.Node[] {
-        [ closeIcons, dragArea, dragText, hboxStatusMessage, vbox, ]
+    public-read def searchState: org.netbeans.javafx.design.DesignState = org.netbeans.javafx.design.DesignState {
+        names: [ "HomePage", "Results", ]
+        actual: 0
+        timelines: [
+            javafx.animation.Timeline {
+                keyFrames: [
+                    javafx.animation.KeyFrame {
+                        time: 0ms
+                        action: function() {
+                            dragArea.managed = true;
+                            dragArea.width = 800.0;
+                        }
+                    }
+                ]
+            }
+            javafx.animation.Timeline {
+                keyFrames: [
+                    javafx.animation.KeyFrame {
+                        time: 0ms
+                        values: [
+                            dragArea.width => dragArea.width tween javafx.animation.Interpolator.DISCRETE,
+                        ]
+                    }
+                    javafx.animation.KeyFrame {
+                        time: 500ms
+                        values: [
+                            dragArea.width => 600.0 tween javafx.animation.Interpolator.EASEBOTH,
+                        ]
+                        action: function() {
+                            dragArea.managed = true;
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    
+    public-read def detailsState: org.netbeans.javafx.design.DesignState = org.netbeans.javafx.design.DesignState {
+        names: [ "No Details", "Details", ]
+        actual: 0
+        timelines: [
+            javafx.animation.Timeline {
+                keyFrames: [
+                    javafx.animation.KeyFrame {
+                        time: 0ms
+                    }
+                ]
+            }
+            javafx.animation.Timeline {
+                keyFrames: [
+                    javafx.animation.KeyFrame {
+                        time: 0ms
+                    }
+                ]
+            }
+        ]
+    }
+    
+    public function getDesignRootNodes (): javafx.scene.Node[] {
+        [ dragArea, dragText, closeIcons, vbox2, ]
     }
     
     public function getDesignScene (): javafx.scene.Scene {
         scene
-    }// </editor-fold>//GEN-END:main
+    }
+    // </editor-fold>//GEN-END:main
 
     var listViewItems: Object[] = bind tweetUtil.searchResults;
-    
+  
     var tweetUtil = TweetUtil{
         location: bind "http://vlpc01.tugraz.at/projekte/herbert/t/web/api/tweets/{username}.xml"
-        statusMessage: bind statusMessageLabel with inverse
+        statusMessage: bind statusMessageLabel
     };
 
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
@@ -499,13 +368,14 @@ public class Main {
             statusMessageLabel.text = "Tweets saved now loading ...";
             tweetUtil.load();
             tweetUtil.indexTweets();
-            progressBar.visible = false;
+            progressIndicator.visible = false;
         }
     }
 
     var selectedResult = bind listView.selectedItem as Tweet on replace {
         authorLabel.text = "Author: {selectedResult.screenName}";
         textLabel.text = "{selectedResult.screenName}: {selectedResult.text}";
+        tweetLink.text = "Url: {selectedResult.url}";
         detailsState.actual = if (selectedResult != null) then 1 else 0;
     }
 
@@ -562,13 +432,13 @@ public class Main {
     }
     
     function retrieveButtonAction(): Void {
-        progressBar.visible = true;
+        progressIndicator.visible = true;
         statusMessageLabel.text = "Retrieving tweets ...";
         tweetUtil.retrieveData(onlineCheckbox.selected);
     }
 
     function searchButtonAction(): Void {
-        progressBar.visible = true;
+        progressIndicator.visible = true;
         statusMessageLabel.text = "Searching tweets containing \"{searchTextBox.text.trim()}\" ...";
         tweetUtil.queryTweets(searchTextBox.text.trim());
         searchState.actual = 1;

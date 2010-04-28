@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Model modelID="fxc" modelVersion="40" rootInstance="DesignModel1" version="1">
+<Model modelID="fxc" modelVersion="56" rootInstance="DesignModel1" version="1">
     <Instance classID="DesignModel" instanceID="DesignModel1">
         <List name="stateVariables">
             <Item value="inst:StateVariableModel1"/>
@@ -8,18 +8,16 @@
         <List name="resources">
             <Item value="inst:ImageModel1"/>
             <Item value="inst:LinearGradientModel1"/>
-            <Item value="inst:FontModel1"/>
-            <Item value="inst:FontModel2"/>
             <Item value="inst:ImageModel2"/>
             <Item value="inst:ColorModel1"/>
         </List>
         <List name="dataSources"/>
-        <List name="effects"/>
+        <List name="templates"/>
         <Reference name="scene" value="inst:SceneModel1"/>
         <Reference name="designWidth" value="flt:800.0"/>
         <Reference name="designHeight" value="flt:600.0"/>
         <Reference name="designProfile" value="profile:DESKTOP"/>
-        <Reference name="synchronizeDeviceAndSceneSizes" value="bool:true"/>
+        <Reference name="synchronizeDeviceAndSceneSizes" value="bool:false"/>
     </Instance>
     <Instance classID="StateVariableModel" instanceID="StateVariableModel1">
         <Reference name="instanceName" value="str:searchState"/>
@@ -65,378 +63,293 @@
     </Instance>
     <Instance classID="ImageModel" instanceID="ImageModel1">
         <Reference name="instanceName" value="str:logoImage"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="backgroundLoading" value="prop:17,anim:,,bool:false,"/>
-        <Reference name="width" value="prop:16,anim:,,flt:200.0,"/>
-        <Reference name="height" value="prop:15,anim:,,flt:77.0,"/>
-        <Reference name="placeholder" value="prop:11,anim:,,null,4,null,"/>
-        <Reference name="preserveRatio" value="prop:16,anim:,,bool:true,"/>
-        <Reference name="smooth" value="prop:17,anim:,,bool:false,"/>
-        <Reference name="url" value="prop:42,anim:,,str:{__DIR__}images/logo_tugraz.gif,"/>
+        <Reference name="backgroundLoading" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
+        <Reference name="width" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:200.0,4,null,"/>
+        <Reference name="height" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:77.0,4,null,"/>
+        <Reference name="placeholder" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
+        <Reference name="preserveRatio" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="smooth" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
+        <Reference name="url" value="prop2:7,NOT_SET,4,null,4,null,42,anim:,,str:{__DIR__}images/logo_tugraz.gif,4,null,"/>
     </Instance>
     <Instance classID="LinearGradientModel" instanceID="LinearGradientModel1">
         <Reference name="instanceName" value="str:backgroundGradient"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="endX" value="prop:14,anim:,,flt:0.0,"/>
-        <Reference name="stops" value="prop:124,anim:,,sequence:24,gradientstop:0.0,#FFFFFF24,gradientstop:0.4,#FFFFFF24,gradientstop:0.6,#CCCCCC24,gradientstop:1.0,#FFFFFF,"/>
-    </Instance>
-    <Instance classID="FontModel" instanceID="FontModel1">
-        <Reference name="instanceName" value="str:font"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="size" value="prop:15,anim:,,flt:70.0,"/>
-    </Instance>
-    <Instance classID="FontModel" instanceID="FontModel2">
-        <Reference name="instanceName" value="str:font2"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="size" value="prop:15,anim:,,flt:11.0,"/>
+        <Reference name="endX" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="stops" value="prop2:7,NOT_SET,4,null,4,null,124,anim:,,sequence:24,gradientstop:0.0,#FFFFFF24,gradientstop:0.4,#FFFFFF24,gradientstop:0.6,#CCCCCC24,gradientstop:1.0,#FFFFFF,4,null,"/>
     </Instance>
     <Instance classID="ImageModel" instanceID="ImageModel2">
         <Reference name="instanceName" value="str:closeImage"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="width" value="prop:15,anim:,,flt:11.0,"/>
-        <Reference name="height" value="prop:15,anim:,,flt:11.0,"/>
-        <Reference name="preserveRatio" value="prop:16,anim:,,bool:true,"/>
-        <Reference name="url" value="prop:39,anim:,,str:{__DIR__}images/close_94.png,"/>
+        <Reference name="width" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:11.0,4,null,"/>
+        <Reference name="height" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:11.0,4,null,"/>
+        <Reference name="preserveRatio" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="url" value="prop2:7,NOT_SET,4,null,4,null,39,anim:,,str:{__DIR__}images/close_94.png,4,null,"/>
     </Instance>
     <Instance classID="ColorModel" instanceID="ColorModel1">
         <Reference name="instanceName" value="str:color"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="red" value="prop:14,anim:,,flt:1.0,"/>
-        <Reference name="green" value="prop:14,anim:,,flt:1.0,"/>
-        <Reference name="blue" value="prop:14,anim:,,flt:1.0,"/>
-        <Reference name="opacity" value="prop:14,anim:,,flt:1.0,"/>
+        <Reference name="red" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:1.0,4,null,"/>
+        <Reference name="green" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:1.0,4,null,"/>
+        <Reference name="blue" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:1.0,4,null,"/>
+        <Reference name="opacity" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:1.0,4,null,"/>
     </Instance>
     <Instance classID="SceneModel" instanceID="SceneModel1">
         <Reference name="instanceName" value="str:scene"/>
-        <List name="nodes">
-            <Item value="inst:StackModel1"/>
-            <Item value="inst:RectangleShapeModel1"/>
-            <Item value="inst:LabelModel2"/>
-            <Item value="inst:HBoxModel1"/>
-            <Item value="inst:VBoxModel2"/>
-        </List>
-        <Reference name="width" value="prop:16,anim:,,flt:600.0,"/>
-        <Reference name="height" value="prop:16,anim:,,flt:700.0,"/>
-        <Reference name="fill" value="prop:32,anim:,,inst:LinearGradientModel1,4,null,"/>
-        <Reference name="generateSceneInstance" value="bool:true"/>
-        <Reference name="generateScenePanel" value="bool:true"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="preInitCode" value="null"/>
-        <Reference name="postInitCode" value="null"/>
-    </Instance>
-    <Instance classID="StackModel" instanceID="StackModel1">
-        <Reference name="instanceName" value="str:closeIcons"/>
-        <Reference name="visible" value="prop:17,anim:,,bool:false,4,null,"/>
-        <Reference name="opacity" value="prop:14,anim:,,flt:1.0,4,null,"/>
-        <Reference name="layoutX" value="prop:16,anim:,,flt:600.0,4,null,"/>
-        <Reference name="layoutY" value="prop:16,anim:,,flt:-20.0,4,null,"/>
-        <Reference name="onMouseClicked" value="prop:35,anim:,,str:closeIconsOnMouseClicked,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
         <List name="content">
-            <Item value="inst:CircleShapeModel1"/>
+            <Item value="inst:RectangleShapeModel1"/>
             <Item value="inst:LabelModel1"/>
+            <Item value="inst:StackModel1"/>
+            <Item value="inst:VBoxModel1"/>
         </List>
-        <Reference name="nodeHPos" value="prop:18,anim:,,hpos:CENTER,4,null,"/>
-        <Reference name="nodeVPos" value="prop:18,anim:,,vpos:CENTER,4,null,"/>
-    </Instance>
-    <Instance classID="CircleShapeModel" instanceID="CircleShapeModel1">
-        <Reference name="instanceName" value="str:circle"/>
-        <Reference name="opacity" value="prop:15,anim:,,flt:0.61,4,null,"/>
-        <Reference name="cursor" value="prop:18,anim:,,cursor:HAND,4,null,"/>
-        <Reference name="layoutY" value="prop:14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="radius" value="prop:14,anim:,,flt:8.0,4,null,"/>
-    </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel1">
-        <Reference name="instanceName" value="str:closeText"/>
-        <Reference name="layoutX" value="prop:14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="layoutY" value="prop:14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:12,anim:,,str:x,4,null,"/>
-        <Reference name="textAlignment" value="prop:23,anim:,,textalign:CENTER,4,null,"/>
-        <Reference name="textOverrun" value="prop:30,anim:,,overrun:CENTER_ELLIPSES,4,null,"/>
-        <Reference name="hpos" value="prop:18,anim:,,hpos:CENTER,4,null,"/>
-        <Reference name="vpos" value="prop:18,anim:,,vpos:CENTER,4,null,"/>
-        <Reference name="graphicTextGap" value="prop:14,anim:,,flt:5.0,4,null,"/>
-        <Reference name="graphicHPos" value="prop:18,anim:,,hpos:CENTER,4,null,"/>
-        <Reference name="graphicVPos" value="prop:18,anim:,,vpos:CENTER,4,null,"/>
-        <Reference name="textFill" value="prop:32,anim:,,inst:LinearGradientModel1,4,null,"/>
+        <Reference name="width" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:800.0,4,null,"/>
+        <Reference name="height" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:600.0,4,null,"/>
+        <Reference name="camera" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
+        <Reference name="cursor" value="prop2:7,NOT_SET,4,null,4,null,21,anim:,,cursor:DEFAULT,4,null,"/>
+        <Reference name="fill" value="prop2:7,NOT_SET,4,null,4,null,32,anim:,,inst:LinearGradientModel1,4,null,"/>
+        <Reference name="generateSceneInstance" value="bool:true"/>
     </Instance>
     <Instance classID="RectangleShapeModel" instanceID="RectangleShapeModel1">
         <Reference name="instanceName" value="str:dragArea"/>
-        <Reference name="visible" value="prop:16,anim:,,bool:true,4,null,"/>
-        <Reference name="opacity" value="prop:14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="cursor" value="prop:18,anim:,,cursor:HAND,4,null,"/>
-        <Reference name="onMouseDragged" value="prop:33,anim:,,str:dragAreaOnMouseDragged,4,null,"/>
-        <Reference name="onMouseEntered" value="prop:33,anim:,,str:dragAreaOnMouseEntered,4,null,"/>
-        <Reference name="onMouseExited" value="prop:32,anim:,,str:dragAreaOnMouseExited,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="width" value="prop:16,anim:,,flt:600.0,4,null,"/>
-        <Reference name="height" value="prop:15,anim:,,flt:15.0,4,null,"/>
-        <Reference name="arcWidth" value="prop:15,anim:,,flt:10.0,4,null,"/>
-        <Reference name="arcHeight" value="prop:15,anim:,,flt:10.0,4,null,"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="opacity" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="cursor" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,cursor:HAND,4,null,"/>
+        <Reference name="managed" value="prop2:7,NOT_SET,4,null,4,null,4,null,24,inst:StateVariableModel1,16,inst:StateModel1,16,anim:,,bool:true,"/>
+        <Reference name="onMouseDragged" value="prop2:7,NOT_SET,4,null,4,null,33,anim:,,str:dragAreaOnMouseDragged,4,null,"/>
+        <Reference name="onMouseEntered" value="prop2:7,NOT_SET,4,null,4,null,33,anim:,,str:dragAreaOnMouseEntered,4,null,"/>
+        <Reference name="onMouseExited" value="prop2:7,NOT_SET,4,null,4,null,32,anim:,,str:dragAreaOnMouseExited,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="width" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:600.0,24,inst:StateVariableModel1,16,inst:StateModel1,16,anim:,,flt:800.0,"/>
+        <Reference name="height" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:15.0,4,null,"/>
+        <Reference name="arcWidth" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:10.0,4,null,"/>
+        <Reference name="arcHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:10.0,4,null,"/>
+    </Instance>
+    <Instance classID="LabelModel" instanceID="LabelModel1">
+        <Reference name="instanceName" value="str:dragText"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,50,str:bind dragArea.hover and not closeIcons.visible,4,null,4,null,"/>
+        <Reference name="disable" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
+        <Reference name="managed" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="layoutX" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:10.0,4,null,"/>
+        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:3.0,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:200.0,4,null,"/>
+        <Reference name="layoutInfoHPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
+        <Reference name="layoutInfoVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,37,anim:,,str:Drag me out of the Browser,4,null,"/>
+        <Reference name="graphic" value="null"/>
+    </Instance>
+    <Instance classID="StackModel" instanceID="StackModel1">
+        <Reference name="instanceName" value="str:closeIcons"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
+        <Reference name="opacity" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:1.0,4,null,"/>
+        <Reference name="layoutX" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:600.0,4,null,"/>
+        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:-20.0,4,null,"/>
+        <Reference name="onMouseClicked" value="prop2:7,NOT_SET,4,null,4,null,35,anim:,,str:closeIconsOnMouseClicked,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <List name="content">
+            <Item value="inst:CircleShapeModel1"/>
+            <Item value="inst:LabelModel2"/>
+        </List>
+        <Reference name="nodeHPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
+        <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
+    </Instance>
+    <Instance classID="CircleShapeModel" instanceID="CircleShapeModel1">
+        <Reference name="instanceName" value="str:circle"/>
+        <Reference name="opacity" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:0.61,4,null,"/>
+        <Reference name="cursor" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,cursor:HAND,4,null,"/>
+        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="radius" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:8.0,4,null,"/>
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel2">
-        <Reference name="instanceName" value="str:dragText"/>
-        <Reference name="visible" value="prop:bind:bind dragArea.hover and not closeIcons.visible"/>
-        <Reference name="disable" value="prop:17,anim:,,bool:false,4,null,"/>
-        <Reference name="layoutX" value="prop:15,anim:,,flt:10.0,4,null,"/>
-        <Reference name="layoutY" value="prop:14,anim:,,flt:3.0,4,null,"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:200.0,4,null,"/>
-        <Reference name="layoutInfoHPos" value="prop:18,anim:,,hpos:CENTER,4,null,"/>
-        <Reference name="layoutInfoVPos" value="prop:18,anim:,,vpos:CENTER,4,null,"/>
-        <Reference name="layoutInfoManaged" value="prop:16,anim:,,bool:true,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:37,anim:,,str:Drag me out of the Browser,4,null,"/>
-        <Reference name="font" value="prop:22,anim:,,inst:FontModel2,4,null,"/>
-    </Instance>
-    <Instance classID="HBoxModel" instanceID="HBoxModel1">
-        <Reference name="instanceName" value="str:hboxStatusMessage"/>
-        <Reference name="layoutX" value="prop:15,anim:,,flt:50.0,4,null,"/>
-        <Reference name="layoutY" value="prop:16,anim:,,flt:650.0,4,null,"/>
-        <Reference name="layoutInfoWidth" value="prop:14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:50.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <List name="content">
-            <Item value="inst:VBoxModel1"/>
-        </List>
-        <Reference name="nodeVPos" value="prop:15,anim:,,vpos:TOP,4,null,"/>
-        <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="instanceName" value="str:closeText"/>
+        <Reference name="layoutX" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,12,anim:,,str:x,4,null,"/>
+        <Reference name="textAlignment" value="prop2:7,NOT_SET,4,null,4,null,23,anim:,,textalign:CENTER,4,null,"/>
+        <Reference name="textOverrun" value="prop2:7,NOT_SET,4,null,4,null,30,anim:,,overrun:CENTER_ELLIPSES,4,null,"/>
+        <Reference name="hpos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
+        <Reference name="vpos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
+        <Reference name="graphicTextGap" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:5.0,4,null,"/>
+        <Reference name="graphicHPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
+        <Reference name="graphicVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
+        <Reference name="graphic" value="null"/>
+        <Reference name="textFill" value="prop2:7,NOT_SET,4,null,4,null,32,anim:,,inst:LinearGradientModel1,4,null,"/>
     </Instance>
     <Instance classID="VBoxModel" instanceID="VBoxModel1">
         <Reference name="instanceName" value="str:vbox2"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
+        <Reference name="layoutInfoHFill" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="layoutInfoVFill" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="clip" value="null"/>
         <List name="content">
+            <Item value="inst:ProgressIndicatorModel1"/>
             <Item value="inst:LabelModel3"/>
-            <Item value="inst:ProgressBarModel1"/>
+            <Item value="inst:ImageViewModel1"/>
+            <Item value="inst:LabelModel4"/>
+            <Item value="inst:HBoxModel1"/>
+            <Item value="inst:HBoxModel2"/>
+            <Item value="inst:CheckBoxModel1"/>
+            <Item value="inst:ListViewModel1"/>
+            <Item value="inst:LabelModel7"/>
+            <Item value="inst:HyperlinkModel1"/>
+            <Item value="inst:LabelModel8"/>
         </List>
-        <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+    </Instance>
+    <Instance classID="ProgressIndicatorModel" instanceID="ProgressIndicatorModel1">
+        <Reference name="instanceName" value="str:progressIndicator"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel3">
         <Reference name="instanceName" value="str:statusMessageLabel"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:500.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:15.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:11,anim:,,str:,4,null,"/>
-    </Instance>
-    <Instance classID="ProgressBarModel" instanceID="ProgressBarModel1">
-        <Reference name="instanceName" value="str:progressBar"/>
-        <Reference name="visible" value="prop:17,anim:,,bool:false,4,null,"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:500.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:13.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="progress" value="prop:15,anim:,,flt:-1.0,4,null,"/>
-    </Instance>
-    <Instance classID="VBoxModel" instanceID="VBoxModel2">
-        <Reference name="instanceName" value="str:vbox"/>
-        <Reference name="disable" value="prop:17,anim:,,bool:false,4,null,"/>
-        <Reference name="layoutX" value="prop:14,anim:,,flt:0.0,24,inst:StateVariableModel1,16,inst:StateModel1,14,anim:,,flt:0.0,16,inst:StateModel2,14,anim:,,flt:0.0,"/>
-        <Reference name="layoutY" value="prop:15,anim:,,flt:25.0,24,inst:StateVariableModel1,16,inst:StateModel1,14,anim:,,flt:0.0,16,inst:StateModel2,14,anim:,,flt:0.0,"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:600.0,24,inst:StateVariableModel1,16,inst:StateModel1,16,anim:,,flt:600.0,16,inst:StateModel2,16,anim:,,flt:600.0,"/>
-        <Reference name="layoutInfoHeight" value="prop:14,anim:,,flt:0.0,24,inst:StateVariableModel1,16,inst:StateModel1,16,anim:,,flt:479.0,16,inst:StateModel2,16,anim:,,flt:479.0,"/>
-        <Reference name="layoutInfoHPos" value="prop:16,anim:,,hpos:LEFT,4,null,"/>
-        <Reference name="layoutInfoVPos" value="prop:15,anim:,,vpos:TOP,4,null,"/>
-        <Reference name="layoutInfoManaged" value="prop:16,anim:,,bool:true,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <List name="content">
-            <Item value="inst:ImageViewModel1"/>
-            <Item value="inst:LabelModel4"/>
-            <Item value="inst:HBoxModel2"/>
-            <Item value="inst:HBoxModel3"/>
-            <Item value="inst:HBoxModel4"/>
-            <Item value="inst:ListViewModel1"/>
-            <Item value="inst:VBoxModel3"/>
-        </List>
-        <Reference name="hpos" value="prop:18,anim:,,hpos:CENTER,4,null,"/>
-        <Reference name="vpos" value="prop:15,anim:,,vpos:TOP,4,null,"/>
-        <Reference name="nodeHPos" value="prop:18,anim:,,hpos:CENTER,4,null,"/>
-        <Reference name="spacing" value="prop:15,anim:,,flt:10.0,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:500.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:15.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,str:,4,null,"/>
+        <Reference name="graphic" value="null"/>
     </Instance>
     <Instance classID="ImageViewModel" instanceID="ImageViewModel1">
         <Reference name="instanceName" value="str:logoImageView"/>
-        <Reference name="layoutX" value="prop:14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="layoutY" value="prop:15,anim:,,flt:10.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="fitWidth" value="prop:16,anim:,,flt:200.0,4,null,"/>
-        <Reference name="fitHeight" value="prop:15,anim:,,flt:77.0,4,null,"/>
-        <Reference name="image" value="prop:23,anim:,,inst:ImageModel1,4,null,"/>
-        <Reference name="preserveRatio" value="prop:16,anim:,,bool:true,4,null,"/>
+        <Reference name="managed" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="layoutX" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="layoutInfoMinWidth" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="image" value="prop2:7,NOT_SET,4,null,4,null,23,anim:,,inst:ImageModel1,4,null,"/>
+        <Reference name="fitWidth" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="fitHeight" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="preserveRatio" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel4">
         <Reference name="instanceName" value="str:headline"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:20,anim:,,str:Grabeeter,4,null,"/>
-        <Reference name="font" value="prop:22,anim:,,inst:FontModel1,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,20,anim:,,str:Grabeeter,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,19,anim:,,font:DEFAULT,4,null,"/>
+        <Reference name="graphic" value="null"/>
+        <Reference name="textFill" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
     </Instance>
-    <Instance classID="HBoxModel" instanceID="HBoxModel2">
+    <Instance classID="HBoxModel" instanceID="HBoxModel1">
         <Reference name="instanceName" value="str:hbox2"/>
-        <Reference name="visible" value="prop:bind:bind onlineCheckbox.selected"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,32,str:bind onlineCheckbox.selected,4,null,4,null,"/>
+        <Reference name="clip" value="null"/>
         <List name="content">
             <Item value="inst:LabelModel5"/>
             <Item value="inst:TextBoxModel1"/>
             <Item value="inst:ButtonModel1"/>
         </List>
-        <Reference name="vpos" value="prop:18,anim:,,vpos:CENTER,4,null,"/>
-        <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="vpos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel5">
         <Reference name="instanceName" value="str:label2"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:123.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:15.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:28,anim:,,str:Twitter Username:,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:123.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:15.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,28,anim:,,str:Twitter Username:,4,null,"/>
+        <Reference name="graphic" value="null"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel1">
         <Reference name="instanceName" value="str:usernameTextBox"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:265.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:23.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="action" value="prop:31,anim:,,str:retrieveButtonAction,4,null,"/>
+        <Reference name="managed" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:265.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:23.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,str:retrieveButtonAction,4,null,"/>
     </Instance>
     <Instance classID="ButtonModel" instanceID="ButtonModel1">
         <Reference name="instanceName" value="str:retrieveButton"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:138.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:23.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:26,anim:,,str:Retrieve Tweets,4,null,"/>
-        <Reference name="action" value="prop:31,anim:,,str:retrieveButtonAction,4,null,"/>
+        <Reference name="managed" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:138.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:23.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,26,anim:,,str:Retrieve Tweets,4,null,"/>
+        <Reference name="graphic" value="null"/>
+        <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,str:retrieveButtonAction,4,null,"/>
     </Instance>
-    <Instance classID="HBoxModel" instanceID="HBoxModel3">
+    <Instance classID="HBoxModel" instanceID="HBoxModel2">
         <Reference name="instanceName" value="str:hbox"/>
-        <Reference name="layoutX" value="prop:15,anim:,,flt:65.0,4,null,"/>
-        <Reference name="layoutY" value="prop:15,anim:,,flt:20.0,4,null,"/>
-        <Reference name="layoutInfoVPos" value="prop:18,anim:,,vpos:BOTTOM,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
+        <Reference name="layoutX" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:65.0,4,null,"/>
+        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:20.0,4,null,"/>
+        <Reference name="layoutInfoVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:BOTTOM,4,null,"/>
+        <Reference name="clip" value="null"/>
         <List name="content">
             <Item value="inst:LabelModel6"/>
             <Item value="inst:TextBoxModel2"/>
             <Item value="inst:ButtonModel2"/>
         </List>
-        <Reference name="nodeVPos" value="prop:18,anim:,,vpos:CENTER,4,null,"/>
-        <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel6">
         <Reference name="instanceName" value="str:label"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:123.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:15.0,4,null,"/>
-        <Reference name="layoutInfoHPos" value="prop:17,anim:,,hpos:RIGHT,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:29,anim:,,str:Tweets containing:,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:123.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:15.0,4,null,"/>
+        <Reference name="layoutInfoHPos" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,hpos:RIGHT,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,29,anim:,,str:Tweets containing:,4,null,"/>
+        <Reference name="graphic" value="null"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel2">
         <Reference name="instanceName" value="str:searchTextBox"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:265.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:23.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="action" value="prop:29,anim:,,str:searchButtonAction,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:265.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:23.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,29,anim:,,str:searchButtonAction,4,null,"/>
     </Instance>
     <Instance classID="ButtonModel" instanceID="ButtonModel2">
         <Reference name="instanceName" value="str:searchButton"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:138.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:17,anim:,,str:Search,4,null,"/>
-        <Reference name="action" value="prop:29,anim:,,str:searchButtonAction,4,null,"/>
-    </Instance>
-    <Instance classID="HBoxModel" instanceID="HBoxModel4">
-        <Reference name="instanceName" value="str:hbox3"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:278.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop:15,anim:,,flt:17.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <List name="content">
-            <Item value="inst:CheckBoxModel1"/>
-        </List>
-        <Reference name="hpos" value="prop:16,anim:,,hpos:LEFT,4,null,"/>
-        <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="managed" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:138.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,str:Search,4,null,"/>
+        <Reference name="graphic" value="null"/>
+        <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,29,anim:,,str:searchButtonAction,4,null,"/>
     </Instance>
     <Instance classID="CheckBoxModel" instanceID="CheckBoxModel1">
         <Reference name="instanceName" value="str:onlineCheckbox"/>
-        <Reference name="visible" value="prop:16,anim:,,bool:true,4,null,"/>
-        <Reference name="disable" value="prop:17,anim:,,bool:false,4,null,"/>
-        <Reference name="layoutY" value="prop:14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:17,anim:,,str:online,4,null,"/>
-        <Reference name="selected" value="prop:16,anim:,,bool:true,4,null,"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="disable" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
+        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,str:online,4,null,"/>
+        <Reference name="graphic" value="null"/>
+        <Reference name="selected" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
     </Instance>
     <Instance classID="ListViewModel" instanceID="ListViewModel1">
         <Reference name="instanceName" value="str:listView"/>
-        <Reference name="visible" value="prop:17,anim:,,bool:false,24,inst:StateVariableModel1,16,inst:StateModel2,17,anim:0,,bool:true,"/>
-        <Reference name="opacity" value="prop:14,anim:,,flt:0.0,24,inst:StateVariableModel1,16,inst:StateModel2,14,anim:,,flt:1.0,"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:540.0,24,inst:StateVariableModel2,16,inst:StateModel4,16,anim:,,flt:540.0,"/>
-        <Reference name="layoutInfoHeight" value="prop:16,anim:,,flt:302.0,24,inst:StateVariableModel2,16,inst:StateModel4,16,anim:,,flt:283.0,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="items" value="prop:bind:bind listViewItems"/>
-    </Instance>
-    <Instance classID="VBoxModel" instanceID="VBoxModel3">
-        <Reference name="instanceName" value="str:detailsBox"/>
-        <Reference name="visible" value="prop:17,anim:,,bool:false,24,inst:StateVariableModel2,16,inst:StateModel4,17,anim:0,,bool:true,"/>
-        <Reference name="opacity" value="prop:14,anim:,,flt:0.0,24,inst:StateVariableModel2,16,inst:StateModel4,14,anim:,,flt:1.0,"/>
-        <Reference name="layoutInfoWidth" value="prop:16,anim:,,flt:540.0,4,null,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <List name="content">
-            <Item value="inst:LabelModel7"/>
-            <Item value="inst:LabelModel8"/>
-        </List>
-        <Reference name="spacing" value="prop:14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="items" value="prop2:7,NOT_SET,4,null,22,str:bind listViewItems,4,null,4,null,"/>
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel7">
         <Reference name="instanceName" value="str:textLabel"/>
-        <Reference name="cursor" value="prop:4,null,24,inst:StateVariableModel1,16,inst:StateModel2,18,anim:,,cursor:TEXT,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="textOverrun" value="prop:4,null,24,inst:StateVariableModel1,16,inst:StateModel2,28,anim:,,overrun:WORD_ELLIPSES,"/>
-        <Reference name="textWrap" value="prop:16,anim:,,bool:true,24,inst:StateVariableModel1,16,inst:StateModel2,16,anim:,,bool:true,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,str:Text:,4,null,"/>
+        <Reference name="graphic" value="null"/>
+    </Instance>
+    <Instance classID="HyperlinkModel" instanceID="HyperlinkModel1">
+        <Reference name="instanceName" value="str:tweetLink"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,32,anim:,,str:http://www.javafx.com,4,null,"/>
+        <Reference name="graphic" value="null"/>
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel8">
         <Reference name="instanceName" value="str:authorLabel"/>
-        <Reference name="visible" value="prop:17,anim:,,bool:false,24,inst:StateVariableModel1,16,inst:StateModel2,16,anim:,,bool:true,"/>
-        <Reference name="cursor" value="prop:4,null,24,inst:StateVariableModel1,16,inst:StateModel2,18,anim:,,cursor:TEXT,"/>
-        <Reference name="preCreationCode" value="null"/>
-        <Reference name="postCreationCode" value="null"/>
-        <Reference name="graphicNode" value="null"/>
-        <Reference name="text" value="prop:16,anim:,,str:Label,24,inst:StateVariableModel1,16,inst:StateModel2,11,anim:,,str:,"/>
-        <Reference name="textOverrun" value="prop:4,null,24,inst:StateVariableModel1,16,inst:StateModel2,28,anim:,,overrun:WORD_ELLIPSES,"/>
-        <Reference name="textWrap" value="prop:4,null,24,inst:StateVariableModel1,16,inst:StateModel2,16,anim:,,bool:true,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,str:Author,4,null,"/>
+        <Reference name="graphic" value="null"/>
     </Instance>
 </Model>

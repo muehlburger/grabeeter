@@ -69,7 +69,11 @@ public class TweetUtil {
                                 tweet.created = value;
                             } else if(qname.name == "screen_name") {
                                 tweet.screenName = value;
+                            } else if(qname.name == "url") {
+                                println("loading url: {value}");
+                                tweet.url = value;
                             }
+
 
                             //println( "{%-20s "   url"} {%-20s qname.name} {%-20s value}");
                         }
@@ -178,7 +182,7 @@ public class TweetUtil {
     }
 
     public function queryTweets(queryString: String): Void {
-        finished = false;
+//        finished = false;
         delete this.searchResults;
         println("searching tweets containing {queryString}");
         var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
@@ -200,7 +204,7 @@ public class TweetUtil {
             t.created = d.get("created");
             insert t into searchResults;
         }
-        finished = true;
+//        finished = true;
     }
 
 
