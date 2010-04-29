@@ -36,6 +36,7 @@ import javafx.scene.layout.Stack;
 import javafx.stage.AppletStageExtension;
 import javafx.animation.Timeline;
 import grabeeter.model.Tweet;
+import org.jfxtras.util.BrowserUtil;
 
 public class Main {
 
@@ -93,41 +94,11 @@ public class Main {
         layoutY: 0.0
         layoutInfo: __layoutInfo_onlineCheckbox
         translateX: 150.0
-        text: "search online"
+        text: "online"
         selected: true
     }
     
-    def __layoutInfo_searchTextBox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 265.0
-        height: 23.0
-    }
-    public-read def searchTextBox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
-        layoutInfo: __layoutInfo_searchTextBox
-        action: searchButtonAction
-    }
-    
-    def __layoutInfo_searchButton: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 138.0
-    }
-    public-read def searchButton: javafx.scene.control.Button = javafx.scene.control.Button {
-        managed: true
-        layoutInfo: __layoutInfo_searchButton
-        text: "Search"
-        action: searchButtonAction
-    }
-    
-    def __layoutInfo_hbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        hfill: false
-        vfill: false
-        vpos: javafx.geometry.VPos.BOTTOM
-    }
-    public-read def hbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        layoutX: 65.0
-        layoutY: 20.0
-        layoutInfo: __layoutInfo_hbox
-        content: [ searchTextBox, searchButton, ]
-        spacing: 6.0
-        nodeVPos: javafx.geometry.VPos.CENTER
+    public-read def separator: javafx.scene.control.Separator = javafx.scene.control.Separator {
     }
     
     public-read def listView: javafx.scene.control.ListView = javafx.scene.control.ListView {
@@ -136,13 +107,18 @@ public class Main {
     
     public-read def authorLabel: javafx.scene.control.Label = javafx.scene.control.Label {
         text: "Author"
+        textWrap: false
     }
     
     public-read def textLabel: javafx.scene.control.Label = javafx.scene.control.Label {
         text: "Text:"
+        textWrap: false
     }
     
     public-read def tweetLink: javafx.scene.control.Hyperlink = javafx.scene.control.Hyperlink {
+        onMouseClicked: tweetLinkOnMouseClicked
+        text: "Url:"
+        textWrap: false
     }
     
     def __layoutInfo_detailsVbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
@@ -223,6 +199,42 @@ public class Main {
         size: 24.0
     }
     
+    def __layoutInfo_searchButton: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 138.0
+    }
+    public-read def searchButton: javafx.scene.control.Button = javafx.scene.control.Button {
+        managed: true
+        layoutInfo: __layoutInfo_searchButton
+        text: "Search"
+        font: font
+        action: searchButtonAction
+    }
+    
+    def __layoutInfo_searchTextBox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 394.0
+        height: 35.0
+    }
+    public-read def searchTextBox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        layoutInfo: __layoutInfo_searchTextBox
+        promptText: "search tweets"
+        font: font
+        action: searchButtonAction
+    }
+    
+    def __layoutInfo_hbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        hfill: false
+        vfill: false
+        vpos: javafx.geometry.VPos.BOTTOM
+    }
+    public-read def hbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        layoutX: 65.0
+        layoutY: 20.0
+        layoutInfo: __layoutInfo_hbox
+        content: [ searchTextBox, searchButton, ]
+        spacing: 6.0
+        nodeVPos: javafx.geometry.VPos.CENTER
+    }
+    
     def __layoutInfo_retrieveButton: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
         width: 138.0
         height: 35.0
@@ -244,7 +256,7 @@ public class Main {
         layoutInfo: __layoutInfo_usernameTextBox
         effect: null
         text: ""
-        promptText: "Enter your Twitter username here"
+        promptText: "enter twitter username"
         selectOnFocus: true
         font: font
         action: retrieveButtonAction
@@ -282,7 +294,7 @@ public class Main {
     }
     public-read def containerVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
         layoutInfo: __layoutInfo_containerVbox
-        content: [ progressIndicator, statusMessageLabel, headline, logoImageView, hbox2, onlineCheckbox, hbox, listView, detailsVbox, ]
+        content: [ progressIndicator, statusMessageLabel, headline, logoImageView, hbox2, onlineCheckbox, separator, hbox, listView, detailsVbox, ]
         spacing: 5.0
         hpos: javafx.geometry.HPos.LEFT
         nodeHPos: javafx.geometry.HPos.CENTER
@@ -301,125 +313,8 @@ public class Main {
     }
     
     public-read def searchState: org.netbeans.javafx.design.DesignState = org.netbeans.javafx.design.DesignState {
-        names: [ "HomePage", "Results", ]
-        actual: 0
+        names: [ ]
         timelines: [
-            javafx.animation.Timeline {
-                keyFrames: [
-                    javafx.animation.KeyFrame {
-                        time: 0ms
-                        action: function() {
-                            dragArea.managed = true;
-                            dragArea.width = 800.0;
-                            headline.managed = true;
-                            headline.text = "Grabeeter - Grab and Search your Tweets!";
-                            headline.textWrap = true;
-                            headline.hpos = javafx.geometry.HPos.CENTER;
-                            headline.vpos = javafx.geometry.VPos.CENTER;
-                            usernameTextBox.text = "";
-                            usernameTextBox.promptText = "enter your twitter username here";
-                            usernameTextBox.selectOnFocus = true;
-                            retrieveButton.font = font;
-                            hbox2.managed = true;
-                            hbox2.hpos = javafx.geometry.HPos.CENTER;
-                            onlineCheckbox.layoutX = 0.0;
-                            __layoutInfo_onlineCheckbox.hfill = false;
-                            onlineCheckbox.translateX = 175.0;
-                            onlineCheckbox.hpos = javafx.geometry.HPos.RIGHT;
-                            __layoutInfo_searchTextBox.width = 394.0;
-                            __layoutInfo_searchTextBox.height = 35.0;
-                            searchTextBox.promptText = "what do you search for?";
-                            searchTextBox.font = font;
-                            searchButton.font = font;
-                            hbox.visible = true;
-                            hbox.managed = true;
-                            hbox.layoutX = 0.0;
-                            hbox.layoutY = 0.0;
-                            __layoutInfo_hbox.hfill = true;
-                            hbox.hpos = javafx.geometry.HPos.CENTER;
-                            listView.visible = true;
-                            authorLabel.text = "Author:";
-                            tweetLink.text = "Url:";
-                            detailsVbox.visible = true;
-                            containerVbox.managed = true;
-                        }
-                    }
-                ]
-            }
-            javafx.animation.Timeline {
-                keyFrames: [
-                    javafx.animation.KeyFrame {
-                        time: 0ms
-                        values: [
-                            dragArea.width => dragArea.width tween javafx.animation.Interpolator.DISCRETE,
-                            onlineCheckbox.layoutX => onlineCheckbox.layoutX tween javafx.animation.Interpolator.DISCRETE,
-                            onlineCheckbox.translateX => onlineCheckbox.translateX tween javafx.animation.Interpolator.DISCRETE,
-                            __layoutInfo_searchTextBox.width => __layoutInfo_searchTextBox.width tween javafx.animation.Interpolator.DISCRETE,
-                            __layoutInfo_searchTextBox.height => __layoutInfo_searchTextBox.height tween javafx.animation.Interpolator.DISCRETE,
-                            hbox.layoutX => hbox.layoutX tween javafx.animation.Interpolator.DISCRETE,
-                            hbox.layoutY => hbox.layoutY tween javafx.animation.Interpolator.DISCRETE,
-                        ]
-                    }
-                    javafx.animation.KeyFrame {
-                        time: 500ms
-                        values: [
-                            dragArea.width => 600.0 tween javafx.animation.Interpolator.EASEBOTH,
-                            onlineCheckbox.layoutX => 0.0 tween javafx.animation.Interpolator.EASEBOTH,
-                            onlineCheckbox.translateX => 150.0 tween javafx.animation.Interpolator.EASEBOTH,
-                            __layoutInfo_searchTextBox.width => 265.0 tween javafx.animation.Interpolator.EASEBOTH,
-                            __layoutInfo_searchTextBox.height => 23.0 tween javafx.animation.Interpolator.EASEBOTH,
-                            hbox.layoutX => 65.0 tween javafx.animation.Interpolator.EASEBOTH,
-                            hbox.layoutY => 20.0 tween javafx.animation.Interpolator.EASEBOTH,
-                        ]
-                        action: function() {
-                            dragArea.managed = true;
-                            headline.managed = true;
-                            headline.text = "Grabeeter - Grab and Search your Tweets!";
-                            headline.textWrap = true;
-                            headline.hpos = javafx.geometry.HPos.CENTER;
-                            usernameTextBox.text = "";
-                            usernameTextBox.promptText = "Enter your Twitter username here";
-                            usernameTextBox.selectOnFocus = true;
-                            retrieveButton.font = font;
-                            hbox2.managed = true;
-                            hbox2.hpos = javafx.geometry.HPos.LEFT;
-                            __layoutInfo_onlineCheckbox.hfill = false;
-                            onlineCheckbox.hpos = javafx.geometry.HPos.LEFT;
-                            searchTextBox.promptText = null;
-                            hbox.visible = true;
-                            hbox.managed = true;
-                            __layoutInfo_hbox.hfill = false;
-                            hbox.hpos = javafx.geometry.HPos.LEFT;
-                            listView.visible = true;
-                            authorLabel.text = "Author";
-                            tweetLink.text = null;
-                            detailsVbox.visible = true;
-                            containerVbox.managed = true;
-                        }
-                    }
-                ]
-            }
-        ]
-    }
-    
-    public-read def detailsState: org.netbeans.javafx.design.DesignState = org.netbeans.javafx.design.DesignState {
-        names: [ "No Details", "Details", ]
-        actual: 0
-        timelines: [
-            javafx.animation.Timeline {
-                keyFrames: [
-                    javafx.animation.KeyFrame {
-                        time: 0ms
-                    }
-                ]
-            }
-            javafx.animation.Timeline {
-                keyFrames: [
-                    javafx.animation.KeyFrame {
-                        time: 0ms
-                    }
-                ]
-            }
         ]
     }
     
@@ -431,6 +326,10 @@ public class Main {
         scene
     }
     // </editor-fold>//GEN-END:main
+
+    function tweetLinkOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
+      BrowserUtil.browse(tweetLink.text);
+    }
 
     var listViewItems: Object[] = bind tweetUtil.searchResults;
   
@@ -453,7 +352,7 @@ public class Main {
         authorLabel.text = "Author: {selectedResult.screenName}";
         textLabel.text = "{selectedResult.screenName}: {selectedResult.text}";
         tweetLink.text = "Url: {selectedResult.url}";
-        detailsState.actual = if (selectedResult != null) then 1 else 0;
+        //detailsState.actual = if (selectedResult != null) then 1 else 0;
     }
 
     var isApplet = "true".equals(FX.getArgument("isApplet") as String);

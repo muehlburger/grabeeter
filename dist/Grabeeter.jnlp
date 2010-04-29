@@ -15,6 +15,8 @@
         <jar href="lib/lucene-demos-3.0.1.jar"/>
         <jar href="lib/lucene-analyzers-3.0.1-javadoc.jar"/>
         <jar href="lib/lucene-analyzers-3.0.1.jar"/>
+        <jar href="lib/JFXtras-Common-0.6.jar"/>
+        <jar href="lib/JFXtras-Controls-0.6.jar"/>
     </resources>
     <application-desc main-class="com.sun.javafx.runtime.main.Main">
         <argument>MainJavaFXScript=grabeeter.Main_run</argument>
