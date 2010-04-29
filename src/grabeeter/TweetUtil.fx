@@ -45,8 +45,8 @@ public class TweetUtil {
 
     init {
         storage.resource.maxLength = 1048576; // 1MB
-        this.load();
-        this.indexTweets();
+        load();
+        indexTweets();
     }
 
     public function load(): Void {
@@ -74,7 +74,6 @@ public class TweetUtil {
                             }
                             //println( "{%-20s "   url"} {%-20s qname.name} {%-20s value}");
                         }
-                    println("inserting tweet: {tweet.created} {tweet.url}");
                     insert tweet into tweets;
                     }
                 }
@@ -92,8 +91,8 @@ public class TweetUtil {
     }
 
     public function retrieveData(online: Boolean): Void {
-        delete this.tweets;
-        delete this.searchResults;
+        delete tweets;
+        delete searchResults;
         if(online) {
             finished = false;
             def httpRequest = HttpRequest {
@@ -110,8 +109,8 @@ public class TweetUtil {
                         }
                         onDone: function(): Void {
                             finished = true;
-                            this.load();
-                            this.indexTweets();
+                            load();
+                            indexTweets();
                         }
 
                     }
@@ -123,7 +122,7 @@ public class TweetUtil {
     }
 
     public function save(in: java.io.InputStream): Void {
-
+        statusMessage.text = "Saving tweets ...";
         delete tweets;
         var ressource = storage.resource;
         println("ressource-writable: {ressource.writable}");
@@ -151,7 +150,7 @@ public class TweetUtil {
                 in.close();
             }
         }
-        statusMessage.text = "Tweets saved ...";
+        statusMessage.text = "Tweets saved.";
         out.close();
     }
 
@@ -162,11 +161,11 @@ public class TweetUtil {
         var w : IndexWriter = new IndexWriter(index, analyser, true, IndexWriter.MaxFieldLength.UNLIMITED);
         
         for(tweet in tweets) {
-            this.addDoc(w, tweet);
+            addDoc(w, tweet);
         }
 
         w.close();
-        statusMessage.text = "Finished to index tweets. You can search now! ;-)";
+        statusMessage.text = "Indexing finished! Now you can search! ;-)";
     }
 
     function addDoc(w: IndexWriter, tweet: Tweet): Void {
@@ -175,6 +174,7 @@ public class TweetUtil {
             doc.add(new Field("tweet-text", tweet.text, Field.Store.YES, Field.Index.ANALYZED));
             doc.add(new Field("screenName", tweet.screenName, Field.Store.YES, Field.Index.ANALYZED));
             doc.add(new Field("created", tweet.created, Field.Store.YES, Field.Index.ANALYZED));
+            doc.add(new Field("url", tweet.url, Field.Store.YES, Field.Index.ANALYZED));
             w.addDocument(doc);
         } catch(e: IOException) {
             e.printStackTrace();
@@ -182,7 +182,7 @@ public class TweetUtil {
     }
 
     public function queryTweets(queryString: String): Void {
-        delete this.searchResults;
+        delete searchResults;
         println("searching tweets containing {queryString}");
         var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
         
@@ -201,6 +201,7 @@ public class TweetUtil {
             t.text = d.get("tweet-text");
             t.screenName = d.get("screenName");
             t.created = d.get("created");
+            t.url = d.get("url");
             insert t into searchResults;
         }
     }
