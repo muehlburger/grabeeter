@@ -34,8 +34,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Stack;
 import javafx.stage.AppletStageExtension;
 import grabeeter.model.Tweet;
-import org.jfxtras.util.BrowserUtil;
-import java.lang.Exception;
+//import org.jfxtras.util.BrowserUtil;
 
 public class Main {
 
@@ -43,49 +42,14 @@ public class Main {
     public-read def separator: javafx.scene.control.Separator = javafx.scene.control.Separator {
     }
     
-    def __layoutInfo_onlineCheckbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        hfill: false
-        vfill: false
-        hpos: javafx.geometry.HPos.LEFT
-        margin: null
-    }
-    public-read def onlineCheckbox: javafx.scene.control.CheckBox = javafx.scene.control.CheckBox {
-        visible: true
-        disable: false
-        layoutY: 0.0
-        layoutInfo: __layoutInfo_onlineCheckbox
-        translateX: 150.0
-        text: "online"
-        selected: true
-    }
-    
     public-read def listView: javafx.scene.control.ListView = javafx.scene.control.ListView {
         items: bind listViewItems
     }
     
-    public-read def authorLabel: javafx.scene.control.Label = javafx.scene.control.Label {
-        text: "Author"
-        textWrap: false
-    }
-    
-    public-read def textLabel: javafx.scene.control.Label = javafx.scene.control.Label {
-        text: "Text:"
-        textWrap: false
-    }
-    
-    public-read def tweetLink: javafx.scene.control.Hyperlink = javafx.scene.control.Hyperlink {
-        onMouseClicked: tweetLinkOnMouseClicked
-        text: "Url:"
-        textWrap: false
-    }
-    
-    def __layoutInfo_detailsVbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 800.0
-    }
-    public-read def detailsVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
-        layoutInfo: __layoutInfo_detailsVbox
-        content: [ authorLabel, textLabel, tweetLink, ]
-        spacing: 6.0
+    public-read def urlTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        cursor: javafx.scene.Cursor.TEXT
+        multiline: true
+        lines: 2.0
     }
     
     public-read def progressIndicator: javafx.scene.control.ProgressIndicator = javafx.scene.control.ProgressIndicator {
@@ -118,11 +82,9 @@ public class Main {
     }
     
     public-read def logoImage: javafx.scene.image.Image = javafx.scene.image.Image {
-        url: "{__DIR__}images/logo_tugraz.gif"
+        url: "{__DIR__}images/logo.png"
         backgroundLoading: false
         smooth: false
-        width: 200.0
-        height: 77.0
         placeholder: null
         preserveRatio: true
     }
@@ -179,6 +141,23 @@ public class Main {
         size: 24.0
     }
     
+    public-read def tweetTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        cursor: javafx.scene.Cursor.TEXT
+        text: "Das ist ein Tweet"
+        font: font
+        multiline: true
+        lines: 2.0
+    }
+    
+    def __layoutInfo_detailsVbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 800.0
+    }
+    public-read def detailsVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
+        layoutInfo: __layoutInfo_detailsVbox
+        content: [ tweetTextbox, urlTextbox, ]
+        spacing: 6.0
+    }
+    
     def __layoutInfo_searchButton: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
         width: 138.0
     }
@@ -190,48 +169,58 @@ public class Main {
         action: searchButtonAction
     }
     
+    def __layoutInfo_onlineCheckbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        hfill: false
+        vfill: false
+        hpos: javafx.geometry.HPos.LEFT
+        margin: null
+    }
+    public-read def onlineCheckbox: javafx.scene.control.CheckBox = javafx.scene.control.CheckBox {
+        visible: true
+        disable: false
+        layoutY: 0.0
+        layoutInfo: __layoutInfo_onlineCheckbox
+        text: "online"
+        font: font
+        selected: true
+        allowTriState: false
+    }
+    
     def __layoutInfo_searchTextBox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 394.0
+        width: 480.0
         height: 35.0
     }
     public-read def searchTextBox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        cursor: javafx.scene.Cursor.TEXT
         layoutInfo: __layoutInfo_searchTextBox
         promptText: "search tweets"
         font: font
         action: searchButtonAction
     }
     
-    def __layoutInfo_hbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        hfill: false
-        vfill: false
-        vpos: javafx.geometry.VPos.BOTTOM
-    }
-    public-read def hbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        layoutX: 65.0
-        layoutY: 20.0
-        layoutInfo: __layoutInfo_hbox
-        content: [ searchTextBox, searchButton, ]
+    public-read def hbox2: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        content: [ searchTextBox, onlineCheckbox, searchButton, ]
         spacing: 6.0
-        nodeVPos: javafx.geometry.VPos.CENTER
     }
     
     def __layoutInfo_retrieveButton: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 138.0
+        width: 228.0
         height: 35.0
     }
     public-read def retrieveButton: javafx.scene.control.Button = javafx.scene.control.Button {
         managed: true
         layoutInfo: __layoutInfo_retrieveButton
-        text: "Go"
+        text: "Update Tweets"
         font: font
         action: retrieveButtonAction
     }
     
     def __layoutInfo_usernameTextBox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 394.0
+        width: 480.0
         height: 35.0
     }
     public-read def usernameTextBox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        cursor: javafx.scene.Cursor.TEXT
         managed: true
         layoutInfo: __layoutInfo_usernameTextBox
         effect: null
@@ -242,16 +231,7 @@ public class Main {
         action: retrieveButtonAction
     }
     
-    def __layoutInfo_hbox2: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        hfill: false
-        vfill: false
-        hpos: javafx.geometry.HPos.CENTER
-    }
-    public-read def hbox2: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        visible: bind onlineCheckbox.selected
-        disable: false
-        managed: true
-        layoutInfo: __layoutInfo_hbox2
+    public-read def hbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
         content: [ usernameTextBox, retrieveButton, ]
         spacing: 6.0
     }
@@ -260,13 +240,18 @@ public class Main {
         width: 0.0
     }
     public-read def headline: javafx.scene.control.Label = javafx.scene.control.Label {
+        layoutY: 50.0
         layoutInfo: __layoutInfo_headline
         effect: null
         text: "Grabeeter - Grab and Search your Tweets!"
         font: font
         textWrap: true
-        hpos: javafx.geometry.HPos.CENTER
         textFill: null
+    }
+    
+    public-read def hbox3: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        content: [ logoImageView, headline, ]
+        spacing: 6.0
     }
     
     def __layoutInfo_containerVbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
@@ -275,10 +260,10 @@ public class Main {
     }
     public-read def containerVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
         layoutInfo: __layoutInfo_containerVbox
-        content: [ headline, logoImageView, hbox2, hbox, separator, onlineCheckbox, listView, detailsVbox, statusMessageBox, ]
+        content: [ hbox3, hbox, separator, hbox2, listView, detailsVbox, statusMessageBox, ]
         spacing: 5.0
         hpos: javafx.geometry.HPos.LEFT
-        nodeHPos: javafx.geometry.HPos.CENTER
+        nodeHPos: javafx.geometry.HPos.LEFT
     }
     
     public-read def scene: javafx.scene.Scene = javafx.scene.Scene {
@@ -308,31 +293,20 @@ public class Main {
     }
     // </editor-fold>//GEN-END:main
 
-    function tweetLinkOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
-      print("Link {tweetLink.text}");
+    var apiUrl: String = bind "http://www.grabeeter.dat/frontend_dev.php/api/tweets/{username}.xml";
+    var username = bind new URLConverter().encodeString(usernameTextBox.text);
 
-      try {
-        BrowserUtil.browse(tweetLink.text);
-      } catch(e: Exception) {
-          e.printStackTrace();
-      }
-
-    }
-  
     var tweetUtil: TweetUtil = TweetUtil {
         location: bind apiUrl
         statusMessage: bind statusMessageLabel
     };
 
-    var username = bind new URLConverter().encodeString(usernameTextBox.text);
-    var apiUrl: String = bind "http://www.grabeeter.dat/frontend_dev.php/api/tweets/{username}.xml";
-    var listViewItems: Object[] = bind tweetUtil.searchResults; 
-   
+
+    var listViewItems: Object[] = bind tweetUtil.searchResults;
+
     var selectedResult = bind listView.selectedItem as Tweet on replace {
-        authorLabel.text = "Author: {selectedResult.screenName}";
-        textLabel.text = "{selectedResult.screenName}: {selectedResult.text}";
-        tweetLink.text = "Url: {selectedResult.url}";
-        //detailsState.actual = if (selectedResult != null) then 1 else 0;
+        tweetTextbox.text = "{selectedResult.text}";
+        urlTextbox.text = "Url: {selectedResult.url}";
     }
 
     var isApplet = "true".equals(FX.getArgument("isApplet") as String);
@@ -340,6 +314,9 @@ public class Main {
     var draggable = AppletStageExtension.appletDragSupported;
 
 
+//    function tweetLinkOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
+//        BrowserUtil.browse(tweetLink.text);
+//    }
 
     function closeIconsOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
         scene.stage.close();
