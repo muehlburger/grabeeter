@@ -29,35 +29,9 @@
 
 package grabeeter;
 
-import javafx.stage.AppletStageExtension;
-import javafx.scene.input.MouseEvent;
-
 var design = Main {}
-var dragArea = bind design.getDragArea();
-var closeIcons = bind design.getCloseIcons();
 
 javafx.stage.Stage {
     title: "Grabeeter - Grab your Tweets"
     scene: design.getDesignScene()
-    extensions: [
-        AppletStageExtension {
-            shouldDragStart: function(e: MouseEvent): Boolean {
-                println("AppDeployDemo.shouldDragStart");
-                return e.primaryButtonDown and dragArea.hover;
-            }
-            onDragStarted: function(): Void {
-                println("AppDeployDemo.onDragStart");
-            }
-            onDragFinished: function(): Void {
-                println("AppDeployDemo.onDragFinished");
-                closeIcons.visible = true;
-            }
-            onAppletRestored: function(): Void {
-                println("AppDeployDemo.onAppletRestored");
-                dragArea.visible = true;
-                closeIcons.visible = false;
-            }
-            useDefaultClose: false;
-        }
-    ]
 }

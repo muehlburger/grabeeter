@@ -44,7 +44,7 @@ public class TweetUtil {
     var index : Directory;
 
     init {
-        storage.resource.maxLength = 1048576; // 1MB
+        storage.resource.maxLength = 104857600; // 100MB
         load();
         indexTweets();
     }
@@ -155,6 +155,7 @@ public class TweetUtil {
     }
 
     public function indexTweets() {
+        delete searchResults;
         statusMessage.text = "Indexing tweets ...";
         analyser = new GermanAnalyzer(Version.LUCENE_30);
         index = new RAMDirectory();
@@ -162,6 +163,7 @@ public class TweetUtil {
         
         for(tweet in tweets) {
             addDoc(w, tweet);
+            insert tweet into searchResults;
         }
 
         w.close();

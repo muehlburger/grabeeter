@@ -30,56 +30,17 @@
 package grabeeter;
 
 import javafx.io.http.URLConverter;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Stack;
 import javafx.stage.AppletStageExtension;
-import javafx.animation.Timeline;
 import grabeeter.model.Tweet;
 import org.jfxtras.util.BrowserUtil;
+import java.lang.Exception;
 
 public class Main {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:main
-    public-read def dragArea: javafx.scene.shape.Rectangle = javafx.scene.shape.Rectangle {
-        visible: true
-        opacity: 0.0
-        cursor: javafx.scene.Cursor.HAND
-        onMouseDragged: dragAreaOnMouseDragged
-        onMouseEntered: dragAreaOnMouseEntered
-        onMouseExited: dragAreaOnMouseExited
-        width: 600.0
-        height: 15.0
-        arcWidth: 10.0
-        arcHeight: 10.0
-    }
-    
-    def __layoutInfo_dragText: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 200.0
-        hpos: javafx.geometry.HPos.CENTER
-        vpos: javafx.geometry.VPos.CENTER
-    }
-    public-read def dragText: javafx.scene.control.Label = javafx.scene.control.Label {
-        visible: bind dragArea.hover and not closeIcons.visible
-        disable: false
-        managed: true
-        layoutX: 10.0
-        layoutY: 3.0
-        layoutInfo: __layoutInfo_dragText
-        text: "Drag me out of the Browser"
-    }
-    
-    public-read def progressIndicator: javafx.scene.control.ProgressIndicator = javafx.scene.control.ProgressIndicator {
-        visible: false
-    }
-    
-    def __layoutInfo_statusMessageLabel: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 500.0
-        height: 15.0
-    }
-    public-read def statusMessageLabel: javafx.scene.control.Label = javafx.scene.control.Label {
-        layoutInfo: __layoutInfo_statusMessageLabel
-        text: ""
+    public-read def separator: javafx.scene.control.Separator = javafx.scene.control.Separator {
     }
     
     def __layoutInfo_onlineCheckbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
@@ -96,9 +57,6 @@ public class Main {
         translateX: 150.0
         text: "online"
         selected: true
-    }
-    
-    public-read def separator: javafx.scene.control.Separator = javafx.scene.control.Separator {
     }
     
     public-read def listView: javafx.scene.control.ListView = javafx.scene.control.ListView {
@@ -128,6 +86,28 @@ public class Main {
         layoutInfo: __layoutInfo_detailsVbox
         content: [ authorLabel, textLabel, tweetLink, ]
         spacing: 6.0
+    }
+    
+    public-read def progressIndicator: javafx.scene.control.ProgressIndicator = javafx.scene.control.ProgressIndicator {
+        visible: false
+    }
+    
+    def __layoutInfo_statusMessageLabel: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 500.0
+        height: 15.0
+    }
+    public-read def statusMessageLabel: javafx.scene.control.Label = javafx.scene.control.Label {
+        visible: true
+        layoutInfo: __layoutInfo_statusMessageLabel
+        text: "Status message"
+    }
+    
+    public-read def statusMessageBox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        content: [ progressIndicator, statusMessageLabel, ]
+        spacing: 6.0
+        hpos: javafx.geometry.HPos.CENTER
+        vpos: javafx.geometry.VPos.TOP
+        nodeVPos: javafx.geometry.VPos.CENTER
     }
     
     public-read def circle: javafx.scene.shape.Circle = javafx.scene.shape.Circle {
@@ -269,6 +249,7 @@ public class Main {
     }
     public-read def hbox2: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
         visible: bind onlineCheckbox.selected
+        disable: false
         managed: true
         layoutInfo: __layoutInfo_hbox2
         content: [ usernameTextBox, retrieveButton, ]
@@ -294,7 +275,7 @@ public class Main {
     }
     public-read def containerVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
         layoutInfo: __layoutInfo_containerVbox
-        content: [ progressIndicator, statusMessageLabel, headline, logoImageView, hbox2, onlineCheckbox, separator, hbox, listView, detailsVbox, ]
+        content: [ headline, logoImageView, hbox2, hbox, separator, onlineCheckbox, listView, detailsVbox, statusMessageBox, ]
         spacing: 5.0
         hpos: javafx.geometry.HPos.LEFT
         nodeHPos: javafx.geometry.HPos.CENTER
@@ -319,7 +300,7 @@ public class Main {
     }
     
     public function getDesignRootNodes (): javafx.scene.Node[] {
-        [ dragArea, dragText, containerVbox, closeIcons, ]
+        [ containerVbox, closeIcons, ]
     }
     
     public function getDesignScene (): javafx.scene.Scene {
@@ -328,26 +309,25 @@ public class Main {
     // </editor-fold>//GEN-END:main
 
     function tweetLinkOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
-      BrowserUtil.browse(tweetLink.text);
-    }
+      print("Link {tweetLink.text}");
 
-    var listViewItems: Object[] = bind tweetUtil.searchResults;
+      try {
+        BrowserUtil.browse(tweetLink.text);
+      } catch(e: Exception) {
+          e.printStackTrace();
+      }
+
+    }
   
-    var tweetUtil = TweetUtil{
-        location: bind "http://vlpc01.tugraz.at/projekte/herbert/t/web/api/tweets/{username}.xml"
+    var tweetUtil: TweetUtil = TweetUtil {
+        location: bind apiUrl
         statusMessage: bind statusMessageLabel
     };
 
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
+    var apiUrl: String = bind "http://www.grabeeter.dat/frontend_dev.php/api/tweets/{username}.xml";
+    var listViewItems: Object[] = bind tweetUtil.searchResults; 
    
-//    var loadingFinished = bind tweetUtil.finished on replace {
-//        if(loadingFinished == true) {
-//            searchState.actual = 1;
-//            statusMessageLabel.text = "Tweets saved now loading ...";
-//            progressIndicator.visible = false;
-//        }
-//    }
-
     var selectedResult = bind listView.selectedItem as Tweet on replace {
         authorLabel.text = "Author: {selectedResult.screenName}";
         textLabel.text = "{selectedResult.screenName}: {selectedResult.text}";
@@ -359,48 +339,10 @@ public class Main {
     var inBrowser = isApplet;
     var draggable = AppletStageExtension.appletDragSupported;
 
-    function dragAreaOnMouseExited(e: javafx.scene.input.MouseEvent): Void {
-        def fader = Timeline {
-        keyFrames: [
-            at (0s) {
-                dragArea.opacity => 0.3
-            },
-            at (0.2s) {
-                dragArea.opacity => 0.0
-            }
-        ]
-        };
-        fader.rate = 1.0;
-        fader.play();
-    }
 
-    function dragAreaOnMouseEntered(e: javafx.scene.input.MouseEvent): Void {    
-
-        def fader = Timeline {
-        keyFrames: [
-            at (0s) {
-                dragArea.opacity => 0.0
-            },
-            at (0.2s) {
-                dragArea.opacity => 0.3
-            }
-        ]
-        };
-        fader.rate = 1.0;
-        fader.play();
-    }
 
     function closeIconsOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
         scene.stage.close();
-    }
-
-    function dragAreaOnMouseDragged(e: javafx.scene.input.MouseEvent): Void {
-        scene.stage.x += e.dragX;
-        scene.stage.y += e.dragY;
-    }
-
-    public function getDragArea(): Rectangle {
-        return this.dragArea;
     }
 
     public function getCloseIcons(): Stack {
