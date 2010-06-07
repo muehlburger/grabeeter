@@ -234,6 +234,7 @@
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel4">
         <Reference name="instanceName" value="str:urlTextbox"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
         <Reference name="cursor" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,cursor:TEXT,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>

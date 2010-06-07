@@ -17,8 +17,7 @@ public class Tweet {
     public var url: String;
 
     public override function toString(): String {
-        "{text}\n"
-        "({screenName})"
+        "{text}"
     }
 
 }

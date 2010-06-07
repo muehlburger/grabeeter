@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2009, Sun Microsystems, Inc.
  * All rights reserved.
@@ -47,6 +48,7 @@ public class Main {
     }
     
     public-read def urlTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        visible: true
         cursor: javafx.scene.Cursor.TEXT
         multiline: true
         lines: 2.0
@@ -293,7 +295,7 @@ public class Main {
     }
     // </editor-fold>//GEN-END:main
 
-    var apiUrl: String = bind "http://www.grabeeter.dat/frontend_dev.php/api/tweets/{username}.xml";
+    var apiUrl: String = bind "http://grabeeter.tugraz.at/api/tweets/{username}.xml";
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
 
     var tweetUtil: TweetUtil = TweetUtil {
