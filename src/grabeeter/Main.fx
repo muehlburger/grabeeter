@@ -33,29 +33,19 @@ package grabeeter;
 import javafx.io.http.URLConverter;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Stack;
-import javafx.stage.AppletStageExtension;
+//import javafx.stage.AppletStageExtension;
 import grabeeter.model.Tweet;
 //import org.jfxtras.util.BrowserUtil;
 
 public class Main {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:main
-    public-read def separator: javafx.scene.control.Separator = javafx.scene.control.Separator {
+    def __layoutInfo_progressIndicator: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        margin: javafx.geometry.Insets { left: 3.0, top: 0.0, right: 0.0, bottom: 0.0 }
     }
-    
-    public-read def listView: javafx.scene.control.ListView = javafx.scene.control.ListView {
-        items: bind listViewItems
-    }
-    
-    public-read def urlTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
-        visible: true
-        cursor: javafx.scene.Cursor.TEXT
-        multiline: true
-        lines: 2.0
-    }
-    
     public-read def progressIndicator: javafx.scene.control.ProgressIndicator = javafx.scene.control.ProgressIndicator {
         visible: false
+        layoutInfo: __layoutInfo_progressIndicator
     }
     
     def __layoutInfo_statusMessageLabel: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
@@ -70,10 +60,21 @@ public class Main {
     
     public-read def statusMessageBox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
         content: [ progressIndicator, statusMessageLabel, ]
+        padding: javafx.geometry.Insets { left: 10.0, top: 10.0, right: 10.0, bottom: 0.0 }
         spacing: 6.0
-        hpos: javafx.geometry.HPos.CENTER
         vpos: javafx.geometry.VPos.TOP
         nodeVPos: javafx.geometry.VPos.CENTER
+    }
+    
+    public-read def listView: javafx.scene.control.ListView = javafx.scene.control.ListView {
+        items: bind listViewItems
+    }
+    
+    public-read def urlTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        visible: true
+        cursor: javafx.scene.Cursor.TEXT
+        multiline: true
+        lines: 1.0
     }
     
     public-read def circle: javafx.scene.shape.Circle = javafx.scene.shape.Circle {
@@ -156,103 +157,67 @@ public class Main {
     }
     public-read def detailsVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
         layoutInfo: __layoutInfo_detailsVbox
-        content: [ tweetTextbox, urlTextbox, ]
+        content: [ listView, tweetTextbox, urlTextbox, ]
+        padding: javafx.geometry.Insets { left: 10.0, top: 10.0, right: 10.0, bottom: 10.0 }
         spacing: 6.0
     }
     
-    def __layoutInfo_searchButton: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 138.0
+    public-read def headline: javafx.scene.control.Label = javafx.scene.control.Label {
+        effect: null
+        text: "Grabeeter - Grab and Search your Tweets!"
+        font: font
+        textWrap: true
+        textFill: javafx.scene.paint.Color.BLACK
     }
+    
+    public-read def hbox3: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        content: [ logoImageView, headline, ]
+        padding: javafx.geometry.Insets { left: 10.0, top: 10.0, right: 10.0, bottom: 0.0 }
+    }
+    
+    public-read def font2: javafx.scene.text.Font = javafx.scene.text.Font {
+        size: 18.0
+    }
+    
     public-read def searchButton: javafx.scene.control.Button = javafx.scene.control.Button {
         managed: true
-        layoutInfo: __layoutInfo_searchButton
         text: "Search"
-        font: font
+        font: font2
         action: searchButtonAction
     }
     
-    def __layoutInfo_onlineCheckbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        hfill: false
-        vfill: false
-        hpos: javafx.geometry.HPos.LEFT
-        margin: null
-    }
-    public-read def onlineCheckbox: javafx.scene.control.CheckBox = javafx.scene.control.CheckBox {
-        visible: true
-        disable: false
-        layoutY: 0.0
-        layoutInfo: __layoutInfo_onlineCheckbox
-        text: "online"
-        font: font
-        selected: true
-        allowTriState: false
-    }
-    
-    def __layoutInfo_searchTextBox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 480.0
-        height: 35.0
-    }
     public-read def searchTextBox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
         cursor: javafx.scene.Cursor.TEXT
-        layoutInfo: __layoutInfo_searchTextBox
         promptText: "search tweets"
-        font: font
+        font: font2
         action: searchButtonAction
     }
     
     public-read def hbox2: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        content: [ searchTextBox, onlineCheckbox, searchButton, ]
+        content: [ searchTextBox, searchButton, ]
+        padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 10.0, bottom: 0.0 }
         spacing: 6.0
     }
     
-    def __layoutInfo_retrieveButton: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 228.0
-        height: 35.0
-    }
     public-read def retrieveButton: javafx.scene.control.Button = javafx.scene.control.Button {
-        managed: true
-        layoutInfo: __layoutInfo_retrieveButton
-        text: "Update Tweets"
-        font: font
+        text: "Grab Tweets"
+        font: font2
         action: retrieveButtonAction
     }
     
-    def __layoutInfo_usernameTextBox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 480.0
-        height: 35.0
-    }
     public-read def usernameTextBox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
         cursor: javafx.scene.Cursor.TEXT
-        managed: true
-        layoutInfo: __layoutInfo_usernameTextBox
         effect: null
         text: ""
         promptText: "enter twitter username"
         selectOnFocus: true
-        font: font
+        font: font2
         action: retrieveButtonAction
     }
     
     public-read def hbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
         content: [ usernameTextBox, retrieveButton, ]
-        spacing: 6.0
-    }
-    
-    def __layoutInfo_headline: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 0.0
-    }
-    public-read def headline: javafx.scene.control.Label = javafx.scene.control.Label {
-        layoutY: 50.0
-        layoutInfo: __layoutInfo_headline
-        effect: null
-        text: "Grabeeter - Grab and Search your Tweets!"
-        font: font
-        textWrap: true
-        textFill: null
-    }
-    
-    public-read def hbox3: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        content: [ logoImageView, headline, ]
+        padding: javafx.geometry.Insets { left: 10.0, top: 5.0, right: 10.0, bottom: 0.0 }
         spacing: 6.0
     }
     
@@ -262,15 +227,13 @@ public class Main {
     }
     public-read def containerVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
         layoutInfo: __layoutInfo_containerVbox
-        content: [ hbox3, hbox, separator, hbox2, listView, detailsVbox, statusMessageBox, ]
+        content: [ hbox3, hbox, hbox2, statusMessageBox, detailsVbox, ]
         spacing: 5.0
         hpos: javafx.geometry.HPos.LEFT
         nodeHPos: javafx.geometry.HPos.LEFT
     }
     
     public-read def scene: javafx.scene.Scene = javafx.scene.Scene {
-        width: 800.0
-        height: 600.0
         content: getDesignRootNodes ()
         camera: null
         cursor: javafx.scene.Cursor.DEFAULT
@@ -297,7 +260,7 @@ public class Main {
 
     var apiUrl: String = bind "http://grabeeter.tugraz.at/api/tweets/{username}.xml";
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
-
+    
     var tweetUtil: TweetUtil = TweetUtil {
         location: bind apiUrl
         statusMessage: bind statusMessageLabel
@@ -308,34 +271,33 @@ public class Main {
 
     var selectedResult = bind listView.selectedItem as Tweet on replace {
         tweetTextbox.text = "{selectedResult.text}";
-        urlTextbox.text = "Url: {selectedResult.url}";
+        urlTextbox.text = "{selectedResult.url}";
     }
 
-    var isApplet = "true".equals(FX.getArgument("isApplet") as String);
-    var inBrowser = isApplet;
-    var draggable = AppletStageExtension.appletDragSupported;
+//    var isApplet = "true".equals(FX.getArgument("isApplet") as String);
+//    var inBrowser = isApplet;
+//    var draggable = AppletStageExtension.appletDragSupported;
 
 
 //    function tweetLinkOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
 //        BrowserUtil.browse(tweetLink.text);
 //    }
-
+//
     function closeIconsOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
         scene.stage.close();
     }
-
-    public function getCloseIcons(): Stack {
-        return this.closeIcons;
-    }
+//
+//    public function getCloseIcons(): Stack {
+//        return this.closeIcons;
+//    }
     
     function retrieveButtonAction(): Void {
         progressIndicator.visible = true;
         statusMessageLabel.text = "Retrieving tweets ...";
-        tweetUtil.retrieveData(onlineCheckbox.selected);
+        tweetUtil.retrieveData(true, progressIndicator);
     }
 
     function searchButtonAction(): Void {
-        progressIndicator.visible = true;
         statusMessageLabel.text = "Searching tweets containing \"{searchTextBox.text.trim()}\" ...";
         tweetUtil.queryTweets(searchTextBox.text.trim());
         searchState.actual = 1;

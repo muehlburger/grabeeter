@@ -90,11 +90,11 @@ public class TweetUtil {
         }
     }
 
-    public function retrieveData(online: Boolean): Void {
+    public function retrieveData(online: Boolean, progress: javafx.scene.control.ProgressIndicator): Void {
         delete tweets;
         delete searchResults;
         if(online) {
-            finished = false;
+            progress.visible = true;
             def httpRequest = HttpRequest {
                         location: bind location
                         method: HttpRequest.GET
@@ -108,7 +108,7 @@ public class TweetUtil {
                             }
                         }
                         onDone: function(): Void {
-                            finished = true;
+                            progress.visible = false;
                             load();
                             indexTweets();
                         }
@@ -116,7 +116,7 @@ public class TweetUtil {
                     }
             httpRequest.start();
         } else {
-            finished = true;
+            progress.visible = false;
         }
 
     }

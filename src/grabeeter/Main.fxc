@@ -10,6 +10,7 @@
             <Item value="inst:ImageModel2"/>
             <Item value="inst:ColorModel1"/>
             <Item value="inst:FontModel1"/>
+            <Item value="inst:FontModel2"/>
         </List>
         <List name="dataSources"/>
         <List name="templates"/>
@@ -58,14 +59,18 @@
         <Reference name="instanceName" value="str:font"/>
         <Reference name="size" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:24.0,4,null,"/>
     </Instance>
+    <Instance classID="FontModel" instanceID="FontModel2">
+        <Reference name="instanceName" value="str:font2"/>
+        <Reference name="size" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:18.0,4,null,"/>
+    </Instance>
     <Instance classID="SceneModel" instanceID="SceneModel1">
         <Reference name="instanceName" value="str:scene"/>
         <List name="content">
             <Item value="inst:VBoxModel1"/>
             <Item value="inst:StackModel1"/>
         </List>
-        <Reference name="width" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:800.0,4,null,"/>
-        <Reference name="height" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:600.0,4,null,"/>
+        <Reference name="width" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
+        <Reference name="height" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
         <Reference name="camera" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
         <Reference name="cursor" value="prop2:7,NOT_SET,4,null,4,null,21,anim:,,cursor:DEFAULT,4,null,"/>
         <Reference name="fill" value="prop2:7,NOT_SET,4,null,4,null,32,anim:,,inst:LinearGradientModel1,4,null,"/>
@@ -79,11 +84,9 @@
         <List name="content">
             <Item value="inst:HBoxModel1"/>
             <Item value="inst:HBoxModel2"/>
-            <Item value="inst:SeparatorModel1"/>
             <Item value="inst:HBoxModel3"/>
-            <Item value="inst:ListViewModel1"/>
-            <Item value="inst:VBoxModel2"/>
             <Item value="inst:HBoxModel4"/>
+            <Item value="inst:VBoxModel2"/>
         </List>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:5.0,4,null,"/>
         <Reference name="hpos" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,hpos:LEFT,4,null,"/>
@@ -96,7 +99,7 @@
             <Item value="inst:ImageViewModel1"/>
             <Item value="inst:LabelModel1"/>
         </List>
-        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,32,anim:,,insets:10.0,10.0,10.0,0.0,4,null,"/>
     </Instance>
     <Instance classID="ImageViewModel" instanceID="ImageViewModel1">
         <Reference name="instanceName" value="str:logoImageView"/>
@@ -105,8 +108,6 @@
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel1">
         <Reference name="instanceName" value="str:headline"/>
-        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:50.0,4,null,"/>
-        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="effect" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
         <Reference name="tooltip" value="null"/>
@@ -114,7 +115,7 @@
         <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel1,4,null,"/>
         <Reference name="textWrap" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
         <Reference name="graphic" value="null"/>
-        <Reference name="textFill" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
+        <Reference name="textFill" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,color:BLACK,4,null,"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel2">
         <Reference name="instanceName" value="str:hbox"/>
@@ -123,104 +124,105 @@
             <Item value="inst:TextBoxModel1"/>
             <Item value="inst:ButtonModel1"/>
         </List>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:10.0,5.0,10.0,0.0,4,null,"/>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel1">
         <Reference name="instanceName" value="str:usernameTextBox"/>
         <Reference name="cursor" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,cursor:TEXT,4,null,"/>
-        <Reference name="managed" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:480.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:35.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="effect" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
         <Reference name="tooltip" value="null"/>
         <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,str:,4,null,"/>
         <Reference name="promptText" value="prop2:7,NOT_SET,4,null,4,null,33,anim:,,str:enter twitter username,4,null,"/>
         <Reference name="selectOnFocus" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel1,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
         <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,str:retrieveButtonAction,4,null,"/>
     </Instance>
     <Instance classID="ButtonModel" instanceID="ButtonModel1">
         <Reference name="instanceName" value="str:retrieveButton"/>
-        <Reference name="managed" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:228.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:35.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
-        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,24,anim:,,str:Update Tweets,4,null,"/>
-        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel1,4,null,"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,str:Grab Tweets,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
         <Reference name="graphic" value="null"/>
         <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,str:retrieveButtonAction,4,null,"/>
-    </Instance>
-    <Instance classID="SeparatorModel" instanceID="SeparatorModel1">
-        <Reference name="instanceName" value="str:separator"/>
-        <Reference name="clip" value="null"/>
-        <Reference name="tooltip" value="null"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel3">
         <Reference name="instanceName" value="str:hbox2"/>
         <Reference name="clip" value="null"/>
         <List name="content">
             <Item value="inst:TextBoxModel2"/>
-            <Item value="inst:CheckBoxModel1"/>
             <Item value="inst:ButtonModel2"/>
         </List>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:10.0,0.0,10.0,0.0,4,null,"/>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel2">
         <Reference name="instanceName" value="str:searchTextBox"/>
         <Reference name="cursor" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,cursor:TEXT,4,null,"/>
-        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:480.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:35.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
         <Reference name="promptText" value="prop2:7,NOT_SET,4,null,4,null,24,anim:,,str:search tweets,4,null,"/>
-        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel1,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
         <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,29,anim:,,str:searchButtonAction,4,null,"/>
-    </Instance>
-    <Instance classID="CheckBoxModel" instanceID="CheckBoxModel1">
-        <Reference name="instanceName" value="str:onlineCheckbox"/>
-        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="disable" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
-        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="layoutInfoHFill" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
-        <Reference name="layoutInfoVFill" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
-        <Reference name="layoutInfoHPos" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,hpos:LEFT,4,null,"/>
-        <Reference name="layoutInfoMargin" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
-        <Reference name="clip" value="null"/>
-        <Reference name="tooltip" value="null"/>
-        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,str:online,4,null,"/>
-        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel1,4,null,"/>
-        <Reference name="graphic" value="null"/>
-        <Reference name="selected" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="allowTriState" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
     </Instance>
     <Instance classID="ButtonModel" instanceID="ButtonModel2">
         <Reference name="instanceName" value="str:searchButton"/>
         <Reference name="managed" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:138.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
         <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,str:Search,4,null,"/>
-        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel1,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
         <Reference name="graphic" value="null"/>
         <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,29,anim:,,str:searchButtonAction,4,null,"/>
     </Instance>
-    <Instance classID="ListViewModel" instanceID="ListViewModel1">
-        <Reference name="instanceName" value="str:listView"/>
+    <Instance classID="HBoxModel" instanceID="HBoxModel4">
+        <Reference name="instanceName" value="str:statusMessageBox"/>
+        <Reference name="clip" value="null"/>
+        <List name="content">
+            <Item value="inst:ProgressIndicatorModel1"/>
+            <Item value="inst:LabelModel2"/>
+        </List>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,32,anim:,,insets:10.0,10.0,10.0,0.0,4,null,"/>
+        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="vpos" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,vpos:TOP,4,null,"/>
+        <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
+    </Instance>
+    <Instance classID="ProgressIndicatorModel" instanceID="ProgressIndicatorModel1">
+        <Reference name="instanceName" value="str:progressIndicator"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
+        <Reference name="layoutInfoMargin" value="prop2:7,NOT_SET,4,null,4,null,29,anim:,,insets:3.0,0.0,0.0,0.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
-        <Reference name="items" value="prop2:7,NOT_SET,4,null,22,str:bind listViewItems,4,null,4,null,"/>
+    </Instance>
+    <Instance classID="LabelModel" instanceID="LabelModel2">
+        <Reference name="instanceName" value="str:statusMessageLabel"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:500.0,4,null,"/>
+        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:15.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,25,anim:,,str:Status message,4,null,"/>
+        <Reference name="graphic" value="null"/>
     </Instance>
     <Instance classID="VBoxModel" instanceID="VBoxModel2">
         <Reference name="instanceName" value="str:detailsVbox"/>
         <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:800.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <List name="content">
+            <Item value="inst:ListViewModel1"/>
             <Item value="inst:TextBoxModel3"/>
             <Item value="inst:TextBoxModel4"/>
         </List>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,33,anim:,,insets:10.0,10.0,10.0,10.0,4,null,"/>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+    </Instance>
+    <Instance classID="ListViewModel" instanceID="ListViewModel1">
+        <Reference name="instanceName" value="str:listView"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="items" value="prop2:7,NOT_SET,4,null,22,str:bind listViewItems,4,null,4,null,"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel3">
         <Reference name="instanceName" value="str:tweetTextbox"/>
@@ -239,35 +241,7 @@
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
         <Reference name="multiline" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="lines" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:2.0,4,null,"/>
-    </Instance>
-    <Instance classID="HBoxModel" instanceID="HBoxModel4">
-        <Reference name="instanceName" value="str:statusMessageBox"/>
-        <Reference name="clip" value="null"/>
-        <List name="content">
-            <Item value="inst:ProgressIndicatorModel1"/>
-            <Item value="inst:LabelModel2"/>
-        </List>
-        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
-        <Reference name="hpos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
-        <Reference name="vpos" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,vpos:TOP,4,null,"/>
-        <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
-    </Instance>
-    <Instance classID="ProgressIndicatorModel" instanceID="ProgressIndicatorModel1">
-        <Reference name="instanceName" value="str:progressIndicator"/>
-        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
-        <Reference name="clip" value="null"/>
-        <Reference name="tooltip" value="null"/>
-    </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel2">
-        <Reference name="instanceName" value="str:statusMessageLabel"/>
-        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:500.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:15.0,4,null,"/>
-        <Reference name="clip" value="null"/>
-        <Reference name="tooltip" value="null"/>
-        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,25,anim:,,str:Status message,4,null,"/>
-        <Reference name="graphic" value="null"/>
+        <Reference name="lines" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:1.0,4,null,"/>
     </Instance>
     <Instance classID="StackModel" instanceID="StackModel1">
         <Reference name="instanceName" value="str:closeIcons"/>
