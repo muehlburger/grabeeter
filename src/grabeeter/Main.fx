@@ -292,8 +292,12 @@ public class Main {
         tweetUtil.searchResults = tweetUtil.tweets;
     }
 
-    var apiUrl: String = bind "http://grabeeter.tugraz.at/api/tweets/{username}.xml";
+    var screenName: String = bind tweetUtil.screenName on replace {
+        usernameTextBox.text = screenName;
+    }
+
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
+    var apiUrl: String = bind "http://grabeeter.tugraz.at/api/tweets/{username}.xml";
     
     var tweetUtil: TweetUtil = TweetUtil {
         location: bind apiUrl

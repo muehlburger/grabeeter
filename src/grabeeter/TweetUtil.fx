@@ -35,6 +35,7 @@ public class TweetUtil {
     public var searchResults: Tweet[];
     public var finished: Boolean = true;
     public var statusMessage: javafx.scene.control.Label;
+    public var screenName: String;
     
     var storage = Storage {
         source: "grabeeter";
@@ -68,6 +69,7 @@ public class TweetUtil {
                             } else if(qname.name == "created") {
                                 tweet.created = value;
                             } else if(qname.name == "screen_name") {
+                                screenName = value;
                                 tweet.screenName = value;
                             } else if(qname.name == "url") {
                                 tweet.url = value;
