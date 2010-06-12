@@ -25,6 +25,8 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.search.ScoreDoc;
 import grabeeter.model.Tweet;
+import javafx.date.DateTime;
+import java.text.SimpleDateFormat;
 /**
  * @author Herbert Muehlburger
  */
@@ -36,6 +38,9 @@ public class TweetUtil {
     public var finished: Boolean = true;
     public var statusMessage: javafx.scene.control.Label;
     public var screenName: String;
+
+    public var periodStart: String;
+    public var periodEnd: String;
     
     var storage = Storage {
         source: "grabeeter";
@@ -171,6 +176,14 @@ public class TweetUtil {
 
         w.close();
         statusMessage.text = "Indexing finished! Now you can search! ;-)";
+        
+        // Update the start and end peroid where tweets are available
+        periodStart = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(Long.parseLong(tweets[tweets.size()-1].created) *1000));
+        periodEnd = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(Long.parseLong(tweets[0].created) *1000));
+        
+       
+       // var parsedDate: java.util.Date = new java.text.SimpleDateFormat ("dd/MM/yyyy HH:mm:ss").parse("01/01/1970 01:00:00");
+
         finished = true;
     }
 

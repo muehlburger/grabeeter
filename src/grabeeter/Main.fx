@@ -58,6 +58,25 @@ public class Main {
         text: "2. After you \"Grabbed\" your tweets you are able to perform a search on the list of your tweets."
     }
     
+    public-read def periodStart: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        text: bind tweetUtil.periodStart
+    }
+    
+    public-read def periodStartSlider: javafx.scene.control.Slider = javafx.scene.control.Slider {
+    }
+    
+    public-read def periodEndTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        text: bind tweetUtil.periodEnd
+    }
+    
+    public-read def periodEndSlider: javafx.scene.control.Slider = javafx.scene.control.Slider {
+    }
+    
+    public-read def hbox5: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        content: [ periodStart, periodStartSlider, periodEndTextbox, periodEndSlider, ]
+        spacing: 6.0
+    }
+    
     public-read def statusMessageLabel: javafx.scene.control.Label = javafx.scene.control.Label {
         visible: true
         text: "Status message"
@@ -224,6 +243,11 @@ public class Main {
     
     public-read def hbox2: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
         content: [ searchTextBox, searchButton, button, ]
+        spacing: 6.0
+    }
+    
+    public-read def searchVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
+        content: [ label2, hbox5, hbox2, ]
         padding: javafx.geometry.Insets { left: 0.0, top: 0.0, right: 10.0, bottom: 10.0 }
         spacing: 6.0
     }
@@ -246,6 +270,11 @@ public class Main {
     
     public-read def hbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
         content: [ usernameTextBox, progressIndicator, retrieveButton, ]
+        spacing: 6.0
+    }
+    
+    public-read def usernameVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
+        content: [ label, hbox, ]
         padding: javafx.geometry.Insets { left: 0.0, top: 0.0, right: 10.0, bottom: 10.0 }
         spacing: 6.0
     }
@@ -256,7 +285,7 @@ public class Main {
     }
     public-read def containerVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
         layoutInfo: __layoutInfo_containerVbox
-        content: [ hbox3, label, hbox, label2, hbox2, statusMessageBox, detailsVbox, ]
+        content: [ hbox3, usernameVbox, searchVbox, statusMessageBox, detailsVbox, ]
         padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 0.0, bottom: 0.0 }
         spacing: 5.0
         hpos: javafx.geometry.HPos.LEFT
