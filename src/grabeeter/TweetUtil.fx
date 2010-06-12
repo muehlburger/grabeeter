@@ -33,7 +33,7 @@ public class TweetUtil {
     public var location: String;
     public var tweets: Tweet[];
     public var searchResults: Tweet[];
-    public var finished: Boolean;
+    public var finished: Boolean = true;
     public var statusMessage: javafx.scene.control.Label;
     
     var storage = Storage {
@@ -94,7 +94,7 @@ public class TweetUtil {
         delete tweets;
         delete searchResults;
         if(online) {
-            progress.visible = true;
+            finished = false;
             def httpRequest = HttpRequest {
                         location: bind location
                         method: HttpRequest.GET
@@ -108,7 +108,7 @@ public class TweetUtil {
                             }
                         }
                         onDone: function(): Void {
-                            progress.visible = false;
+                            finished = true;
                             load();
                             indexTweets();
                         }
@@ -116,7 +116,7 @@ public class TweetUtil {
                     }
             httpRequest.start();
         } else {
-            progress.visible = false;
+            finished = true;
         }
 
     }
@@ -155,6 +155,7 @@ public class TweetUtil {
     }
 
     public function indexTweets() {
+        finished = false;
         delete searchResults;
         statusMessage.text = "Indexing tweets ...";
         analyser = new GermanAnalyzer(Version.LUCENE_30);
@@ -168,6 +169,7 @@ public class TweetUtil {
 
         w.close();
         statusMessage.text = "Indexing finished! Now you can search! ;-)";
+        finished = true;
     }
 
     function addDoc(w: IndexWriter, tweet: Tweet): Void {

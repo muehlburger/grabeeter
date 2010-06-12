@@ -83,11 +83,14 @@
         <Reference name="clip" value="null"/>
         <List name="content">
             <Item value="inst:HBoxModel1"/>
+            <Item value="inst:LabelModel2"/>
             <Item value="inst:HBoxModel2"/>
+            <Item value="inst:LabelModel3"/>
             <Item value="inst:HBoxModel3"/>
             <Item value="inst:HBoxModel4"/>
             <Item value="inst:VBoxModel2"/>
         </List>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,30,anim:,,insets:10.0,0.0,0.0,0.0,4,null,"/>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:5.0,4,null,"/>
         <Reference name="hpos" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,hpos:LEFT,4,null,"/>
         <Reference name="nodeHPos" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,hpos:LEFT,4,null,"/>
@@ -99,7 +102,7 @@
             <Item value="inst:ImageViewModel1"/>
             <Item value="inst:LabelModel1"/>
         </List>
-        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,32,anim:,,insets:10.0,10.0,10.0,0.0,4,null,"/>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:0.0,10.0,10.0,0.0,4,null,"/>
     </Instance>
     <Instance classID="ImageViewModel" instanceID="ImageViewModel1">
         <Reference name="instanceName" value="str:logoImageView"/>
@@ -108,6 +111,7 @@
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel1">
         <Reference name="instanceName" value="str:headline"/>
+        <Reference name="layoutInfoMargin" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:20.0,50.0,0.0,0.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="effect" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
         <Reference name="tooltip" value="null"/>
@@ -117,14 +121,23 @@
         <Reference name="graphic" value="null"/>
         <Reference name="textFill" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,color:BLACK,4,null,"/>
     </Instance>
+    <Instance classID="LabelModel" instanceID="LabelModel2">
+        <Reference name="instanceName" value="str:label"/>
+        <Reference name="opacity" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:0.65,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,96,anim:,,str:1. Enter your Twitter Username and Press &quot;Grab Tweets&quot; in order to fetch your tweets.,4,null,"/>
+        <Reference name="graphic" value="null"/>
+    </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel2">
         <Reference name="instanceName" value="str:hbox"/>
         <Reference name="clip" value="null"/>
         <List name="content">
             <Item value="inst:TextBoxModel1"/>
+            <Item value="inst:ProgressIndicatorModel1"/>
             <Item value="inst:ButtonModel1"/>
         </List>
-        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:10.0,5.0,10.0,0.0,4,null,"/>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:0.0,0.0,10.0,10.0,4,null,"/>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel1">
@@ -139,6 +152,13 @@
         <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
         <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,str:retrieveButtonAction,4,null,"/>
     </Instance>
+    <Instance classID="ProgressIndicatorModel" instanceID="ProgressIndicatorModel1">
+        <Reference name="instanceName" value="str:progressIndicator"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,36,str:bind progressIndicatorVisibility,4,null,4,null,"/>
+        <Reference name="layoutInfoMargin" value="prop2:7,NOT_SET,4,null,4,null,29,anim:,,insets:0.0,4.0,0.0,0.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+    </Instance>
     <Instance classID="ButtonModel" instanceID="ButtonModel1">
         <Reference name="instanceName" value="str:retrieveButton"/>
         <Reference name="clip" value="null"/>
@@ -148,14 +168,23 @@
         <Reference name="graphic" value="null"/>
         <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,str:retrieveButtonAction,4,null,"/>
     </Instance>
+    <Instance classID="LabelModel" instanceID="LabelModel3">
+        <Reference name="instanceName" value="str:label2"/>
+        <Reference name="opacity" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:0.65,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,106,anim:,,str:2. After you &quot;Grabbed&quot; your tweets you are able to perform a search on the list of your tweets.,4,null,"/>
+        <Reference name="graphic" value="null"/>
+    </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel3">
         <Reference name="instanceName" value="str:hbox2"/>
         <Reference name="clip" value="null"/>
         <List name="content">
             <Item value="inst:TextBoxModel2"/>
             <Item value="inst:ButtonModel2"/>
+            <Item value="inst:ButtonModel3"/>
         </List>
-        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:10.0,0.0,10.0,0.0,4,null,"/>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:0.0,0.0,10.0,10.0,4,null,"/>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel2">
@@ -177,34 +206,47 @@
         <Reference name="graphic" value="null"/>
         <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,29,anim:,,str:searchButtonAction,4,null,"/>
     </Instance>
-    <Instance classID="HBoxModel" instanceID="HBoxModel4">
-        <Reference name="instanceName" value="str:statusMessageBox"/>
-        <Reference name="clip" value="null"/>
-        <List name="content">
-            <Item value="inst:ProgressIndicatorModel1"/>
-            <Item value="inst:LabelModel2"/>
-        </List>
-        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,32,anim:,,insets:10.0,10.0,10.0,0.0,4,null,"/>
-        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
-        <Reference name="vpos" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,vpos:TOP,4,null,"/>
-        <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
-    </Instance>
-    <Instance classID="ProgressIndicatorModel" instanceID="ProgressIndicatorModel1">
-        <Reference name="instanceName" value="str:progressIndicator"/>
-        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
-        <Reference name="layoutInfoMargin" value="prop2:7,NOT_SET,4,null,4,null,29,anim:,,insets:3.0,0.0,0.0,0.0,4,null,"/>
+    <Instance classID="ButtonModel" instanceID="ButtonModel3">
+        <Reference name="instanceName" value="str:button"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,str:Clear,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
+        <Reference name="graphic" value="null"/>
+        <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,23,anim:,,str:buttonAction,4,null,"/>
     </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel2">
+    <Instance classID="HBoxModel" instanceID="HBoxModel4">
+        <Reference name="instanceName" value="str:statusMessageBox"/>
+        <Reference name="opacity" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:0.65,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <List name="content">
+            <Item value="inst:LabelModel4"/>
+            <Item value="inst:HBoxModel5"/>
+        </List>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,30,anim:,,insets:3.0,0.0,10.0,0.0,4,null,"/>
+        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="hpos" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,hpos:LEFT,4,null,"/>
+        <Reference name="vpos" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,vpos:TOP,4,null,"/>
+        <Reference name="nodeHPos" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,hpos:LEFT,4,null,"/>
+        <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
+    </Instance>
+    <Instance classID="LabelModel" instanceID="LabelModel4">
         <Reference name="instanceName" value="str:statusMessageLabel"/>
         <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:500.0,4,null,"/>
-        <Reference name="layoutInfoHeight" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:15.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
         <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,25,anim:,,str:Status message,4,null,"/>
         <Reference name="graphic" value="null"/>
+    </Instance>
+    <Instance classID="HBoxModel" instanceID="HBoxModel5">
+        <Reference name="instanceName" value="str:hbox4"/>
+        <Reference name="layoutInfoHFill" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="layoutInfoMargin" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <List name="content"/>
+        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+        <Reference name="hpos" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,hpos:RIGHT,4,null,"/>
+        <Reference name="nodeHPos" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,hpos:RIGHT,4,null,"/>
     </Instance>
     <Instance classID="VBoxModel" instanceID="VBoxModel2">
         <Reference name="instanceName" value="str:detailsVbox"/>
@@ -215,7 +257,7 @@
             <Item value="inst:TextBoxModel3"/>
             <Item value="inst:TextBoxModel4"/>
         </List>
-        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,33,anim:,,insets:10.0,10.0,10.0,10.0,4,null,"/>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:0.0,0.0,10.0,10.0,4,null,"/>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
     </Instance>
     <Instance classID="ListViewModel" instanceID="ListViewModel1">
@@ -253,7 +295,7 @@
         <Reference name="clip" value="null"/>
         <List name="content">
             <Item value="inst:CircleShapeModel1"/>
-            <Item value="inst:LabelModel3"/>
+            <Item value="inst:LabelModel5"/>
         </List>
         <Reference name="nodeHPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
         <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
@@ -266,7 +308,7 @@
         <Reference name="clip" value="null"/>
         <Reference name="radius" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:8.0,4,null,"/>
     </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel3">
+    <Instance classID="LabelModel" instanceID="LabelModel5">
         <Reference name="instanceName" value="str:closeText"/>
         <Reference name="layoutX" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
         <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>

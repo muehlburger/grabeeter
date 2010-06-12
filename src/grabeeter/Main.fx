@@ -40,29 +40,48 @@ import grabeeter.model.Tweet;
 public class Main {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:main
+    public-read def label: javafx.scene.control.Label = javafx.scene.control.Label {
+        opacity: 0.65
+        text: "1. Enter your Twitter Username and Press \"Grab Tweets\" in order to fetch your tweets."
+    }
+    
     def __layoutInfo_progressIndicator: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        margin: javafx.geometry.Insets { left: 3.0, top: 0.0, right: 0.0, bottom: 0.0 }
+        margin: javafx.geometry.Insets { left: 0.0, top: 4.0, right: 0.0, bottom: 0.0 }
     }
     public-read def progressIndicator: javafx.scene.control.ProgressIndicator = javafx.scene.control.ProgressIndicator {
-        visible: false
+        visible: bind progressIndicatorVisibility
         layoutInfo: __layoutInfo_progressIndicator
     }
     
-    def __layoutInfo_statusMessageLabel: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 500.0
-        height: 15.0
+    public-read def label2: javafx.scene.control.Label = javafx.scene.control.Label {
+        opacity: 0.65
+        text: "2. After you \"Grabbed\" your tweets you are able to perform a search on the list of your tweets."
     }
+    
     public-read def statusMessageLabel: javafx.scene.control.Label = javafx.scene.control.Label {
         visible: true
-        layoutInfo: __layoutInfo_statusMessageLabel
         text: "Status message"
     }
     
-    public-read def statusMessageBox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        content: [ progressIndicator, statusMessageLabel, ]
-        padding: javafx.geometry.Insets { left: 10.0, top: 10.0, right: 10.0, bottom: 0.0 }
+    def __layoutInfo_hbox4: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        hfill: true
+        margin: null
+    }
+    public-read def hbox4: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        layoutInfo: __layoutInfo_hbox4
         spacing: 6.0
+        hpos: javafx.geometry.HPos.RIGHT
+        nodeHPos: javafx.geometry.HPos.RIGHT
+    }
+    
+    public-read def statusMessageBox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        opacity: 0.65
+        content: [ statusMessageLabel, hbox4, ]
+        padding: javafx.geometry.Insets { left: 3.0, top: 0.0, right: 10.0, bottom: 0.0 }
+        spacing: 6.0
+        hpos: javafx.geometry.HPos.LEFT
         vpos: javafx.geometry.VPos.TOP
+        nodeHPos: javafx.geometry.HPos.LEFT
         nodeVPos: javafx.geometry.VPos.CENTER
     }
     
@@ -158,11 +177,15 @@ public class Main {
     public-read def detailsVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
         layoutInfo: __layoutInfo_detailsVbox
         content: [ listView, tweetTextbox, urlTextbox, ]
-        padding: javafx.geometry.Insets { left: 10.0, top: 10.0, right: 10.0, bottom: 10.0 }
+        padding: javafx.geometry.Insets { left: 0.0, top: 0.0, right: 10.0, bottom: 10.0 }
         spacing: 6.0
     }
     
+    def __layoutInfo_headline: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        margin: javafx.geometry.Insets { left: 20.0, top: 50.0, right: 0.0, bottom: 0.0 }
+    }
     public-read def headline: javafx.scene.control.Label = javafx.scene.control.Label {
+        layoutInfo: __layoutInfo_headline
         effect: null
         text: "Grabeeter - Grab and Search your Tweets!"
         font: font
@@ -172,11 +195,17 @@ public class Main {
     
     public-read def hbox3: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
         content: [ logoImageView, headline, ]
-        padding: javafx.geometry.Insets { left: 10.0, top: 10.0, right: 10.0, bottom: 0.0 }
+        padding: javafx.geometry.Insets { left: 0.0, top: 10.0, right: 10.0, bottom: 0.0 }
     }
     
     public-read def font2: javafx.scene.text.Font = javafx.scene.text.Font {
         size: 18.0
+    }
+    
+    public-read def button: javafx.scene.control.Button = javafx.scene.control.Button {
+        text: "Clear"
+        font: font2
+        action: buttonAction
     }
     
     public-read def searchButton: javafx.scene.control.Button = javafx.scene.control.Button {
@@ -194,8 +223,8 @@ public class Main {
     }
     
     public-read def hbox2: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        content: [ searchTextBox, searchButton, ]
-        padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 10.0, bottom: 0.0 }
+        content: [ searchTextBox, searchButton, button, ]
+        padding: javafx.geometry.Insets { left: 0.0, top: 0.0, right: 10.0, bottom: 10.0 }
         spacing: 6.0
     }
     
@@ -216,8 +245,8 @@ public class Main {
     }
     
     public-read def hbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        content: [ usernameTextBox, retrieveButton, ]
-        padding: javafx.geometry.Insets { left: 10.0, top: 5.0, right: 10.0, bottom: 0.0 }
+        content: [ usernameTextBox, progressIndicator, retrieveButton, ]
+        padding: javafx.geometry.Insets { left: 0.0, top: 0.0, right: 10.0, bottom: 10.0 }
         spacing: 6.0
     }
     
@@ -227,7 +256,8 @@ public class Main {
     }
     public-read def containerVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
         layoutInfo: __layoutInfo_containerVbox
-        content: [ hbox3, hbox, hbox2, statusMessageBox, detailsVbox, ]
+        content: [ hbox3, label, hbox, label2, hbox2, statusMessageBox, detailsVbox, ]
+        padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 0.0, bottom: 0.0 }
         spacing: 5.0
         hpos: javafx.geometry.HPos.LEFT
         nodeHPos: javafx.geometry.HPos.LEFT
@@ -258,6 +288,10 @@ public class Main {
     }
     // </editor-fold>//GEN-END:main
 
+    function buttonAction(): Void {
+        tweetUtil.searchResults = tweetUtil.tweets;
+    }
+
     var apiUrl: String = bind "http://grabeeter.tugraz.at/api/tweets/{username}.xml";
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
     
@@ -267,6 +301,7 @@ public class Main {
     };
 
 
+    var progressIndicatorVisibility: Boolean = bind not tweetUtil.finished;
     var listViewItems: Object[] = bind tweetUtil.searchResults;
 
     var selectedResult = bind listView.selectedItem as Tweet on replace {
@@ -292,15 +327,13 @@ public class Main {
 //    }
     
     function retrieveButtonAction(): Void {
-        progressIndicator.visible = true;
         statusMessageLabel.text = "Retrieving tweets ...";
         tweetUtil.retrieveData(true, progressIndicator);
     }
 
     function searchButtonAction(): Void {
-        statusMessageLabel.text = "Searching tweets containing \"{searchTextBox.text.trim()}\" ...";
+        statusMessageLabel.text = "Tweets containing: \"{searchTextBox.text.trim()}\"";
         tweetUtil.queryTweets(searchTextBox.text.trim());
-        searchState.actual = 1;
         listView.select(-1);
     }
 }
