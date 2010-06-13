@@ -178,8 +178,8 @@ public class TweetUtil {
         statusMessage.text = "Indexing finished! Now you can search! ;-)";
         
         // Update the start and end peroid where tweets are available
-        periodStart = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(Long.parseLong(tweets[tweets.size()-1].created) *1000));
-        periodEnd = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(Long.parseLong(tweets[0].created) *1000));
+        periodStart = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(Long.parseLong(tweets[tweets.size()-1].created) *1000));
+        periodEnd = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(Long.parseLong(tweets[0].created) *1000));
         
        
        // var parsedDate: java.util.Date = new java.text.SimpleDateFormat ("dd/MM/yyyy HH:mm:ss").parse("01/01/1970 01:00:00");
@@ -200,11 +200,12 @@ public class TweetUtil {
         }
     }
 
-    public function queryTweets(queryString: String): Void {
+    public function queryTweets(queryString: String, startPeriod: String, endPeriod: String): Void {
         delete searchResults;
-        println("searching tweets containing {queryString}");
+        println("searching tweets containing {queryString} from {startPeriod} to {endPeriod}");
         var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
         
+        // created:[20020101 TO 20030101]
         var q: Query = parser.parse(queryString);
 
         var hitsPerPage: Integer = 3200;
