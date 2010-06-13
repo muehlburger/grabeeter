@@ -85,7 +85,6 @@
             <Item value="inst:HBoxModel1"/>
             <Item value="inst:VBoxModel2"/>
             <Item value="inst:VBoxModel3"/>
-            <Item value="inst:HBoxModel5"/>
             <Item value="inst:HBoxModel6"/>
             <Item value="inst:VBoxModel4"/>
         </List>
@@ -183,6 +182,7 @@
             <Item value="inst:LabelModel3"/>
             <Item value="inst:HBoxModel3"/>
             <Item value="inst:HBoxModel4"/>
+            <Item value="inst:HBoxModel5"/>
         </List>
         <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:0.0,0.0,10.0,10.0,4,null,"/>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
@@ -207,10 +207,11 @@
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel4">
         <Reference name="instanceName" value="str:label3"/>
-        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:50.0,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:60.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
         <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,str:From:,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
         <Reference name="graphic" value="null"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel2">
@@ -218,6 +219,8 @@
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
         <Reference name="text" value="prop2:7,NOT_SET,4,null,43,str:bind tweetUtil.periodStart with inverse,4,null,4,null,"/>
+        <Reference name="promptText" value="prop2:7,NOT_SET,4,null,4,null,21,anim:,,str:yyyy/MM/dd,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel4">
         <Reference name="instanceName" value="str:ToHbox"/>
@@ -231,10 +234,11 @@
     </Instance>
     <Instance classID="LabelModel" instanceID="LabelModel5">
         <Reference name="instanceName" value="str:label4"/>
-        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:50.0,4,null,"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:60.0,4,null,"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
         <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,str:To:,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
         <Reference name="graphic" value="null"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel3">
@@ -242,16 +246,29 @@
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
         <Reference name="text" value="prop2:7,NOT_SET,4,null,41,str:bind tweetUtil.periodEnd with inverse,4,null,4,null,"/>
+        <Reference name="promptText" value="prop2:7,NOT_SET,4,null,4,null,21,anim:,,str:yyyy/MM/dd,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel5">
         <Reference name="instanceName" value="str:searchHbox"/>
         <Reference name="clip" value="null"/>
         <List name="content">
+            <Item value="inst:LabelModel6"/>
             <Item value="inst:TextBoxModel4"/>
             <Item value="inst:ButtonModel2"/>
             <Item value="inst:ButtonModel3"/>
         </List>
+        <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,30,anim:,,insets:10.0,0.0,0.0,0.0,4,null,"/>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+    </Instance>
+    <Instance classID="LabelModel" instanceID="LabelModel6">
+        <Reference name="instanceName" value="str:label5"/>
+        <Reference name="layoutInfoWidth" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:60.0,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,str:Search:,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
+        <Reference name="graphic" value="null"/>
     </Instance>
     <Instance classID="TextBoxModel" instanceID="TextBoxModel4">
         <Reference name="instanceName" value="str:searchTextBox"/>
@@ -286,7 +303,7 @@
         <Reference name="opacity" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:0.65,4,null,"/>
         <Reference name="clip" value="null"/>
         <List name="content">
-            <Item value="inst:LabelModel6"/>
+            <Item value="inst:LabelModel7"/>
             <Item value="inst:HBoxModel7"/>
         </List>
         <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,30,anim:,,insets:3.0,0.0,10.0,0.0,4,null,"/>
@@ -296,7 +313,7 @@
         <Reference name="nodeHPos" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,hpos:LEFT,4,null,"/>
         <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
     </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel6">
+    <Instance classID="LabelModel" instanceID="LabelModel7">
         <Reference name="instanceName" value="str:statusMessageLabel"/>
         <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
         <Reference name="clip" value="null"/>
@@ -361,7 +378,7 @@
         <Reference name="clip" value="null"/>
         <List name="content">
             <Item value="inst:CircleShapeModel1"/>
-            <Item value="inst:LabelModel7"/>
+            <Item value="inst:LabelModel8"/>
         </List>
         <Reference name="nodeHPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
         <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
@@ -374,7 +391,7 @@
         <Reference name="clip" value="null"/>
         <Reference name="radius" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:8.0,4,null,"/>
     </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel7">
+    <Instance classID="LabelModel" instanceID="LabelModel8">
         <Reference name="instanceName" value="str:closeText"/>
         <Reference name="layoutX" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
         <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>

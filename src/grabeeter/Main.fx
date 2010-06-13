@@ -56,48 +56,6 @@ public class Main {
         text: "2. After you \"Grabbed\" your tweets you are able to perform a search on the list of your tweets."
     }
     
-    def __layoutInfo_label3: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 50.0
-    }
-    public-read def label3: javafx.scene.control.Label = javafx.scene.control.Label {
-        layoutInfo: __layoutInfo_label3
-        text: "From:"
-    }
-    
-    public-read def periodStartTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
-        text: bind tweetUtil.periodStart with inverse
-    }
-    
-    public-read def FromHbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        content: [ label3, periodStartTextbox, ]
-        padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 0.0, bottom: 0.0 }
-        spacing: 6.0
-    }
-    
-    def __layoutInfo_label4: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 50.0
-    }
-    public-read def label4: javafx.scene.control.Label = javafx.scene.control.Label {
-        layoutInfo: __layoutInfo_label4
-        text: "To:"
-    }
-    
-    public-read def periodEndTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
-        text: bind tweetUtil.periodEnd with inverse
-    }
-    
-    public-read def ToHbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        content: [ label4, periodEndTextbox, ]
-        padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 0.0, bottom: 0.0 }
-        spacing: 6.0
-    }
-    
-    public-read def searchVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
-        content: [ label2, FromHbox, ToHbox, ]
-        padding: javafx.geometry.Insets { left: 0.0, top: 0.0, right: 10.0, bottom: 10.0 }
-        spacing: 6.0
-    }
-    
     public-read def statusMessageLabel: javafx.scene.control.Label = javafx.scene.control.Label {
         visible: true
         text: "Status message"
@@ -262,8 +220,66 @@ public class Main {
         action: searchButtonAction
     }
     
+    def __layoutInfo_label5: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 60.0
+    }
+    public-read def label5: javafx.scene.control.Label = javafx.scene.control.Label {
+        layoutInfo: __layoutInfo_label5
+        text: "Search:"
+        font: font2
+    }
+    
     public-read def searchHbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        content: [ searchTextBox, searchButton, button, ]
+        content: [ label5, searchTextBox, searchButton, button, ]
+        padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 0.0, bottom: 0.0 }
+        spacing: 6.0
+    }
+    
+    public-read def periodEndTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        text: bind tweetUtil.periodEnd with inverse
+        promptText: "yyyy/MM/dd"
+        font: font2
+    }
+    
+    def __layoutInfo_label4: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 60.0
+    }
+    public-read def label4: javafx.scene.control.Label = javafx.scene.control.Label {
+        layoutInfo: __layoutInfo_label4
+        text: "To:"
+        font: font2
+    }
+    
+    public-read def ToHbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        content: [ label4, periodEndTextbox, ]
+        padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 0.0, bottom: 0.0 }
+        spacing: 6.0
+    }
+    
+    public-read def periodStartTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+        text: bind tweetUtil.periodStart with inverse
+        promptText: "yyyy/MM/dd"
+        font: font2
+    }
+    
+    def __layoutInfo_label3: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 60.0
+    }
+    public-read def label3: javafx.scene.control.Label = javafx.scene.control.Label {
+        layoutInfo: __layoutInfo_label3
+        text: "From:"
+        font: font2
+    }
+    
+    public-read def FromHbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        content: [ label3, periodStartTextbox, ]
+        padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 0.0, bottom: 0.0 }
+        spacing: 6.0
+    }
+    
+    public-read def searchVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
+        content: [ label2, FromHbox, ToHbox, searchHbox, ]
+        padding: javafx.geometry.Insets { left: 0.0, top: 0.0, right: 10.0, bottom: 10.0 }
         spacing: 6.0
     }
     
@@ -300,7 +316,7 @@ public class Main {
     }
     public-read def containerVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
         layoutInfo: __layoutInfo_containerVbox
-        content: [ hbox3, usernameVbox, searchVbox, searchHbox, statusMessageBox, detailsVbox, ]
+        content: [ hbox3, usernameVbox, searchVbox, statusMessageBox, detailsVbox, ]
         padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 0.0, bottom: 0.0 }
         spacing: 5.0
         hpos: javafx.geometry.HPos.LEFT
@@ -333,7 +349,9 @@ public class Main {
     // </editor-fold>//GEN-END:main
 
     function buttonAction(): Void {
-        tweetUtil.searchResults = tweetUtil.tweets;
+        tweetUtil.resetToDefault();
+        periodStartTextbox.text = tweetUtil.periodStart;
+        periodEndTextbox.text = tweetUtil.periodEnd;
     }
 
     var screenName: String = bind tweetUtil.screenName on replace {
@@ -374,13 +392,19 @@ public class Main {
 //    }
     
     function retrieveButtonAction(): Void {
+        clearInputFields();
         statusMessageLabel.text = "Retrieving tweets ...";
         tweetUtil.retrieveData(true, progressIndicator);
     }
 
+    function clearInputFields(): Void {
+        periodStartTextbox.clear();
+        periodEndTextbox.clear();
+        searchTextBox.clear();
+    }
+
+
     function searchButtonAction(): Void {
-        println("start: {tweetUtil.periodStart}");
-        println("end: {tweetUtil.periodEnd}");
         statusMessageLabel.text = "Tweets containing: \"{searchTextBox.text.trim()}\"";
         tweetUtil.queryTweets(searchTextBox.text.trim(), tweetUtil.periodStart, tweetUtil.periodEnd);
         listView.select(-1);

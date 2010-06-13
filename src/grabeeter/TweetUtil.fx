@@ -41,6 +41,9 @@ public class TweetUtil {
 
     public var periodStart: String;
     public var periodEnd: String;
+
+    public var origPeriodStart: String;
+    public var origPeriodEnd: String;
     
     var storage = Storage {
         source: "grabeeter";
@@ -179,8 +182,10 @@ public class TweetUtil {
         
         // Update the start and end peroid where tweets are available
         periodStart = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(Long.parseLong(tweets[tweets.size()-1].created) *1000));
+        origPeriodStart = periodStart;
+
         periodEnd = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(Long.parseLong(tweets[0].created) *1000));
-        
+        origPeriodEnd = periodEnd;
        
        // var parsedDate: java.util.Date = new java.text.SimpleDateFormat ("dd/MM/yyyy HH:mm:ss").parse("01/01/1970 01:00:00");
 
@@ -225,6 +230,13 @@ public class TweetUtil {
             insert t into searchResults;
         }
     }
+
+    public function resetToDefault() {
+        searchResults = tweets;
+        periodStart = origPeriodStart;
+        periodEnd = origPeriodEnd;
+    }
+
 
 
 
