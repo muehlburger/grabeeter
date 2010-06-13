@@ -218,7 +218,6 @@
         <Reference name="instanceName" value="str:periodStartTextbox"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
-        <Reference name="text" value="prop2:7,NOT_SET,4,null,43,str:bind tweetUtil.periodStart with inverse,4,null,4,null,"/>
         <Reference name="promptText" value="prop2:7,NOT_SET,4,null,4,null,21,anim:,,str:yyyy/MM/dd,4,null,"/>
         <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
     </Instance>
@@ -245,7 +244,6 @@
         <Reference name="instanceName" value="str:periodEndTextbox"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
-        <Reference name="text" value="prop2:7,NOT_SET,4,null,41,str:bind tweetUtil.periodEnd with inverse,4,null,4,null,"/>
         <Reference name="promptText" value="prop2:7,NOT_SET,4,null,4,null,21,anim:,,str:yyyy/MM/dd,4,null,"/>
         <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
     </Instance>
@@ -290,13 +288,13 @@
         <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,29,anim:,,str:searchButtonAction,4,null,"/>
     </Instance>
     <Instance classID="ButtonModel" instanceID="ButtonModel3">
-        <Reference name="instanceName" value="str:button"/>
+        <Reference name="instanceName" value="str:clearButton"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
         <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,str:Clear,4,null,"/>
         <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
         <Reference name="graphic" value="null"/>
-        <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,23,anim:,,str:buttonAction,4,null,"/>
+        <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,28,anim:,,str:clearButtonAction,4,null,"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel6">
         <Reference name="instanceName" value="str:statusMessageBox"/>

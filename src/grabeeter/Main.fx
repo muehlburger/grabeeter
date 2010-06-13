@@ -200,10 +200,10 @@ public class Main {
         size: 18.0
     }
     
-    public-read def button: javafx.scene.control.Button = javafx.scene.control.Button {
+    public-read def clearButton: javafx.scene.control.Button = javafx.scene.control.Button {
         text: "Clear"
         font: font2
-        action: buttonAction
+        action: clearButtonAction
     }
     
     public-read def searchButton: javafx.scene.control.Button = javafx.scene.control.Button {
@@ -230,13 +230,12 @@ public class Main {
     }
     
     public-read def searchHbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
-        content: [ label5, searchTextBox, searchButton, button, ]
+        content: [ label5, searchTextBox, searchButton, clearButton, ]
         padding: javafx.geometry.Insets { left: 10.0, top: 0.0, right: 0.0, bottom: 0.0 }
         spacing: 6.0
     }
     
     public-read def periodEndTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
-        text: bind tweetUtil.periodEnd with inverse
         promptText: "yyyy/MM/dd"
         font: font2
     }
@@ -257,7 +256,6 @@ public class Main {
     }
     
     public-read def periodStartTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
-        text: bind tweetUtil.periodStart with inverse
         promptText: "yyyy/MM/dd"
         font: font2
     }
@@ -348,10 +346,10 @@ public class Main {
     }
     // </editor-fold>//GEN-END:main
 
-    function buttonAction(): Void {
+    function clearButtonAction(): Void {
         tweetUtil.resetToDefault();
-        periodStartTextbox.text = tweetUtil.periodStart;
-        periodEndTextbox.text = tweetUtil.periodEnd;
+        clearInputFields();
+        statusMessageLabel.text = "Search query cleared"
     }
 
     var screenName: String = bind tweetUtil.screenName on replace {
@@ -359,6 +357,23 @@ public class Main {
     }
 
     var username = bind new URLConverter().encodeString(usernameTextBox.text);
+
+    var periodStart = bind periodStartTextbox.text on replace {
+        tweetUtil.periodStart = periodStart
+    }
+
+    var periodEnd = bind periodEndTextbox.text on replace {
+        tweetUtil.periodEnd = periodEnd
+    }
+
+    var utilPeriodStart = bind tweetUtil.periodStart on replace {
+         periodStartTextbox.text = utilPeriodStart;
+    };
+
+    var utilPeriodEnd = bind tweetUtil.periodEnd on replace {
+        periodEndTextbox.text = utilPeriodEnd;
+    };
+    
     var apiUrl: String = bind "http://grabeeter.tugraz.at/api/tweets/{username}.xml";
     
     def tweetUtil: TweetUtil = TweetUtil {
@@ -374,22 +389,9 @@ public class Main {
         urlTextbox.text = "{selectedResult.url}";
     }
 
-//    var isApplet = "true".equals(FX.getArgument("isApplet") as String);
-//    var inBrowser = isApplet;
-//    var draggable = AppletStageExtension.appletDragSupported;
-
-
-//    function tweetLinkOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
-//        BrowserUtil.browse(tweetLink.text);
-//    }
-//
     function closeIconsOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
         scene.stage.close();
     }
-//
-//    public function getCloseIcons(): Stack {
-//        return this.closeIcons;
-//    }
     
     function retrieveButtonAction(): Void {
         clearInputFields();
@@ -398,11 +400,8 @@ public class Main {
     }
 
     function clearInputFields(): Void {
-        periodStartTextbox.clear();
-        periodEndTextbox.clear();
         searchTextBox.clear();
     }
-
 
     function searchButtonAction(): Void {
         statusMessageLabel.text = "Tweets containing: \"{searchTextBox.text.trim()}\"";
