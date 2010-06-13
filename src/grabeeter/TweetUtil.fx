@@ -25,8 +25,10 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.search.ScoreDoc;
 import grabeeter.model.Tweet;
-import javafx.date.DateTime;
-import java.text.SimpleDateFormat;
+import org.apache.lucene.search.TermRangeQuery;
+import org.apache.lucene.search.MultiTermQuery;
+import org.apache.lucene.queryParser.MultiFieldQueryParser;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 /**
  * @author Herbert Muehlburger
  */
@@ -168,7 +170,7 @@ public class TweetUtil {
         finished = false;
         delete searchResults;
         statusMessage.text = "Indexing tweets ...";
-        analyser = new GermanAnalyzer(Version.LUCENE_30);
+        analyser = new StandardAnalyzer(Version.LUCENE_30);
         index = new RAMDirectory();
         var w : IndexWriter = new IndexWriter(index, analyser, true, IndexWriter.MaxFieldLength.UNLIMITED);
         
@@ -178,18 +180,15 @@ public class TweetUtil {
         }
 
         w.close();
-        statusMessage.text = "Indexing finished! Now you can search! ;-)";
+        statusMessage.text = "Indexing finished! Ready to search! ;-)";
         
         // Update the start and end peroid where tweets are available
-        //periodStart = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(Long.parseLong(tweets[tweets.size()-1].created) *1000));
         periodStart = tweets[tweets.size()-1].created;
-        origPeriodStart = periodStart;
-
-//        periodEnd = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(Long.parseLong(tweets[0].created) *1000));
         periodEnd = tweets[0].created;
+
+        // Store original periods for later use
+        origPeriodStart = periodStart;
         origPeriodEnd = periodEnd;
-       
-       // var parsedDate: java.util.Date = new java.text.SimpleDateFormat ("dd/MM/yyyy HH:mm:ss").parse("01/01/1970 01:00:00");
 
         finished = true;
     }
@@ -207,16 +206,18 @@ public class TweetUtil {
         }
     }
 
-    public function queryTweets(queryString: String, startPeriod: String, endPeriod: String): Void {
+    public function queryTweets(queryString: String, periodStart: String, periodEnd: String): Void {
         delete searchResults;
-        println("searching tweets containing {queryString} from {startPeriod} to {endPeriod}");
-        var parser: QueryParser = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
-        
-        // created:[20020101 TO 20030101]
-        var q: Query = parser.parse(queryString);
+        println("searching tweets containing {queryString} from {periodStart} to {periodEnd}");
 
-        var hitsPerPage: Integer = 3200;
         var searcher: IndexSearcher = new IndexSearcher(index, true);
+        var rangeQuery: String = "created:[{periodStart} TO {periodEnd}]";
+
+        var parser: QueryParser  = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
+
+        var q: Query = parser.parse('{rangeQuery} AND "{queryString}"');
+        var hitsPerPage: Integer = 3200;
+       
         var collector: TopScoreDocCollector = TopScoreDocCollector.create(hitsPerPage, true);
         searcher.search(q, collector);
 
