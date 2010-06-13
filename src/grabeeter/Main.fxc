@@ -218,7 +218,7 @@
         <Reference name="instanceName" value="str:periodStartTextbox"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
-        <Reference name="promptText" value="prop2:7,NOT_SET,4,null,4,null,21,anim:,,str:yyyy/MM/dd,4,null,"/>
+        <Reference name="promptText" value="prop2:7,NOT_SET,4,null,4,null,21,anim:,,str:yyyy-mm-dd,4,null,"/>
         <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel4">
@@ -244,7 +244,7 @@
         <Reference name="instanceName" value="str:periodEndTextbox"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
-        <Reference name="promptText" value="prop2:7,NOT_SET,4,null,4,null,21,anim:,,str:yyyy/MM/dd,4,null,"/>
+        <Reference name="promptText" value="prop2:7,NOT_SET,4,null,4,null,21,anim:,,str:yyyy-mm-dd,4,null,"/>
         <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
     </Instance>
     <Instance classID="HBoxModel" instanceID="HBoxModel5">

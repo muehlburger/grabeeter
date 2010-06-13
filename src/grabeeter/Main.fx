@@ -236,7 +236,7 @@ public class Main {
     }
     
     public-read def periodEndTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
-        promptText: "yyyy/MM/dd"
+        promptText: "yyyy-mm-dd"
         font: font2
     }
     
@@ -256,7 +256,7 @@ public class Main {
     }
     
     public-read def periodStartTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
-        promptText: "yyyy/MM/dd"
+        promptText: "yyyy-mm-dd"
         font: font2
     }
     

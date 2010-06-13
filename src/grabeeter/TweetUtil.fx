@@ -181,10 +181,12 @@ public class TweetUtil {
         statusMessage.text = "Indexing finished! Now you can search! ;-)";
         
         // Update the start and end peroid where tweets are available
-        periodStart = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(Long.parseLong(tweets[tweets.size()-1].created) *1000));
+        //periodStart = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(Long.parseLong(tweets[tweets.size()-1].created) *1000));
+        periodStart = tweets[tweets.size()-1].created;
         origPeriodStart = periodStart;
 
-        periodEnd = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(Long.parseLong(tweets[0].created) *1000));
+//        periodEnd = new java.text.SimpleDateFormat("yyyy/MM/dd").format(new java.util.Date(Long.parseLong(tweets[0].created) *1000));
+        periodEnd = tweets[0].created;
         origPeriodEnd = periodEnd;
        
        // var parsedDate: java.util.Date = new java.text.SimpleDateFormat ("dd/MM/yyyy HH:mm:ss").parse("01/01/1970 01:00:00");
