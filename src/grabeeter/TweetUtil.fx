@@ -25,9 +25,7 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.search.ScoreDoc;
 import grabeeter.model.Tweet;
-import org.apache.lucene.search.TermRangeQuery;
-import org.apache.lucene.search.MultiTermQuery;
-import org.apache.lucene.queryParser.MultiFieldQueryParser;
+
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 /**
  * @author Herbert Muehlburger
@@ -56,6 +54,7 @@ public class TweetUtil {
 
     init {
         storage.resource.maxLength = 104857600; // 100MB
+        //storage.clear();
         load();
         indexTweets();
     }
@@ -83,6 +82,8 @@ public class TweetUtil {
                                 tweet.screenName = value;
                             } else if(qname.name == "url") {
                                 tweet.url = value;
+                            } else if(qname.name == "twitterUrl") {
+                                tweet.twitterUrl = value;
                             }
                             //println( "{%-20s "   url"} {%-20s qname.name} {%-20s value}");
                         }
@@ -200,6 +201,7 @@ public class TweetUtil {
             doc.add(new Field("screenName", tweet.screenName, Field.Store.YES, Field.Index.ANALYZED));
             doc.add(new Field("created", tweet.created, Field.Store.YES, Field.Index.ANALYZED));
             doc.add(new Field("url", tweet.url, Field.Store.YES, Field.Index.ANALYZED));
+            doc.add(new Field("twitterUrl", tweet.twitterUrl, Field.Store.YES, Field.Index.ANALYZED));
             w.addDocument(doc);
         } catch(e: IOException) {
             e.printStackTrace();
@@ -215,7 +217,7 @@ public class TweetUtil {
 
         var parser: QueryParser  = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
 
-        var q: Query = parser.parse('{rangeQuery} AND "{queryString}"');
+        var q: Query = parser.parse("{rangeQuery} AND {queryString}");
         var hitsPerPage: Integer = 3200;
        
         var collector: TopScoreDocCollector = TopScoreDocCollector.create(hitsPerPage, true);
@@ -230,6 +232,7 @@ public class TweetUtil {
             t.screenName = d.get("screenName");
             t.created = d.get("created");
             t.url = d.get("url");
+            t.twitterUrl = d.get("twitterUrl");
             insert t into searchResults;
         }
     }

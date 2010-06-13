@@ -15,9 +15,10 @@ public class Tweet {
     public var screenName: String;
     public var created: String;
     public var url: String;
+    public var twitterUrl: String;
 
     public override function toString(): String {
-        "{text}"
+        "{created}: {text}"
     }
 
 }

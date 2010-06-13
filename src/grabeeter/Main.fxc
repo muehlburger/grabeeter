@@ -336,7 +336,8 @@
         <List name="content">
             <Item value="inst:ListViewModel1"/>
             <Item value="inst:TextBoxModel5"/>
-            <Item value="inst:TextBoxModel6"/>
+            <Item value="inst:SeparatorModel1"/>
+            <Item value="inst:HBoxModel8"/>
         </List>
         <Reference name="padding" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,insets:0.0,0.0,10.0,10.0,4,null,"/>
         <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
@@ -357,14 +358,73 @@
         <Reference name="multiline" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
         <Reference name="lines" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:2.0,4,null,"/>
     </Instance>
-    <Instance classID="TextBoxModel" instanceID="TextBoxModel6">
-        <Reference name="instanceName" value="str:urlTextbox"/>
-        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="cursor" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,cursor:TEXT,4,null,"/>
+    <Instance classID="SeparatorModel" instanceID="SeparatorModel1">
+        <Reference name="instanceName" value="str:separator"/>
         <Reference name="clip" value="null"/>
         <Reference name="tooltip" value="null"/>
-        <Reference name="multiline" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
-        <Reference name="lines" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:1.0,4,null,"/>
+    </Instance>
+    <Instance classID="HBoxModel" instanceID="HBoxModel8">
+        <Reference name="instanceName" value="str:LinksHbox"/>
+        <Reference name="layoutInfoHFill" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <List name="content">
+            <Item value="inst:VBoxModel5"/>
+            <Item value="inst:VBoxModel6"/>
+        </List>
+        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+    </Instance>
+    <Instance classID="VBoxModel" instanceID="VBoxModel5">
+        <Reference name="instanceName" value="str:vbox"/>
+        <Reference name="clip" value="null"/>
+        <List name="content">
+            <Item value="inst:LabelModel8"/>
+            <Item value="inst:HyperlinkModel1"/>
+        </List>
+        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+    </Instance>
+    <Instance classID="LabelModel" instanceID="LabelModel8">
+        <Reference name="instanceName" value="str:grabeeterUrlLabel"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,25,anim:,,str:Grabeeter Link,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
+        <Reference name="graphic" value="null"/>
+    </Instance>
+    <Instance classID="HyperlinkModel" instanceID="HyperlinkModel1">
+        <Reference name="instanceName" value="str:grabeeterUrlLink"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,20,anim:,,str:Grabeeter,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
+        <Reference name="graphic" value="null"/>
+        <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,33,anim:,,str:grabeeterUrlLinkAction,4,null,"/>
+    </Instance>
+    <Instance classID="VBoxModel" instanceID="VBoxModel6">
+        <Reference name="instanceName" value="str:vbox2"/>
+        <Reference name="clip" value="null"/>
+        <List name="content">
+            <Item value="inst:LabelModel9"/>
+            <Item value="inst:HyperlinkModel2"/>
+        </List>
+        <Reference name="spacing" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:6.0,4,null,"/>
+    </Instance>
+    <Instance classID="LabelModel" instanceID="LabelModel9">
+        <Reference name="instanceName" value="str:twitterUrlLabel"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,23,anim:,,str:Twitter Link,4,null,"/>
+        <Reference name="font" value="prop2:7,NOT_SET,4,null,4,null,22,anim:,,inst:FontModel2,4,null,"/>
+        <Reference name="graphic" value="null"/>
+    </Instance>
+    <Instance classID="HyperlinkModel" instanceID="HyperlinkModel2">
+        <Reference name="instanceName" value="str:twitterUrlLink"/>
+        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,bool:true,4,null,"/>
+        <Reference name="clip" value="null"/>
+        <Reference name="tooltip" value="null"/>
+        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,str:Twitter,4,null,"/>
+        <Reference name="graphic" value="null"/>
+        <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,str:twitterUrlLinkAction,4,null,"/>
     </Instance>
     <Instance classID="StackModel" instanceID="StackModel1">
         <Reference name="instanceName" value="str:closeIcons"/>
@@ -376,7 +436,7 @@
         <Reference name="clip" value="null"/>
         <List name="content">
             <Item value="inst:CircleShapeModel1"/>
-            <Item value="inst:LabelModel8"/>
+            <Item value="inst:LabelModel10"/>
         </List>
         <Reference name="nodeHPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
         <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
@@ -389,7 +449,7 @@
         <Reference name="clip" value="null"/>
         <Reference name="radius" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:8.0,4,null,"/>
     </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel8">
+    <Instance classID="LabelModel" instanceID="LabelModel10">
         <Reference name="instanceName" value="str:closeText"/>
         <Reference name="layoutX" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
         <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>

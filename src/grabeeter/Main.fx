@@ -34,6 +34,7 @@ import javafx.io.http.URLConverter;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Stack;
 import grabeeter.model.Tweet;
+import java.net.URI;
 
 public class Main {
 
@@ -87,11 +88,20 @@ public class Main {
         items: bind listViewItems
     }
     
-    public-read def urlTextbox: javafx.scene.control.TextBox = javafx.scene.control.TextBox {
+    public-read def separator: javafx.scene.control.Separator = javafx.scene.control.Separator {
+    }
+    
+    public-read def grabeeterUrlLink: javafx.scene.control.Hyperlink = javafx.scene.control.Hyperlink {
         visible: true
-        cursor: javafx.scene.Cursor.TEXT
-        multiline: true
-        lines: 1.0
+        text: "Grabeeter"
+        font: null
+        action: grabeeterUrlLinkAction
+    }
+    
+    public-read def twitterUrlLink: javafx.scene.control.Hyperlink = javafx.scene.control.Hyperlink {
+        visible: true
+        text: "Twitter"
+        action: twitterUrlLinkAction
     }
     
     public-read def circle: javafx.scene.shape.Circle = javafx.scene.shape.Circle {
@@ -169,16 +179,6 @@ public class Main {
         lines: 2.0
     }
     
-    def __layoutInfo_detailsVbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
-        width: 800.0
-    }
-    public-read def detailsVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
-        layoutInfo: __layoutInfo_detailsVbox
-        content: [ listView, tweetTextbox, urlTextbox, ]
-        padding: javafx.geometry.Insets { left: 0.0, top: 0.0, right: 10.0, bottom: 10.0 }
-        spacing: 6.0
-    }
-    
     def __layoutInfo_headline: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
         margin: javafx.geometry.Insets { left: 20.0, top: 50.0, right: 0.0, bottom: 0.0 }
     }
@@ -198,6 +198,45 @@ public class Main {
     
     public-read def font2: javafx.scene.text.Font = javafx.scene.text.Font {
         size: 18.0
+    }
+    
+    public-read def twitterUrlLabel: javafx.scene.control.Label = javafx.scene.control.Label {
+        text: "Twitter Link"
+        font: font2
+    }
+    
+    public-read def vbox2: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
+        content: [ twitterUrlLabel, twitterUrlLink, ]
+        spacing: 6.0
+    }
+    
+    public-read def grabeeterUrlLabel: javafx.scene.control.Label = javafx.scene.control.Label {
+        text: "Grabeeter Link"
+        font: font2
+    }
+    
+    public-read def vbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
+        content: [ grabeeterUrlLabel, grabeeterUrlLink, ]
+        spacing: 6.0
+    }
+    
+    def __layoutInfo_LinksHbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        hfill: true
+    }
+    public-read def LinksHbox: javafx.scene.layout.HBox = javafx.scene.layout.HBox {
+        layoutInfo: __layoutInfo_LinksHbox
+        content: [ vbox, vbox2, ]
+        spacing: 6.0
+    }
+    
+    def __layoutInfo_detailsVbox: javafx.scene.layout.LayoutInfo = javafx.scene.layout.LayoutInfo {
+        width: 800.0
+    }
+    public-read def detailsVbox: javafx.scene.layout.VBox = javafx.scene.layout.VBox {
+        layoutInfo: __layoutInfo_detailsVbox
+        content: [ listView, tweetTextbox, separator, LinksHbox, ]
+        padding: javafx.geometry.Insets { left: 0.0, top: 0.0, right: 10.0, bottom: 10.0 }
+        spacing: 6.0
     }
     
     public-read def clearButton: javafx.scene.control.Button = javafx.scene.control.Button {
@@ -346,6 +385,14 @@ public class Main {
     }
     // </editor-fold>//GEN-END:main
 
+    function grabeeterUrlLinkAction(): Void {
+        java.awt.Desktop.getDesktop().browse(new URI(grabeeterUrlLink.text));
+    }
+
+    function twitterUrlLinkAction(): Void {
+        java.awt.Desktop.getDesktop().browse(new URI(twitterUrlLink.text));
+    }
+
     function clearButtonAction(): Void {
         tweetUtil.resetToDefault();
         clearInputFields();
@@ -386,7 +433,8 @@ public class Main {
 
     var selectedResult = bind listView.selectedItem as Tweet on replace {
         tweetTextbox.text = "{selectedResult.text}";
-        urlTextbox.text = "{selectedResult.url}";
+        grabeeterUrlLink.text = "{selectedResult.url}";
+        twitterUrlLink.text = "{selectedResult.twitterUrl}"
     }
 
     function closeIconsOnMouseClicked(event: javafx.scene.input.MouseEvent): Void {
