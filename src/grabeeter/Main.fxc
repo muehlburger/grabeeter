@@ -67,7 +67,6 @@
         <Reference name="instanceName" value="str:scene"/>
         <List name="content">
             <Item value="inst:VBoxModel1"/>
-            <Item value="inst:StackModel1"/>
         </List>
         <Reference name="width" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
         <Reference name="height" value="prop2:7,NOT_SET,4,null,4,null,11,anim:,,null,4,null,"/>
@@ -425,45 +424,5 @@
         <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,str:Twitter,4,null,"/>
         <Reference name="graphic" value="null"/>
         <Reference name="action" value="prop2:7,NOT_SET,4,null,4,null,31,anim:,,str:twitterUrlLinkAction,4,null,"/>
-    </Instance>
-    <Instance classID="StackModel" instanceID="StackModel1">
-        <Reference name="instanceName" value="str:closeIcons"/>
-        <Reference name="visible" value="prop2:7,NOT_SET,4,null,4,null,17,anim:,,bool:false,4,null,"/>
-        <Reference name="opacity" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:1.0,4,null,"/>
-        <Reference name="layoutX" value="prop2:7,NOT_SET,4,null,4,null,16,anim:,,flt:649.0,4,null,"/>
-        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="onMouseClicked" value="prop2:7,NOT_SET,4,null,4,null,35,anim:,,str:closeIconsOnMouseClicked,4,null,"/>
-        <Reference name="clip" value="null"/>
-        <List name="content">
-            <Item value="inst:CircleShapeModel1"/>
-            <Item value="inst:LabelModel10"/>
-        </List>
-        <Reference name="nodeHPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
-        <Reference name="nodeVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
-    </Instance>
-    <Instance classID="CircleShapeModel" instanceID="CircleShapeModel1">
-        <Reference name="instanceName" value="str:circle"/>
-        <Reference name="opacity" value="prop2:7,NOT_SET,4,null,4,null,15,anim:,,flt:0.61,4,null,"/>
-        <Reference name="cursor" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,cursor:HAND,4,null,"/>
-        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="clip" value="null"/>
-        <Reference name="radius" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:8.0,4,null,"/>
-    </Instance>
-    <Instance classID="LabelModel" instanceID="LabelModel10">
-        <Reference name="instanceName" value="str:closeText"/>
-        <Reference name="layoutX" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="layoutY" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:0.0,4,null,"/>
-        <Reference name="clip" value="null"/>
-        <Reference name="tooltip" value="null"/>
-        <Reference name="text" value="prop2:7,NOT_SET,4,null,4,null,12,anim:,,str:x,4,null,"/>
-        <Reference name="textAlignment" value="prop2:7,NOT_SET,4,null,4,null,23,anim:,,textalign:CENTER,4,null,"/>
-        <Reference name="textOverrun" value="prop2:7,NOT_SET,4,null,4,null,30,anim:,,overrun:CENTER_ELLIPSES,4,null,"/>
-        <Reference name="hpos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
-        <Reference name="vpos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
-        <Reference name="graphicTextGap" value="prop2:7,NOT_SET,4,null,4,null,14,anim:,,flt:5.0,4,null,"/>
-        <Reference name="graphicHPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,hpos:CENTER,4,null,"/>
-        <Reference name="graphicVPos" value="prop2:7,NOT_SET,4,null,4,null,18,anim:,,vpos:CENTER,4,null,"/>
-        <Reference name="graphic" value="null"/>
-        <Reference name="textFill" value="prop2:7,NOT_SET,4,null,4,null,32,anim:,,inst:LinearGradientModel1,4,null,"/>
     </Instance>
 </Model>

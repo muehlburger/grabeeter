@@ -104,13 +104,6 @@ public class Main {
         action: twitterUrlLinkAction
     }
     
-    public-read def circle: javafx.scene.shape.Circle = javafx.scene.shape.Circle {
-        opacity: 0.61
-        cursor: javafx.scene.Cursor.HAND
-        layoutY: 0.0
-        radius: 8.0
-    }
-    
     public-read def logoImage: javafx.scene.image.Image = javafx.scene.image.Image {
         url: "{__DIR__}images/logo.png"
         backgroundLoading: false
@@ -126,31 +119,6 @@ public class Main {
     public-read def backgroundGradient: javafx.scene.paint.LinearGradient = javafx.scene.paint.LinearGradient {
         endX: 0.0
         stops: [ javafx.scene.paint.Stop { offset: 0.0, color: javafx.scene.paint.Color.web ("#FFFFFF") }, javafx.scene.paint.Stop { offset: 0.4, color: javafx.scene.paint.Color.web ("#FFFFFF") }, javafx.scene.paint.Stop { offset: 0.6, color: javafx.scene.paint.Color.web ("#CCCCCC") }, javafx.scene.paint.Stop { offset: 1.0, color: javafx.scene.paint.Color.web ("#FFFFFF") }, ]
-    }
-    
-    public-read def closeText: javafx.scene.control.Label = javafx.scene.control.Label {
-        layoutX: 0.0
-        layoutY: 0.0
-        text: "x"
-        textAlignment: javafx.scene.text.TextAlignment.CENTER
-        textOverrun: javafx.scene.control.OverrunStyle.CENTER_ELLIPSES
-        hpos: javafx.geometry.HPos.CENTER
-        vpos: javafx.geometry.VPos.CENTER
-        graphicHPos: javafx.geometry.HPos.CENTER
-        graphicVPos: javafx.geometry.VPos.CENTER
-        graphicTextGap: 5.0
-        textFill: backgroundGradient
-    }
-    
-    public-read def closeIcons: javafx.scene.layout.Stack = javafx.scene.layout.Stack {
-        visible: false
-        opacity: 1.0
-        layoutX: 649.0
-        layoutY: 0.0
-        onMouseClicked: closeIconsOnMouseClicked
-        content: [ circle, closeText, ]
-        nodeHPos: javafx.geometry.HPos.CENTER
-        nodeVPos: javafx.geometry.VPos.CENTER
     }
     
     public-read def closeImage: javafx.scene.image.Image = javafx.scene.image.Image {
@@ -377,7 +345,7 @@ public class Main {
     }
     
     public function getDesignRootNodes (): javafx.scene.Node[] {
-        [ containerVbox, closeIcons, ]
+        [ containerVbox, ]
     }
     
     public function getDesignScene (): javafx.scene.Scene {

@@ -1,3 +1,3 @@
-cp -R dist/ /home/herbert/server/tweetex/www/
-cd /home/herbert/server/tweetex/www/
+cp -R dist/* /home/herbert/workspace/server/grabeeter/web
+cd /home/herbert/workspace/server/grabeeter
 #./symfony project:deploy production --go

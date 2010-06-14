@@ -216,8 +216,15 @@ public class TweetUtil {
         var rangeQuery: String = "created:[{periodStart} TO {periodEnd}]";
 
         var parser: QueryParser  = new QueryParser(Version.LUCENE_30, "tweet-text", analyser);
+        var q: Query;
 
-        var q: Query = parser.parse("{rangeQuery} AND {queryString}");
+        if(queryString == "") {
+            q = parser.parse("{rangeQuery}");
+        }
+        else {
+            q = parser.parse("{rangeQuery} AND {queryString}");
+        }
+
         var hitsPerPage: Integer = 3200;
        
         var collector: TopScoreDocCollector = TopScoreDocCollector.create(hitsPerPage, true);
