@@ -222,7 +222,8 @@ public class TweetUtil {
             q = parser.parse("{rangeQuery}");
         }
         else {
-            q = parser.parse("{rangeQuery} AND {queryString}");
+            var escapedString: String = parser.escape(queryString);
+            q = parser.parse("{rangeQuery} AND {escapedString}");
         }
 
         var hitsPerPage: Integer = 3200;
